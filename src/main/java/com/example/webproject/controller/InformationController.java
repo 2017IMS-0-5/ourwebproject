@@ -23,13 +23,12 @@ public class InformationController {//信息文件相关控制（检索、查询
     @GetMapping
     public List<Information> list(
             @RequestParam(value = "title",required = false,defaultValue = "")String title,
-            @RequestParam(value = "summary",required = false,defaultValue = "")String summary,
             @RequestParam(value = "content",required = false,defaultValue = "")String content,
             @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
             @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
                                   ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationRepository.findByTitleContainingOrSummaryContainingOrContentContaining(title,summary,content,pageable);
+        Page<Information> page=informationRepository.findByTitleContainingOrContentContaining(title,content,pageable);
         return page.getContent();
 
     }

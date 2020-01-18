@@ -17,7 +17,7 @@ class WebprojectApplicationTests {
     @Test
     void saveRepositoryData(){
         informationRepository.deleteAll();
-
+/**
         informationRepository.save(new Information("Had I not seen the Sun",
                 "I could have borne the shade",
                 "But Light a newer Wilderness.My Wilderness has made."));
@@ -30,11 +30,13 @@ class WebprojectApplicationTests {
         informationRepository.save(new Information("2020保研条例",
                 "2020年新的保研条例",
                 "保研的必须是个人！哈哈！"));
+ **/
 
     }
 
     @Test
     void testInformationRepositoryFindByTitleContainingOrSummaryContainingOrContentContaining() {
+        /**
         Pageable pageable= PageRequest.of(0,20);
         String title="Sun";
         String summary="is";
@@ -55,6 +57,7 @@ class WebprojectApplicationTests {
             System.out.println(information.toString());
         }
         System.out.println("============end 2");
+         **/
 
     }
 
