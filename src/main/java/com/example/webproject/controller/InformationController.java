@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
     @Autowired
     private InformationRepository informationRepository;
-
+/**
     @GetMapping
     public List<Information> list(
             @RequestParam(value = "title",required = false,defaultValue = "")String title,
@@ -32,6 +33,7 @@ public class InformationController {//信息文件相关控制（检索、查询
         return page.getContent();
 
     }
+            **/
 
 
 }
