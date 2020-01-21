@@ -18,8 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
-    @Autowired
-    private InformationRepository informationRepository;
+  //  @Autowired
+    //private InformationRepository informationRepository;
 /**
     @GetMapping
     public List<Information> list(

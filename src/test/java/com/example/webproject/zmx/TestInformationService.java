@@ -2,6 +2,7 @@ package com.example.webproject.zmx;
 
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
+import com.example.webproject.service.InformationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,11 +11,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 @SpringBootTest
 public class TestInformationService {
     @Autowired
     private InformationRepository informationRepository;
+    @Autowired
+    private InformationService informationService;
 
     @Test
     void saveRepositoryData(){
@@ -40,18 +44,54 @@ public class TestInformationService {
     }
 
     @Test
-    void testInformationRepositoryFindByTitleContainingOrSummaryContainingOrContentContaining() {
+    void serviceSave(){//测试新增功能
+        String info=informationService.saveInfo(new Information("notice","jztz","郑明煊","WEB 用户画像","新闻推荐任务中用户画像的构建和使用",
+                "讲座题目：新闻推荐任务中用户画像的构建和使用\n" +
+                        "讲座人：尹珺\n" +
+                        "时间：2019年11月9日 15：00-17：00\n" +
+                        "讲座地点：主楼A区509\n" +
+                        " \n" +
+                        "讲座人简介：尹珺，博士毕业于北京大学信息科学技术学院，现工作于腾讯北京AI平台部个性化推荐中心，主要做新闻推荐的图文和视频召回相关工作。专注于基于深度模型方法进行用户兴趣建模。\n" +
+                        "\n" +
+                        "讲座内容简介：新闻推荐系统不需要用户显式提交任何查询和兴趣偏好，通过自动化算法来进行“千人千面”的内容推送。这其中的一个核心技术是用户画像构建。学术界和工业界提出过很多技术手段来构建用户画像，结合实际任务，本次主要介绍用户画像构建的基本方法，包括显式用户画像和隐式用户画像。",
+                0,new Timestamp(System.currentTimeMillis()),"")).toString();
+        System.out.println(info);
+        System.out.println("插入完毕");
+    }
+
+    @Test
+    void serviceFindByIdANDUpdate(){//测试根据ID查询功能以及更新功能
+        Optional<Information> information=informationService.selectInfoById("fvKKxm8BTa4F5iFyOyDz");
+        System.out.println(information.toString());
+        System.out.println("查询完毕");
+       information.get().setTitle("新闻推荐任务中用户画像的构建和使用--以QQ看点为例");
+        System.out.println(informationService.updateInfo(information.get()).toString());
+        System.out.println("修改完毕");
+    }
+
+    @Test
+    void testGeneralSearch() {//测试模糊查询
          Pageable pageable= PageRequest.of(0,20);
-         String title="";
-         String content="down";
-         Page<Information> page=informationRepository.findByTitleContainingOrContentContaining(title,content,pageable);
-         System.out.println("============start 1");
+         String keyword="";
+         Page<Information> page=informationService.generalSearch(keyword,pageable);
+         System.out.println("============start");
          for(Information information:page){
          System.out.println(information.toString());
          }
-         System.out.println("============end 1");
+         System.out.println("============end");
+    }
 
-
+    @Test
+    void testShow() {//测试分类显示
+        Pageable pageable= PageRequest.of(0,20);
+        String field="job";
+        String subject="sxxx";
+        Page<Information> page=informationService.show(field,subject,pageable);
+        System.out.println("============start");
+        for(Information information:page){
+            System.out.println(information.toString());
+        }
+        System.out.println("============end");
     }
 
 }

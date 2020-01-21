@@ -24,11 +24,11 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      * @param subject
      * @return
      */
-    Page<Information> findByFieldAndSubject(String field,String subject);
+    Page<Information> findByFieldAndSubject(String field,String subject,Pageable pageable);
 
 
 
-    Page<Information> findByFieldContainingOrSubjectContainingOrAuthorContainingOrLabelsContainingOrContentContainingOrRelationContaining(String field,String subject,String author,String labels,String content,String relation);
+    Page<Information> findByFieldContainingOrSubjectContainingOrAuthorContainingOrLabelsContainingOrContentContainingOrRelationContaining(String field,String subject,String author,String labels,String content,String relation, Pageable pageable);
 
     /**
      * 低级全文模糊检索

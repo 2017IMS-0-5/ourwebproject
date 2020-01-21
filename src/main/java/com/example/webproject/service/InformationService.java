@@ -2,6 +2,7 @@ package com.example.webproject.service;
 
 import com.example.webproject.entity.Information;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,14 +40,14 @@ public interface InformationService {
      * @param keyword
      * @return
      */
-    Page<Information> generalSearch(String keyword);
+    Page<Information> generalSearch(String keyword, Pageable pageable);
 
     /**
      * 高级查询
      * @param formulation
      * @return
      */
-    Page<Information> advancedSearch(String formulation);
+    Page<Information> advancedSearch(String formulation, Pageable pageable);
 
     /**
      * 信息展示
@@ -54,5 +55,5 @@ public interface InformationService {
      * @param subject
      * @return
      */
-    Page<Information> show(String field, String subject);
+    Page<Information> show(String field, String subject, Pageable pageable);
 }
