@@ -9,6 +9,7 @@
 2020.01.16|22：20|郑明煊|搭建环境，已集成【MySQL，Hibernate，SpringJPA，Elasticsearch】  
 2020.01.18|23：45|郑明煊|创建Information、Label实体类  
 2020.01.19|18：57|郑明煊|集成JSP，测试成功  
+2020.01.21|12：36|郑明煊|InformationService初步测试成功（高级检索未实现）  
 
   
 （注意：本文件（MD文件）的换行符为在当行结束后加两个空格）  
