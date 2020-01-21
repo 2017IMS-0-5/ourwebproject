@@ -31,7 +31,7 @@ public class Information {
     @Field(type = FieldType.Text,fielddata = true)
     private String relation;//附件地址
 
-    protected Information(){}
+    public Information(){}
 
     public Information(String field, String subject, String author, String labels, String title,
                        String content, Integer readSize, Timestamp createTime, String relation) {

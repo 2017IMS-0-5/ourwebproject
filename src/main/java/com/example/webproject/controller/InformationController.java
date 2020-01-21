@@ -2,6 +2,7 @@ package com.example.webproject.controller;
 
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
+import com.example.webproject.service.InformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,8 +19,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
-  //  @Autowired
-    //private InformationRepository informationRepository;
+   @Autowired
+   private InformationService informationService;
+
+   @GetMapping("/test")
+    public ModelAndView testInfoBean(){
+       ModelAndView modelAndView=new ModelAndView("testInformationBean");
+       modelAndView.addObject("info",informationService.selectInfoById("fvKKxm8BTa4F5iFyOyDz").get());
+       return modelAndView;
+   }
 /**
     @GetMapping
     public List<Information> list(

@@ -22,7 +22,7 @@ public class TestInformationService {
 
     @Test
     void saveRepositoryData(){
-        informationRepository.deleteAll();
+       // informationRepository.deleteAll();
         informationRepository.save(new Information("job","sxxx","郑明煊","字节跳动 程序员","字节跳动招聘程序员",
                 "【职位描述】\n" +
                         "1、维护、拓展公司招聘渠道，更新招聘信息；\n" +
@@ -64,9 +64,9 @@ public class TestInformationService {
         Optional<Information> information=informationService.selectInfoById("fvKKxm8BTa4F5iFyOyDz");
         System.out.println(information.toString());
         System.out.println("查询完毕");
-       information.get().setTitle("新闻推荐任务中用户画像的构建和使用--以QQ看点为例");
-        System.out.println(informationService.updateInfo(information.get()).toString());
-        System.out.println("修改完毕");
+       //information.get().setTitle("新闻推荐任务中用户画像的构建和使用--以QQ看点为例");
+        //System.out.println(informationService.updateInfo(information.get()).toString());
+        //System.out.println("修改完毕");
     }
 
     @Test
