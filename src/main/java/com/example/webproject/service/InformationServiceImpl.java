@@ -50,6 +50,8 @@ public class InformationServiceImpl implements InformationService{
 
     @Override
     public Page<Information> show(String field, String subject,Pageable pageable) {
-        return informationRepository.findByFieldAndSubject(field,subject,pageable);
+        if(subject.equals("all")){
+            return informationRepository.findByField(field,pageable);
+        }else return informationRepository.findByFieldAndSubject(field,subject,pageable);
     }
 }

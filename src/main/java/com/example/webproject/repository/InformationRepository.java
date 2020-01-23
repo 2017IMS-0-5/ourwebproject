@@ -26,6 +26,14 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      */
     Page<Information> findByFieldAndSubject(String field,String subject,Pageable pageable);
 
+    /**
+     * where field=field;
+     * @param field
+     * @param pageable
+     * @return
+     */
+    Page<Information> findByField(String field,Pageable pageable);
+
 
 
     Page<Information> findByFieldContainingOrSubjectContainingOrAuthorContainingOrLabelsContainingOrContentContainingOrRelationContaining(String field,String subject,String author,String labels,String content,String relation, Pageable pageable);
