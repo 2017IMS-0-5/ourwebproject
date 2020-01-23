@@ -84,7 +84,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","all",pageable);
-        return new ModelAndView("jyxx","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("jyxx","infoList",list);
     }
 
     /**
@@ -98,7 +102,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","sxxx",pageable);
-        return new ModelAndView("jyxxsxxx","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("jyxxsxxx","infoList",list);
     }
 
     /**
@@ -111,7 +119,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","xdxx",pageable);
-        return new ModelAndView("jyxxxdxx","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("jyxxxdxx","infoList",list);
     }
 
     /**
@@ -124,7 +136,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","zph",pageable);
-        return new ModelAndView("jyxxzph","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("jyxxzph","infoList",list);
     }
 
     /**
@@ -137,7 +153,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","wnjy",pageable);
-        return new ModelAndView("jyxxjysj","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("jyxxjysj","infoList",list);
     }
 
     /**
@@ -150,7 +170,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("notice","all",pageable);
-        return new ModelAndView("tzgg","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("tzgg","infoList",list);
     }
 
     /**
@@ -163,7 +187,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("notice","kyxm",pageable);
-        return new ModelAndView("tzggkyxm","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("tzggkyxm","infoList",list);
     }
 
     /**
@@ -176,7 +204,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("notice","jsbs",pageable);
-        return new ModelAndView("tzggjstz","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("tzggjstz","infoList",list);
     }
 
     /**
@@ -189,7 +221,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("notice","jztz",pageable);
-        return new ModelAndView("tzggjztz","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("tzggjztz","infoList",list);
     }
 
     /**
@@ -202,7 +238,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("notice","hytz",pageable);
-        return new ModelAndView("tzgghytz","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("tzgghytz","infoList",list);
     }
 
     /**
@@ -215,7 +255,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("policy","all",pageable);
-        return new ModelAndView("zczd","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("zczd","infoList",list);
     }
 
     /**
@@ -228,7 +272,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("policy","byzc",pageable);
-        return new ModelAndView("zczdbyzc","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("zczdbyzc","infoList",list);
     }
 
     /**
@@ -241,7 +289,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("policy","zszc",pageable);
-        return new ModelAndView("zczdzszc","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("zczdzszc","infoList",list);
     }
 
     /**
@@ -254,7 +306,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("policy","pyzc",pageable);
-        return new ModelAndView("zczdpyzc","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("zczdpyzc","infoList",list);
     }
 
     /**
@@ -267,7 +323,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("policy","atzc",pageable);
-        return new ModelAndView("zczdqtzc","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("zczdqtzc","infoList",list);
     }
 
     /**
@@ -280,7 +340,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("other","all",pageable);
-        return new ModelAndView("qtxx","infoList",page);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        return new ModelAndView("qtxx","infoList",list);
     }
 
    //以下是JSON交互
