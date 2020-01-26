@@ -1,6 +1,5 @@
 package com.example.webproject.service;
 
-import com.example.webproject.entity.Admin;
 import com.example.webproject.entity.Information;
 //import com.example.webproject.entity.User;
 //import com.example.webproject.entity.Comment;
@@ -122,7 +121,7 @@ public interface AdminService {
     Long[] infoPartStatistics(Date starttime, Date endtime);
 
     //标签数量返回
-    List<Admin> labelStatistics();
+   // List<Admin> labelStatistics();
 
     Long[] adminRoleStatistics();
 

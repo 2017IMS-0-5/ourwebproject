@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -53,5 +55,19 @@ public class InformationServiceImpl implements InformationService{
         if(subject.equals("all")){
             return informationRepository.findByField(field,pageable);
         }else return informationRepository.findByFieldAndSubject(field,subject,pageable);
+    }
+
+    @Override
+    public List<Information> selectByIdList(List<String> infoIdList) {
+        List<Information> informationList=new ArrayList<>();
+        for(String infoId:infoIdList){
+            informationList.add(informationRepository.findById(infoId).get());
+        }
+        return informationList;
+    }
+
+    @Override
+    public Page<Information> selectByLabel(String label,Pageable pageable) {
+        return informationRepository.findByLabelsContaining(label, pageable);
     }
 }

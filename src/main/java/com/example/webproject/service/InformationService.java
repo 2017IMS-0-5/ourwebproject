@@ -56,4 +56,18 @@ public interface InformationService {
      * @return
      */
     Page<Information> show(String field, String subject, Pageable pageable);
+
+    /**
+     * 根据IdList返回信息List(用户收藏)
+     * @param infoIdList
+     * @return
+     */
+    List<Information> selectByIdList(List<String> infoIdList);
+
+    /**
+     * 根据标签返回信息（用户推荐）
+     * @param label
+     * @return
+     */
+    Page<Information> selectByLabel(String label,Pageable pageable);
 }

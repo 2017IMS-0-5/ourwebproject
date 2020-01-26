@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -92,6 +94,29 @@ public class TestInformationService {
             System.out.println(information.toString());
         }
         System.out.println("============end");
+    }
+    @Test
+    void testSelectInformationListByInfoIdList(){//测试根据ID序列查询信息//注：不同DB同一篇Information的ID可能不同，ID可能需要自己改一下
+        List<String> infoIdList=new ArrayList<>();
+        infoIdList.add("ffI6xm8BTa4F5iFyAyAA");
+        infoIdList.add("sVBp0m8BjXCVwJ6PP9yX");
+        infoIdList.add("sFBp0m8BjXCVwJ6PFdyQ");
+        infoIdList.add("fvKKxm8BTa4F5iFyOyDz");
+        System.out.println(informationService.selectByIdList(infoIdList).toString());
+        System.out.println("查询完毕");
+    }
+
+    @Test
+    void testSeletInformationListByLabel(){
+        Pageable pageable= PageRequest.of(0,20);
+        String label=" 程序员";
+        Page<Information> page=informationService.selectByLabel(label,pageable);
+        System.out.println("============start");
+        for(Information information:page){
+            System.out.println(information.toString());
+        }
+        System.out.println("============end");
+        System.out.println("查询完毕");
     }
 
 }

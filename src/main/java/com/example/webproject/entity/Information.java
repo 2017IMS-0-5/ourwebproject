@@ -155,8 +155,8 @@ public class Information {
     @Override
     public String toString(){
         return String.format(
-                "Information[id='%s',field='%s',subject='%s',author=='%s',title='%s',content='%s',readSize='%s']",
-                id,field,subject,author,title,content,readSize
+                "EsInformation[id='%s',field='%s',subject='%s',author=='%s',title='%s',content='%s',readSize='%s',labels='%s']",
+                id,field,subject,author,title,content,readSize,labels
         );
     }
 }
