@@ -11,6 +11,7 @@
 2020.01.19|18：57|郑明煊|集成JSP，测试成功  
 2020.01.21|12：36|郑明煊|InformationService初步测试成功（高级检索未实现）  
 2020.01.26|00：42|孙静彤|创建Admin、Major类，AdminRepository，AdminService及实现，有一些被注释的方法
+2020.01.26|15: 54|李歆然|创建User、UserFavor、Comment类，及相应的repository和service实现  
 
   
 （注意：本文件（MD文件）的换行符为在当行结束后加两个空格）  
