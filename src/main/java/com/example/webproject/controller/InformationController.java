@@ -26,6 +26,7 @@ public class InformationController {//信息文件相关控制（检索、查询
    @Autowired
    private InformationService informationService;
 
+   //以下是测试页
    @GetMapping("/test")//测试页
     public ModelAndView testInfoBean(){
 
@@ -39,7 +40,10 @@ public class InformationController {//信息文件相关控制（检索、查询
        modelAndView.addObject("infoList",list);//加入“infoList”数据模型
        return modelAndView;
    }
-
+    @GetMapping("/header")
+    public ModelAndView testHeaderView(){
+        return new ModelAndView("header");
+    }
 
    //以下是MVC交互
 
@@ -59,7 +63,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      */
     @GetMapping("/advancedSearch")
     public ModelAndView advSearchView(){
-        return new ModelAndView("suretrieval");
+        return new ModelAndView("susearch");
     }
 
     /**
@@ -359,7 +363,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      */
     @GetMapping("/genSearch")
     public ResponseEntity<Response> genSearchResult(
-            @RequestParam(value = "title",required = false,defaultValue = "")String keyword,
+            @RequestParam(value = "keyword",required = false,defaultValue = "")String keyword,
             @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
             @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
                                   ){
