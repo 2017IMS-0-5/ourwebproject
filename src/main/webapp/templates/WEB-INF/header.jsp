@@ -65,6 +65,9 @@
 			width: 173px;
 			font-size: 20px;
 		}
+		.genbut{
+			height: 25px;
+		}
 	</style>
 </head>
 <body>
@@ -73,7 +76,7 @@
 			<h>欢迎访问政府管理学院信息资源整合平台</h>
 		    <div class="search">
 				<input type="search" id="ky" name="keyword" class="keywords" placeholder="站内搜索" />
-					<button onclick="toGenSearch()">检索</button>
+					<input type="button" name="" onclick="toGenSearch()" value="检索" class="genbut">
 		    	<a href="/info/advancedSearch"><u>高级检索</u></a>
 		    	<a href="/usersp/zxtz"><u>欢迎你,李华</u></a>
 		    </div>
@@ -93,9 +96,8 @@
 </html>
 <script type="text/javascript">
 	function toGenSearch() {
-
 			var ky = document.getElementById("ky").value;
-			window.location.href = "/index";
+			window.location.href= "/info/genSearch";
 			window.event.returnvalue = false;
 	}
 </script>

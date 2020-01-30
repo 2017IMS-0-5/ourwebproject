@@ -1,6 +1,9 @@
 ﻿<%@ page contentType= "text/html; charset = utf-8"%>
 <html>
 <head>
+	<!--引入My97DatePicker日期组件的js文件 -->
+	<script type="text/javascript" src="../../static/js/My97DatePicker/WdatePicker.js"> </script>
+
 	<style type="text/css">
 		body{
 			margin:0;
@@ -122,6 +125,17 @@
 				<input type="text" name="" class="inputkey">
 			</dt>
 	    </dl>
+		<dl class="li">
+			<dt class="items">
+				<label for="publishdate">发表时间：</label>
+				<span id="publishdate" style="">
+                  <label>从</label>
+                  <input id="publishdate_from" name="publishdate_from" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly"/>
+                  <label>到</label>
+                  <input id="publishdate_to" name="publishdate_to" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly"/>
+              </span>
+			</dt>
+		</dl>
 	    <dt class="searchbutzone">
 				<input type="button" class="searchbut" value="检索">
 			</dt>
