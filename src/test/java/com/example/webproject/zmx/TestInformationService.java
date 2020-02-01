@@ -25,7 +25,7 @@ public class TestInformationService {
 
     @Test
     void saveRepositoryData(){
-       // informationRepository.deleteAll();
+       informationRepository.deleteAll();
         informationRepository.save(new Information("job","sxxx","郑明煊","字节跳动 程序员","字节跳动招聘程序员",
                 "【职位描述】\n" +
                         "1、维护、拓展公司招聘渠道，更新招聘信息；\n" +
