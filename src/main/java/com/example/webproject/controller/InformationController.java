@@ -31,7 +31,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView testInfoBean(){
 
        ModelAndView modelAndView=new ModelAndView("testInformationBean");//以“testInformationBean.jsp”为View
-       modelAndView.addObject("info",informationService.selectInfoById("fvKKxm8BTa4F5iFyOyDz").get());//加入“info”数据模型
+       modelAndView.addObject("info",informationService.selectInfoById("zLao-28BK2xwVAvQU9e2").get());//加入“info”数据模型
        Pageable pageable= PageRequest.of(0,20);
        List<Information> list=new ArrayList<>();
        for(Information information:informationService.show("job","sxxx",pageable)){

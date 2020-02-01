@@ -14,7 +14,7 @@ public class InitialElasticDB {
     private InformationService informationService;
     @Test
     void addJobData(){
-        // informationRepository.deleteAll();
+        //informationRepository.deleteAll();
         informationService.saveInfo(new Information("job","sxxx","郑明煊","中诚 业务","中诚信托北京总部业务一部实习生",
                 "中诚信托北京总部业务一部实习生招聘\n" +
                         "（一）职位名称：业务部门实习生    \n" +
