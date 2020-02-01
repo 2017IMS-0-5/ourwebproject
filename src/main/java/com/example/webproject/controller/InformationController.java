@@ -1,5 +1,6 @@
 package com.example.webproject.controller;
 
+import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
 import com.example.webproject.service.InformationService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -381,21 +383,36 @@ public class InformationController {//信息文件相关控制（检索、查询
 
     /**
      * 高级检索结果集获取
-     * @param formulation
+     * @param title
+     * @param label
+     * @param content
+     * @param author
+     * @param from
+     * @param to
+     * @param field
+     * @param subject
      * @param pageIndex
      * @param pageSize
      * @return
      */
     @GetMapping("/adSearch")
     public ResponseEntity<Response> advSearchResult(
-            @RequestParam(value = "title",required = false,defaultValue = "")String formulation,
+            @RequestParam(value = "title",required = false,defaultValue = "")String title,
+            @RequestParam(value = "label",required = false,defaultValue = "")String label,
+            @RequestParam(value = "content",required = false,defaultValue = "")String content,
+            @RequestParam(value = "author",required = false,defaultValue = "")String author,
+            @RequestParam(value = "from",required = false,defaultValue = "")String from,
+            @RequestParam(value = "to",required = false,defaultValue = "")String to,
+            @RequestParam(value = "field",required = false,defaultValue = "")String field,
+            @RequestParam(value = "subject",required = false,defaultValue = "")String subject,
             @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
             @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
+        AdSearch adSearch=new AdSearch(title,label,content,author,field,subject,from,to);
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=null;
         try {
-            page = informationService.advancedSearch(formulation,pageable);
+            page = informationService.advancedSearch(adSearch,pageable);
         }catch (Exception e){
             return ResponseEntity.status((500)).body(new Response(false, e.getMessage()));
         }

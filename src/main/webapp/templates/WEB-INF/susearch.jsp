@@ -20,8 +20,7 @@
 			margin-left: 30px;
 			height: auto; 
 			width: 94%;
-			display:inline-block !important; 
-			display:inline;
+			display:inline-block !important;
 			background-color: rgba(235,235,235,1);
 			padding: 15px;
 		}
@@ -33,18 +32,17 @@
 			line-height:14px; 
 			height:14px;
 			width: 14px;
-			padding:0px;
+			padding:0;
 			font-size: 14px;
 			font-weight: bold;
 			color: rgba(90,150,223,1);
-			vertical-align:middle; 
-			text-align:center;
+			vertical-align:middle;
 			border-color: rgba(90,150,223,1);
 			border-width: 1.5px;
 			background: white;
 			margin-left: 20px;
 			margin-right: 16px;
-			border-radius: 0px;
+			border-radius: 0;
 		}
 		.sel{
 			height:  25.5px;
@@ -143,7 +141,7 @@
 </body>
 </html>
 <script type="text/javascript">
-    var cont = document.getElementById("li")
+    var cont = document.getElementById("li");
     var i = 1;
     function addBotton(){
         var ddt=document.createElement("dt");
@@ -188,19 +186,19 @@
         var input1=document.createElement("input");
         input1.setAttribute("type","text");
         input1.setAttribute("class","inputtype");
-        input1.setAttribute("style","margin-left:12px;")
+        input1.setAttribute("style","margin-left:12px;");
         ddt.appendChild(input1);
 
         sel3.appendChild(o8);
         sel3.appendChild(o9);
         sel3.appendChild(o4);
-        sel3.setAttribute("style","margin-left:18px;")
+        sel3.setAttribute("style","margin-left:18px;");
         ddt.appendChild(sel3);
 
         var input2=document.createElement("input");
         input2.setAttribute("type","text");
         input2.setAttribute("class","inputkey");
-        input2.setAttribute("style","margin-left:12px;")
+        input2.setAttribute("style","margin-left:12px;");
         ddt.appendChild(input2);
              
         cont.appendChild(ddt);

@@ -1,5 +1,6 @@
 package com.example.webproject.service;
 
+import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.Information;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,10 +45,10 @@ public interface InformationService {
 
     /**
      * 高级查询
-     * @param formulation
+     * @param adSearch
      * @return
      */
-    Page<Information> advancedSearch(String formulation, Pageable pageable);
+    Page<Information> advancedSearch(AdSearch adSearch, Pageable pageable);
 
     /**
      * 信息展示
