@@ -1,8 +1,9 @@
-﻿<%@ page contentType= "text/html; charset = utf-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 	<style type="text/css">
 		body{
+			font-size: 20px;
 			margin:0;
 			font-family: "微软雅黑", serif
 		}

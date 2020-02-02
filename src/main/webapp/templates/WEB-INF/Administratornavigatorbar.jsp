@@ -1,4 +1,4 @@
-﻿<%@ page contentType= "text/html; charset = utf-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,8 @@
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			border-radius:10px;
-			height:400px;
-			width:238px; 
+			height:100%;
+			width:300px;
 			float:left;
 			margin-left:30px;
 			margin-right:30px;
@@ -40,8 +40,8 @@
 			-webkit-border-radius:10px;
 			border-radius:10px;
 			height:25px;
-			width:210px;
-			font-size:145%;
+			width:85%;
+			font-size:25px;
 		  	font-weight:bold;
 		  	line-height:25px;
 		 	border-bottom:1px solid #ccc;
@@ -69,7 +69,8 @@
 		.menu li
 		{
 		  	font-weight:bold;
-		  	font-size: 18px;
+		  	font-size: 25px;
+			line-height:40px;
 		}
 	</style>
  	<script type="text/javascript">
@@ -124,6 +125,8 @@
 				</ul>
 			</div>
 		</div>
-		
+			</div>
+		</div>
+	</div>
 </body>
 </html>

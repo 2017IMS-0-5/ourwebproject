@@ -43,6 +43,6 @@ public class MainController {//处理整个系统相关的控制：登录、退�
 
     @GetMapping("/index")//测试页-index
     public ModelAndView testJsp(){
-        return new ModelAndView("test");
+        return new ModelAndView("main");
     }
 }

@@ -25,6 +25,10 @@ public class AdminController {//管理员相关控制
         return new ModelAndView("managerheader");
     }
 
+    @GetMapping("/navigator")
+    public ModelAndView testNavi(){
+        return new ModelAndView("Administratornavigatorbar");
+    }
     //以下是页面显示
 
 

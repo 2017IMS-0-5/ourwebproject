@@ -1,4 +1,4 @@
-﻿<%@ page contentType= "text/html; charset = utf-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 	<style type="text/css">
@@ -22,7 +22,7 @@
 		b{
 			margin-bottom: 0;
 			color: rgba(143,130,188,1);
-			font-size: 16px;
+			font-size: 20px;
 		}
 		.manager_apt{
 			position: relative;
@@ -49,7 +49,7 @@
 			-moz-border-radius: 10px;
 			-webkit-border-radius: 10px;
 			border-radius: 10px;
-			width: 200px; 
+			width: 270px;
 			float: left;
 			margin-left: 30px;
 			margin-right: 40px;
@@ -57,15 +57,15 @@
 			padding-left: 68px;
 			padding-top: 3px;
 		}
-		.column{
+		.colunm{
 			background-color: rgba(143,130,188,1);
-			width: auto;
+			width:auto;
 			min-width: 1190px;
 			-moz-border-radius: 5px;
 			-webkit-border-radius: 5px;
 			border-radius: 5px;
 			height: 35px; 
-			margin-left: 310px;
+			margin-left: 380px;
 			padding-left: 30px;
 		}
 		.fh{
@@ -97,7 +97,7 @@
 	    <div class="infrontpage">
 	    	<h class="fh">系统首页</h>
 	    </div>
-	    <div class="column">
+	    <div class="colunm">
 	    	<div class="current"><p class="fh">通知上传</p></div>
 	    </div>
 </body>

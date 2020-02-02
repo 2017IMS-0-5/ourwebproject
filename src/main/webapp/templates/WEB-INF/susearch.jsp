@@ -1,4 +1,4 @@
-﻿<%@ page contentType= "text/html; charset = utf-8"%>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 	<!--引入My97DatePicker日期组件的js文件 -->

@@ -3,6 +3,7 @@ package com.example.webproject.controller;
 import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
+import com.example.webproject.service.InfoClassService;
 import com.example.webproject.service.InformationService;
 import com.example.webproject.vo.Response;
 import net.sf.json.JSONArray;
@@ -27,6 +28,8 @@ import java.util.List;
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
    @Autowired
    private InformationService informationService;
+    @Autowired
+    private InfoClassService infoClassService;
 
    //以下是测试页
    @GetMapping("/test")//测试页
@@ -42,10 +45,13 @@ public class InformationController {//信息文件相关控制（检索、查询
        modelAndView.addObject("infoList",list);//加入“infoList”数据模型
        return modelAndView;
    }
-    @GetMapping("/header")
+    @GetMapping("/header")//测试Header
     public ModelAndView testHeaderView(){
         return new ModelAndView("header");
     }
+
+    //测试信息选择页
+    //测试信息展示页
 
    //以下是MVC交互
 
@@ -88,13 +94,17 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView jyxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
+        ModelAndView modelAndView=new ModelAndView("jyxx");
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","all",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("jyxx","infoList",list);
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("field","就业信息");
+        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
+        return modelAndView;
     }
 
     /**
