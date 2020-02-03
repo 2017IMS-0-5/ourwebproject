@@ -1,6 +1,5 @@
 package com.example.webproject.lxr;
 
-import com.example.webproject.entity.Information;
 import com.example.webproject.entity.User;
 import com.example.webproject.repository.UserRepository;
 import com.example.webproject.service.UserService;
@@ -22,11 +21,12 @@ public class TestUserService {
     @Test
     void addUser(){//添加新用户
         userService.registerUser(new User("李歆然","201711260115@mail.bnu.edu.cn","260115","201711260115","女","2017","信管",1));
+        userService.registerUser(new User("孙静彤","201711260111@mail.bnu.edu.cn","260111","201711260111","女","2017","信管",1));
         System.out.println("添加成功");
     }
     @Test
     void updatePassword(){//根据id查询用户并修改密码
-        Optional<User> user=userService.getUserById((long) 3);
+        Optional<User> user=userService.getUserById((long) 1);
         System.out.println(user.toString());
         System.out.println("查询完毕");
         user.get().setPassword("990204");
@@ -37,7 +37,7 @@ public class TestUserService {
     @Test
     void selectUserByName(){//根据用户名分页查询
         Pageable pageable= PageRequest.of(0,20);
-        Page<User> page=userService.listUsersByNameLike("李歆然", (Pageable) pageable);
+        Page<User> page=userService.listUsersByNameLike("孙静彤", (Pageable) pageable);
         for(User user:page){
             System.out.println(user.toString());
         }
@@ -47,6 +47,17 @@ public class TestUserService {
     void deleteUser(){//删除用户
         userService.removeUser((long) 2);
         System.out.println("删除成功");
+    }
+
+    @Test
+    void login(){//登录
+        User user=userService.login("201711260115","990204");
+        if(user!=null){
+            System.out.println("登录成功");
+        }
+        else{
+            System.out.println("登录失败");
+        }
     }
 
 }

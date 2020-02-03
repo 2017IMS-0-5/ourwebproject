@@ -1,6 +1,7 @@
 package com.example.webproject.service;
 
 import com.example.webproject.entity.Admin;
+import com.example.webproject.entity.User;
 import com.example.webproject.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,6 +54,11 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Page<Admin> selectByRole(String role, Pageable pageable) {
         return adminRepository.findByRole(role,pageable);
+    }
+
+    @Override
+    public Admin login(String account, String password) {
+        return adminRepository.login(account,password);
     }
 }
 
