@@ -165,32 +165,39 @@
 	<div class="mantainer">
 	<%@include file="Administratornavigatorbar.jsp"%>
 	<div class="noteuploadzone">
-		<form action="" method="post" class="form">
-		<dl id="li" class="list">
-			<dt class="items">
-				<label>文件名:</label><input type="text" name="" class="uploadinput">
-			</dt>
-			<dt class="items">
-				<label>文件类别:</label><select class="sel"><option>通知公告</option><option>政策规章</option><option>其他信息</option><option>就业实习</option></select>
-			</dt>
-			<dt class="items">
-				<label>文件类型:</label><input type="text" name="" class="uploadinput">
-			</dt>
-			<dt class="items" id="tags">
-				<label>文件标签:</label><input type="text" name="" class="uploadinput"><input type="button" name="" class="funcbutadd" value="+" onclick="addBotton()"><span>增加</span><input type="button" class="funcbutdel" name="" value="x" onclick="delBotton()"><span>删除</span>
-			</dt>	
-		</dl>
-		<dt class="items" style="margin-bottom: 60px;">
-			<label style="vertical-align: top;">通知摘要：</label><textarea class="abs"></textarea>
-		</dt>
-		<div class="filezone">
-			<label></label><input type="file" name="" placeholder="选择文件" class="filepath"><br>
-		</div>
-		
-		<div class="butzone">
-		<input type="button" name="" value="提交" class="submitbut">
-			<input type="button" class="resetbut" value="重置" name="">
-	    </div>
+		<form action="/admin/tzggsubmit" method="get" class="form" onsubmit="deal()">
+            <dl id="li" class="list">
+                <dt class="items">
+                    <label>文件名:</label><input type="text" name="title" class="uploadinput">
+                </dt>
+                <dt class="items">
+                    <label>文件类别:</label><input type="text" name="field" value="通知公告" contenteditable="false" class="uploadinput">
+                </dt>
+                <dt class="items">
+                    <label>文件类型:</label>
+                    <select name="subject" class="sel">
+                        <option value="kyxm">科研项目通知</option>
+                        <option value="jsbs">竞赛比赛通知</option>
+                        <option value="jztz">讲座通知</option>
+                        <option value="hytz">会议通知</option>
+                </select>
+                </dt>
+                <dt class="items" id="tags">
+                    <label>文件标签:</label><input type="text" name="label" class="uploadinput"><input type="button" name="" class="funcbutadd" value="+" onclick="addBotton()"><span>增加</span><input type="button" class="funcbutdel" name="" value="x" onclick="delBotton()"><span>删除</span>
+                </dt>
+            </dl>
+            <dt class="items" style="margin-bottom: 60px;">
+                <label style="vertical-align: top;">通知摘要：</label><textarea name="content" class="abs"></textarea>
+            </dt>
+            <input type="hidden" name="labels" id="labels"/>
+            <div class="filezone">
+                <label></label><input type="file" name="relationFile" placeholder="选择文件" class="filepath"><br>
+            </div>
+
+            <div class="butzone">
+                <input type="submit" name="" value="提交" class="submitbut">
+                <input type="button" class="resetbut" value="重置" name="">
+            </div>
 		</form>
 	</div>
 </div>
@@ -208,6 +215,7 @@
         var l=document.createElement("label");
         input2.setAttribute("type","text");
         input2.setAttribute("class","uploadinput");
+            input2.setAttribute("name","label");
        
         ddt.appendChild(l);
         ddt.appendChild(input2);
@@ -224,5 +232,15 @@
     else{
     	 window.alert("至少应该有一个标签");
     }
+    }
+
+    function  deal(){
+        var labelList=document.getElementsByName("label");
+        var labels;
+        for (var i=0;i<labelList.length;i++){
+            labels+=","+labelList[i].value();
+        }
+        document.getElementById("labels").value=labels;
+        return true;
     }
 </script>

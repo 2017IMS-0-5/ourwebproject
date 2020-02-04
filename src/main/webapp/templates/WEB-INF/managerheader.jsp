@@ -13,13 +13,19 @@
 			background-color: rgba(143,130,188,1);
 			padding-top: 3px;
 		}
-		h{
+		.welcome h{
 			color: white;
 			float: left;
 			margin-top: 1px;
 			margin-left: 50px;
 		}
-		b{
+		.infrontpage h{
+			color: white;
+			float: left;
+			margin-top: 1px;
+			margin-left: 50px;
+		}
+		.manager_apt b{
 			margin-bottom: 0;
 			color: rgba(143,130,188,1);
 			font-size: 20px;

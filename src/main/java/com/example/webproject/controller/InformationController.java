@@ -50,6 +50,11 @@ public class InformationController {//信息文件相关控制（检索、查询
         return new ModelAndView("header");
     }
 
+    @GetMapping("/content")//测试Header
+    public ModelAndView testInfoCon(){
+        return new ModelAndView("showCon");
+    }
+
     //测试信息选择页
     //测试信息展示页
 

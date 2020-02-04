@@ -5,7 +5,7 @@
 	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员导航栏 -->
 		 <style type="text/css">
-		 *
+		 .container *
 		 {
 			 margin:0;
 			 padding:0;
@@ -41,7 +41,7 @@
 			border-radius:10px;
 			height:25px;
 			width:85%;
-			font-size:25px;
+			font-size:20px;
 		  	font-weight:bold;
 		  	line-height:25px;
 		 	border-bottom:1px solid #ccc;
@@ -69,7 +69,7 @@
 		.menu li
 		{
 		  	font-weight:bold;
-		  	font-size: 25px;
+		  	font-size: 20px;
 			line-height:40px;
 		}
 	</style>

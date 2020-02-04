@@ -87,8 +87,8 @@ public class TestInformationService {
     @Test
     void testShow() {//测试分类显示
         Pageable pageable= PageRequest.of(0,20);
-        String field="job";
-        String subject="sxxx";
+        String field="通知公告";
+        String subject="all";
         Page<Information> page=informationService.show(field,subject,pageable);
         System.out.println("============start");
         for(Information information:page){

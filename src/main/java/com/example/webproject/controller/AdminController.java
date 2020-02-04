@@ -1,11 +1,16 @@
 package com.example.webproject.controller;
 
+import com.example.webproject.entity.Information;
 import com.example.webproject.service.InformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.Timestamp;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,14 +39,24 @@ public class AdminController {//管理员相关控制
 
     @GetMapping("/tzggupload")
     public ModelAndView uploadTzggView(){
+
+        return new ModelAndView("noteupload");
+    }
+
+    @GetMapping("/tzggsubmit")
+    public ModelAndView uploadTzgg(
+            @RequestParam(value = "title",required = true)String title,
+            @RequestParam(value = "field",required = true)String field,
+            @RequestParam(value = "subject",required = true)String subject,
+            @RequestParam(value = "labels",required = false,defaultValue = "null")String labels,
+            @RequestParam(value = "content",required = true)String content
+    ){
+        Information information=new Information(field,subject,"author",labels,title,content,0,new Timestamp(System.currentTimeMillis()),"");
+        informationService.saveInfo(information);
         return new ModelAndView("noteupload");
     }
 
 
 
-    //以下是JSON交互
-    //查询信息
-    //修改信息
-    //删除信息
-    //上传信息
+
 }

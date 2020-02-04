@@ -3,7 +3,6 @@
 <head>
 	<style type="text/css">
 		body{
-			font-size: 20px;
 			margin:0;
 			font-family: "微软雅黑", serif
 		}
@@ -14,7 +13,7 @@
 			background-color: rgba(72,81,174,1);
 			padding-top: 3px;
 		}
-		h{
+		.welcome h{
 			color: white;
 			float: left;
 			margin-top: 1px;
@@ -37,7 +36,7 @@
 			vertical-align:bottom;
 			border:none;
 		}
-		u{
+		.search u{
 			font-size: 12px;
 			color: white;
 		}
@@ -52,16 +51,16 @@
 			background-position: center;
 			background-position-x:0;
 		}
-		table{
+		.navigator table{
 			position:absolute;
 			border:none;
 			bottom:13px;
 		}
-		a{
+		.navigator a{
 			text-decoration: none;
 			color: black;
 		}
-		td{
+		.navigator td{
 			color: black;
 			width: 173px;
 			font-size: 20px;
