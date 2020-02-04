@@ -31,11 +31,6 @@
 			border:none;
 			padding-left: 10px;
 		}
-		.searchbotton{
-			height:25px;
-			vertical-align:bottom;
-			border:none;
-		}
 		.search u{
 			font-size: 12px;
 			color: white;
@@ -44,7 +39,6 @@
 			position: relative;
 			height: 100px;
 			width: 40%;
-			min-width:964px;
 			padding-left: 465px;
 			background-image: url(../../static/img/schoollogo.JPG);
 			background-repeat: no-repeat;

@@ -1,16 +1,10 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员导航栏 -->
 		 <style type="text/css">
-		 .container *
-		 {
-			 margin:0;
-			 padding:0;
-			 list-style:none;
-		 }
 		.menu
 		{
 			background-color:rgba(143,130,188,1);
@@ -21,14 +15,13 @@
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			border-radius:10px;
-			height:100%;
-			width:300px;
+			height:370px;
+			width:238px; 
 			float:left;
 			margin-left:30px;
 			margin-right:30px;
 			padding-left:10px;
 			padding-right:20px;
-			
 			padding-bottom:10px;
 		}
 		.menu box
@@ -40,8 +33,8 @@
 			-webkit-border-radius:10px;
 			border-radius:10px;
 			height:25px;
-			width:85%;
-			font-size:20px;
+			width:190px;
+			font-size:145%;
 		  	font-weight:bold;
 		  	line-height:25px;
 		 	border-bottom:1px solid #ccc;
@@ -50,8 +43,9 @@
 		 	float:left;
 		 	margin-left:10px;
 			margin-right:10px;
-			margin-top: 6px;
+			margin-top: 10px;
 			padding-left:20px;
+			padding-right:20px;
 			padding-top:10px;
 			padding-bottom:10px;
 		}
@@ -61,16 +55,19 @@
 			cursor:pointer;
 		 	text-align:left;
 		 	float:left;
+		 	margin:0;
+			padding:0;
+			list-style:none;
 		 	margin-left:10px;
 			margin-right:10px;
 			padding-left:20px;
-			padding-top:10px;
+			padding-top:8px;
 		}
 		.menu li
 		{
+			font-size:100%;
 		  	font-weight:bold;
-		  	font-size: 20px;
-			line-height:40px;
+		  	font-size: 18px;
 		}
 	</style>
  	<script type="text/javascript">
@@ -99,18 +96,21 @@
 </head>
 <body>
 	<div class="container">
-		
 		<br>
 		<div class="menu" id="menu">
 			<div>
-				<box>信息管理</box>
+				<box>信息管理
+				<img src="../../static/img/jia.png" style="float:right;"/>
+				</box>
 				<ul style="display:block">
 					<li>> 信息发布</li>
 					<li>> 查看已发布的信息</li>
 				</ul>
+			</div>
 			<div>
-			<div>
-				<box>人员管理</box>
+				<box>人员管理
+				<img src="../../static/img/jia.png" style="float:right;"/>
+				</box>
 				<ul style="display:block">
 					<li>> 管理员管理</li>
 				    <li>> 教师管理</li>
@@ -118,15 +118,15 @@
 				</ul>
 			</div>
 			<div>
-				<box>留言管理</box>
+				<box>留言管理
+				<img src="../../static/img/jia.png" style="float:right;"/>
+				</box>
 				<ul style="display:block">
 				    <li>> 留言发布</li>
 				    <li>> 查看已发布的留言</li>
 				</ul>
 			</div>
 		</div>
-			</div>
-		</div>
-	</div>
+		
 </body>
 </html>

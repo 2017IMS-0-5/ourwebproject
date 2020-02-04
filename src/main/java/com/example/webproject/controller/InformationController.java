@@ -99,16 +99,19 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView jyxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
-        ModelAndView modelAndView=new ModelAndView("jyxx");
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Information> page=informationService.show("job","all",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
+        ModelAndView modelAndView=new ModelAndView("jyxx");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("field","就业信息");
+        modelAndView.addObject("fieldValue","/jyxx");
         modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
     }
 
@@ -116,7 +119,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 1.1 就业信息-实习信息
      * @return
      */
-    @GetMapping("/sxxx")
+    @GetMapping("/jyxx/sxxx")
     public ModelAndView sxxxView(
             @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
             @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
@@ -127,14 +130,23 @@ public class InformationController {//信息文件相关控制（检索、查询
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("jyxxsxxx","infoList",list);
+        ModelAndView modelAndView=new ModelAndView("jyxx");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("field","就业信息");
+        modelAndView.addObject("fieldValue","/jyxx");
+        modelAndView.addObject("subject","实习信息");
+        modelAndView.addObject("subjectValue","/sxxx");
+        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
+        return modelAndView;
     }
 
     /**
      * 1.2 就业信息-选调信息
      * @return
      */
-    @GetMapping("/xdxx")
+    @GetMapping("/jyxx/xdxx")
     public ModelAndView xdxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -151,7 +163,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 1.3 就业信息-招聘会信息
      * @return
      */
-    @GetMapping("/zphxx")
+    @GetMapping("/jyxx/zphxx")
     public ModelAndView zphxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                   @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -168,7 +180,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 1.4 就业信息-往年就业信息
      * @return
      */
-    @GetMapping("/wnjyxx")
+    @GetMapping("/jyxx/wnjyxx")
     public ModelAndView wnjyxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                    @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -195,14 +207,21 @@ public class InformationController {//信息文件相关控制（检索、查询
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("tzgg","infoList",list);
+        ModelAndView modelAndView=new ModelAndView("jyxx");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("field","通知公告");
+        modelAndView.addObject("fieldValue","/tzgg");
+        modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
+        return modelAndView;
     }
 
     /**
      * 2.1 通知公告-科研项目
      * @return
      */
-    @GetMapping("/kyxm")
+    @GetMapping("/tzgg/kyxm")
     public ModelAndView kyxmView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -219,7 +238,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 2.2 通知公告-竞赛比赛
      * @return
      */
-    @GetMapping("/jsbs")
+    @GetMapping("/tzgg/jsbs")
     public ModelAndView jsbsView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -236,7 +255,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 2.3 通知公告-讲座通知
      * @return
      */
-    @GetMapping("/jztz")
+    @GetMapping("/tzgg/jztz")
     public ModelAndView jztzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -253,7 +272,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 2.4 通知公告-会议通知
      * @return
      */
-    @GetMapping("/hytz")
+    @GetMapping("/tzgg/hytz")
     public ModelAndView hytzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -280,14 +299,21 @@ public class InformationController {//信息文件相关控制（检索、查询
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("zczd","infoList",list);
+        ModelAndView modelAndView=new ModelAndView("jyxx");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("field","政策制度");
+        modelAndView.addObject("fieldValue","/zczd");
+        modelAndView.addObject("subjectList",infoClassService.selectByField("policy"));
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
+        return modelAndView;
     }
 
     /**
      * 3.1 政策制度-保研政策
      * @return
      */
-    @GetMapping("/byzc")
+    @GetMapping("/zczd/byzc")
     public ModelAndView byzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -304,7 +330,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 3.2 政策制度-招生政策
      * @return
      */
-    @GetMapping("/zszc")
+    @GetMapping("/zczd/zszc")
     public ModelAndView zszcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -321,7 +347,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 3.3 政策制度-培养政策
      * @return
      */
-    @GetMapping("/pyzc")
+    @GetMapping("/zczd/pyzc")
     public ModelAndView pyzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
@@ -338,7 +364,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 3.4 政策制度-其它政策
      * @return
      */
-    @GetMapping("/qtzc")
+    @GetMapping("/zczd/qtzc")
     public ModelAndView qtzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
