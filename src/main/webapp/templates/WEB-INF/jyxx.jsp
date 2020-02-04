@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -26,7 +27,7 @@
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
 
         /** 右侧标题展示 **/
-        .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;}
+        .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;min-height: 500px;}
         .bg3_2:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
         .bg4{width: 90%;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;}
         .bg4 table{width: 95%;border-collapse:collapse;}
@@ -65,13 +66,13 @@
         <div class="bg4">
             <table align="center" valign="middle">
                 <tr class="bg4_tr1">
-                    <th class="bg4_th1">就业信息</th>
+                    <th class="bg4_th1">${field}</th>
                     <th class="bg4_th2">当前位置：<a href="/index">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a> </th>
                 </tr>
                 <c:forEach var="infor" items="${infoList}">
                     <tr class="bg4_tr2">
-                        <td class="bg4_td1"><a href="#">${infor.title}</a></td>
-                        <td class="bg4_td2">${infor.createTime}</td>
+                        <td class="bg4_td1"><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
+                        <td class="bg4_td2"><fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/></td>
                     </tr>
                 </c:forEach>
 

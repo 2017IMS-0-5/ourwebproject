@@ -26,5 +26,12 @@ public interface InfoClassService {
      */
     void saveOrUpdateList(List<InfoClass> infoClassList);
 
+    /**
+     * 查询该类型信息的所有二级标题
+     * @param field
+     * @return
+     */
     List<InfoClass> selectByField(String field);
+
+    InfoClass selectByFieldAndSubValue(String field,String subValue);
 }
