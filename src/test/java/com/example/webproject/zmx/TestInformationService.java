@@ -1,5 +1,6 @@
 package com.example.webproject.zmx;
 
+import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
 import com.example.webproject.service.InformationService;
@@ -86,8 +87,8 @@ public class TestInformationService {
     @Test
     void testShow() {//测试分类显示
         Pageable pageable= PageRequest.of(0,20);
-        String field="job";
-        String subject="sxxx";
+        String field="通知公告";
+        String subject="all";
         Page<Information> page=informationService.show(field,subject,pageable);
         System.out.println("============start");
         for(Information information:page){
@@ -117,6 +118,32 @@ public class TestInformationService {
         }
         System.out.println("============end");
         System.out.println("查询完毕");
+    }
+
+    @Test
+    void testAdSearch(){//高级检索功能测试
+        AdSearch adSearch=new AdSearch();
+        adSearch.setTitle("新闻 AND 用户");
+        adSearch.setField("notice");
+        adSearch.setSubject("jztz");
+        adSearch.setAuthor("");
+        adSearch.setLabel("WEB");
+        adSearch.setContent("讲座人");
+        adSearch.setFrom("2019-01-01");
+        adSearch.setTo("");
+        Pageable pageable= PageRequest.of(0,20);
+        Page<Information> page=informationService.advancedSearch(adSearch,pageable);
+        System.out.println("============start");
+        for(Information information:page){
+            System.out.println(information.toString());
+        }
+        System.out.println("============end");
+        System.out.println("查询完毕");
+    }
+
+    @Test
+    void test(){
+
     }
 
 }

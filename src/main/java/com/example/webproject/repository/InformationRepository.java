@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
@@ -63,4 +64,7 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      */
     @Query("{ \"match\": {\"labels\": \"?0\"} }")
     Page<Information> findByLabelsContaining(String label,Pageable pageable);
+
+    @Query("{\"bool\": {\"must\":[?0]}}")
+    Page<Information> findAll(String formulation, Pageable pageable);
 }

@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
-
-
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -45,6 +44,31 @@ public class UserServiceImpl implements UserService{
         // 模糊查询
         name = "%" + name + "%";
         return userRepository.findByNameLike(name, pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByGrade(String grade, Pageable pageable) {
+        return userRepository.findByGrade(grade, pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByMajor(String major, Pageable pageable) {
+        return userRepository.findByMajor(major, pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByRole(int role, Pageable pageable) {
+        return userRepository.findByRole(role, pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByAccount(String account, Pageable pageable) {
+        return userRepository.findByAccount(account, pageable);
+    }
+
+    @Override
+    public User login(String account, String password) {
+        return userRepository.login(account,password);
     }
 
 }

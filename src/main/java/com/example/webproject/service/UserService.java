@@ -3,8 +3,6 @@ package com.example.webproject.service;
 import com.example.webproject.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.annotations.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -43,4 +41,44 @@ public interface UserService {
      * @return
      */
     Page<User> listUsersByNameLike(String name, Pageable pageable);
+
+    /**
+     * 根据用户年级进行分页查询
+     * @param grade
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByGrade(String grade, Pageable pageable);
+
+    /**
+     * 根据用户专业进行分页查询
+     * @param major
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByMajor(String major, Pageable pageable);
+
+    /**
+     * 根据用户角色进行分页查询
+     * @param role
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByRole(int role, Pageable pageable);
+
+    /**
+     * 根据用户账号进行分页查询
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByAccount(String account, Pageable pageable);
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return
+     */
+    User login(String account, String password);
 }

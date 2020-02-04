@@ -24,9 +24,9 @@ public class Information {
     private String title;//文章标题
     @Field(type= FieldType.Text,searchAnalyzer = "ik_smart",analyzer = "ik_smart")
     private String content;//内容
-    @Field(type = FieldType.Date,index = false)
+    @Field(type = FieldType.Date)
     private Timestamp createTime;//创建时间
-    @Field(type = FieldType.Integer,index = false)
+    @Field(type = FieldType.Integer)
     private Integer readSize=0;//阅读量
     @Field(type = FieldType.Text,fielddata = true)
     private String relation;//附件地址
@@ -153,10 +153,18 @@ public class Information {
     }
 
     @Override
-    public String toString(){
-        return String.format(
-                "EsInformation[id='%s',field='%s',subject='%s',author=='%s',title='%s',content='%s',readSize='%s',labels='%s']",
-                id,field,subject,author,title,content,readSize,labels
-        );
+    public String toString() {
+        return "Information{" +
+                "id='" + id + '\'' +
+                ", field='" + field + '\'' +
+                ", subject='" + subject + '\'' +
+                ", author='" + author + '\'' +
+                ", labels='" + labels + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createTime=" + createTime +
+                ", readSize=" + readSize +
+                ", relation='" + relation + '\'' +
+                '}';
     }
 }
