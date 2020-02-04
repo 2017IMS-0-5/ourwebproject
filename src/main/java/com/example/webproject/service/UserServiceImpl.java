@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
-
-
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -46,5 +45,11 @@ public class UserServiceImpl implements UserService{
         name = "%" + name + "%";
         return userRepository.findByNameLike(name, pageable);
     }
+
+    @Override
+    public User login(String account, String password) {
+        return userRepository.login(account,password);
+    }
+
 
 }

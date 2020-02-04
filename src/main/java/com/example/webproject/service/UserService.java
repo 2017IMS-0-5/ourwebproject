@@ -3,8 +3,6 @@ package com.example.webproject.service;
 import com.example.webproject.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.annotations.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
@@ -43,4 +41,12 @@ public interface UserService {
      * @return
      */
     Page<User> listUsersByNameLike(String name, Pageable pageable);
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return
+     */
+    User login(String account, String password);
 }

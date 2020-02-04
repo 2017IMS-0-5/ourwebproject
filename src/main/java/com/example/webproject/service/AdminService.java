@@ -63,4 +63,12 @@ public interface AdminService {
      * @return
      */
     Page<Admin> selectByRole(String role,Pageable pageable);
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return
+     */
+    Admin login(String account, String password);
 }

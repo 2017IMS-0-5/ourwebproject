@@ -2,9 +2,12 @@ package com.example.webproject.repository;
 
 
 import com.example.webproject.entity.Admin;
+import com.example.webproject.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface AdminRepository extends JpaRepository<Admin,Long> {
 
@@ -32,4 +35,14 @@ public interface AdminRepository extends JpaRepository<Admin,Long> {
      * @return
      */
     Page<Admin> findByRole(String role,Pageable pageable);
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return
+     */
+    @Query(name="login",nativeQuery = true,value =
+            "select * from admin where account=:account and password=:password")
+    Admin login(@Param("account") String account, @Param("password") String password);
 }

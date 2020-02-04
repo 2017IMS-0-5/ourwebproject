@@ -4,6 +4,8 @@ import com.example.webproject.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     /**
@@ -20,4 +22,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return
      */
     User findByAccount(String account);
+
+    /**
+     * 登录
+     * @param account
+     * @param password
+     * @return
+     */
+    @Query(name="login",nativeQuery = true,value =
+            "select * from user where account=:account and password=:password")
+    User login(@Param("account") String account, @Param("password") String password);
 }
