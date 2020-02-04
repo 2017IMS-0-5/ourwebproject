@@ -42,39 +42,40 @@
 			border-width: 1.5px;
 			background: white;
 			margin-left: 20px;
-			margin-right: 16px;
+			margin-right: 32.5px;
 			border-radius: 0;
 		}
 		.sel{
-			height:  25.5px;
-			width: 120px;
+			height:  28px;
+			width: 125px;
 			margin-right: 2px;
 			margin-left: 15px;
 			padding:2px;
 			font-size: 15px;
+			bottom: 0;
 		}
 		.sel1{
-			height:  25.5px;
-			width: 120px;
+			height:  28px;
+			width: 125px;
 			margin-right: 2px;
-			margin-left: 44px;
+			margin-left: 38px;
 			padding:2px;
 			font-size: 15px;
 		}
 		.inputtype{
-			width: 200px;
-			height:  25px;
-			border:0.5px solid rgba(240,243,247,1);
-			padding: 2px;
+			width: 280px;
+			height:  27px;
+			border:0.5px solid rgba(200,200,200,1);
+			padding-left: 8px;
 			font-size: 15px;
 			margin-left: 6px;
 
 		}
 		.inputkey{
 			width: 280px;
-			height:  25px;
-			border:0.5px solid rgba(240,243,247,1);
-			padding: 2px;
+			height:  27px;
+			border:0.5px solid rgba(200,200,200,1);
+			padding-left: 8px;
 			font-size: 15px;
 			margin-left: 6px;
 		}
@@ -97,6 +98,13 @@
 			text-align: right;
 			padding-right: 210px;
 		}
+		.time{
+			font-size: 16px;
+			padding-left: 16px;
+			width: 133px;
+			display:inline-block;
+		}
+
 	</style>
 </head>
 <body>
@@ -128,11 +136,11 @@
 	</dl>
 	<dl >
 		<dt class="items" >
-			<label for="publishdate_from">发表时间：</label>
+			<label for="publishdate_from" class="time">发表时间：</label>
 			从
-			<input id="publishdate_from" name="from" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly"/>
+			<input id="publishdate_from" name="from" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly" class="inputtype" />
 			到
-			<input id="publishdate_to" name="to" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly"/>
+			<input id="publishdate_to" name="to" size="20" maxlength="20" type="text" onClick="WdatePicker()" readonly="readonly" class="inputtype"/>
 		</dt>
 	</dl>
 	<dt class="searchbutzone">
@@ -154,30 +162,39 @@
 			var sel1 = document.createElement("select");
 			sel1.setAttribute("class","sel");
 			var sel2 = document.createElement("select");
-			sel2.setAttribute("class","sel");
+			sel2.setAttribute("class","sel1");
 			var sel3 = document.createElement("select");
 			sel3.setAttribute("class","sel");
 
 			var o1=document.createElement("option");
 			o1.innerText="并且";
+			o1.setAttribute("value","AND");
 			var o2=document.createElement("option");
 			o2.innerText="或者";
+			o2.setAttribute("value","OR");
 			var o3=document.createElement("option");
 			o3.innerText="不含";
+			o3.setAttribute("value","NOT");
 			var o4=document.createElement("option");
 			o4.innerText="并含";
+			o4.setAttribute("value","AND");
 			var o5=document.createElement("option");
 			o5.innerText="信息类型";
+			o5.setAttribute("value","field");
 			var o6=document.createElement("option");
 			o6.innerText="发布者";
 			var o7=document.createElement("option");
 			o7.innerText="标签";
+			o7.setAttribute("value","label");
 			var o8=document.createElement("option");
 			o8.innerText="或者";
+			o8.setAttribute("value","OR");
 			var o9=document.createElement("option");
 			o9.innerText="不含";
+			o9.setAttribute("value","NOT");
 			var o10=document.createElement("option");
-			o9.innerText="主题";
+			o10.innerText="主题";
+			o10.setAttribute("value","subject");
 
 
 			sel1.appendChild(o1);
@@ -194,19 +211,21 @@
 			var input1=document.createElement("input");
 			input1.setAttribute("type","text");
 			input1.setAttribute("class","inputtype");
-			input1.setAttribute("style","margin-left:12px;");
+			input1.setAttribute("style","margin-left:10px;margin-right:5.5px;");
+
 			ddt.appendChild(input1);
 
 			sel3.appendChild(o8);
 			sel3.appendChild(o9);
 			sel3.appendChild(o4);
-			sel3.setAttribute("style","margin-left:18px;");
+
 			ddt.appendChild(sel3);
 
 			var input2=document.createElement("input");
 			input2.setAttribute("type","text");
 			input2.setAttribute("class","inputkey");
-			input2.setAttribute("style","margin-left:12px;");
+			input2.setAttribute("style","margin-left:10px");
+
 			ddt.appendChild(input2);
 
 			cont.appendChild(ddt);
@@ -238,16 +257,8 @@
 
 		var value=getva(chi[4]);
 
-		if(value=='并含'){
 
-			text=text+getva(chi[2])+'=='+chi[3].innerText+" AND "+chi[5].innerText;
-		}
-		else if(value=='或含'){
-			text=text+getva(chi[2])+'=='+chi[3].innerText+" OR "+chi[5].innerText;
-		}
-		else if(value=='不含'){
-			text=text+getva(chi[2])+'=='+chi[3].innerText+" NOT "+chi[5].innerText;
-		}
+		text=text+getva(chi[2])+'=='+chi[3].innerText+value+chi[5].innerText;
 		for (var i = 1; i < obj.length-1; i++) {
 			chi=obj[i].childNodes;
 			for(var j=0; j<chi.length;j++){
@@ -257,17 +268,11 @@
 			}
 			var value=getva(chi[3]);
 
-			if(value=='并含'){
-				text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+"AND"+chi[4].innerText;
-			}
-			else if(value=='或者'){
-				text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+"OR"+chi[4].innerText;
-			}
-			else if(value=='不含'){
-				text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+"NOT"+chi[4].innerText;
-			}}
+			text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+value+chi[4].innerText;
+		}
 		chi=obj[i].childNodes;
-		text=text+'&时间 == '+chi[2].innerText;
+		text=text+'&from '+chi[2].innerText+'to'+chi[4].innerText;
 		window.location.href= "/info/adSearch"+text;
 	}
+
 </script>

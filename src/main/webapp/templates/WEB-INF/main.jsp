@@ -9,19 +9,19 @@
     <div style="height:auto;width:100%;text-align: center">
         <div style="width:600px;text-align: center;display: inline-block;">
                     <div style="width: 150px;float:left;">
-                        <a href="/info/tzgg"><img src="../../static/img/item_tzgg.png" name="tzgg" style="height:120px;width: 120px;"></a>
+                        <a href="/info/notice"><img src="../../static/img/item_tzgg.png" name="tzgg" style="height:120px;width: 120px;"></a>
                     </div>
 
                     <div style="width: 150px;float:left;">
-                        <a href="/info/zczd"><img src="../../static/img/item_zczd.png" name="zczd" style="height:120px;width: 120px;"></a>
+                        <a href="/info/policy"><img src="../../static/img/item_zczd.png" name="zczd" style="height:120px;width: 120px;"></a>
                     </div>
 
                     <div style="width: 150px;float:left;">
-                        <a href="/info/jyxx"><img src="../../static/img/item_jyxx.png" name="jyxx" style="height:120px;width: 120px;"></a>
+                        <a href="/info/job"><img src="../../static/img/item_jyxx.png" name="jyxx" style="height:120px;width: 120px;"></a>
                     </div>
 
                     <div style="width: 150px;float:left;">
-                        <a href="/info/qtxx"><img src="../../static/img/item_qtxx.png" name="qtxx" style="height:120px;width: 120px;"></a>
+                        <a href="/info/other"><img src="../../static/img/item_qtxx.png" name="qtxx" style="height:120px;width: 120px;"></a>
                     </div>
         </div>
     </div>

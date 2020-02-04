@@ -15,14 +15,12 @@
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			border-radius:10px;
-			height:370px;
-			width:238px; 
+			height:380px;
+			width:290px; 
 			float:left;
 			margin-left:30px;
 			margin-right:30px;
-			padding-left:10px;
-			padding-right:20px;
-			padding-bottom:10px;
+			padding-left:40px;
 		}
 		.menu box
 		{
@@ -43,7 +41,7 @@
 		 	float:left;
 		 	margin-left:10px;
 			margin-right:10px;
-			margin-top: 10px;
+			margin-top: 14px;
 			padding-left:20px;
 			padding-right:20px;
 			padding-top:10px;
@@ -65,7 +63,6 @@
 		}
 		.menu li
 		{
-			font-size:100%;
 		  	font-weight:bold;
 		  	font-size: 18px;
 		}
@@ -127,6 +124,6 @@
 				</ul>
 			</div>
 		</div>
-		
+	</div>
 </body>
 </html>

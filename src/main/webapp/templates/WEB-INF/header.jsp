@@ -78,11 +78,11 @@
 	</form>
 	<div class="navigator">
 		<table>
-			<td><a href="/info/index">首页</a></th>
-			<td><a href="/info/jyxx">就业信息</a></th>
-			<td><a href="/info/zczd">政策规章</a></th>
-			<td><a href="/info/tzgg">通知公告</a></th>
-			<td><a href="/info/qtxx">其他信息</a></th>
+			<td><a href="/index">首页</a></th>
+			<td><a href="/info/job">就业信息</a></th>
+			<td><a href="/info/policy">政策规章</a></th>
+			<td><a href="/info/notice">通知公告</a></th>
+			<td><a href="/info/other">其他信息</a></th>
 			<td><a href="/usersp/lyb">留言板</a></th>
 		</table>
 	</div>
