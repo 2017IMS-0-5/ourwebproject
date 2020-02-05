@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
 	<!--引入My97DatePicker日期组件的js文件 -->
@@ -147,6 +148,13 @@
 		<input type="button" class="searchbut" value="检索" onclick="tores()">
 	</dt>
 </div>
+<% 
+int flag=1;
+if(flag==1){%>
+<%@include file="sures.jsp"%>
+<%}
+%>
+<%@include file="footer.jsp"%>
 </body>
 </html>
 <script type="text/javascript">
@@ -212,20 +220,20 @@
 			input1.setAttribute("type","text");
 			input1.setAttribute("class","inputtype");
 			input1.setAttribute("style","margin-left:10px;margin-right:5.5px;");
-
+			
 			ddt.appendChild(input1);
 
 			sel3.appendChild(o8);
 			sel3.appendChild(o9);
 			sel3.appendChild(o4);
-
+			
 			ddt.appendChild(sel3);
 
 			var input2=document.createElement("input");
 			input2.setAttribute("type","text");
 			input2.setAttribute("class","inputkey");
 			input2.setAttribute("style","margin-left:10px");
-
+			
 			ddt.appendChild(input2);
 
 			cont.appendChild(ddt);
@@ -271,8 +279,9 @@
 			text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+value+chi[4].innerText;
 		}
 		chi=obj[i].childNodes;
-		text=text+'&from '+chi[2].innerText+'to'+chi[4].innerText;
-		window.location.href= "/info/adSearch"+text;
+		text=text+'&from '+chi[2].innerText+'to'+chi[4].innerText
+		+'flag=1';
+		window.location.href='susearch.jsp?'+text;
 	}
 
 </script>

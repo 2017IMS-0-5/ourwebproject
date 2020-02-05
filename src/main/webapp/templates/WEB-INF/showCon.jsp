@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%
     switch((String) request.getAttribute("field")){
         case "job":request.setAttribute("field","就业信息");break;
@@ -45,7 +47,29 @@
         .bg5{padding-top: 10px;padding-right: 30px;padding-left: 30px;padding-bottom: 30px;}
         .input_submit{width: 80px;height:30px;color:white;font-size: 15px;font-weight: bold;background-color:rgb(4,130,200);border:none;border-radius: 5px; }
 
-
+        /**Content**/
+        .title{text-align: center; font-size: 20px;  font-weight: bold;letter-spacing: 1pt;white-space: pre-line;}
+        #con_line hr{color: royalblue}
+        .sub{color: grey; font-size: 16px;letter-spacing: 1pt;text-align: center}
+        .content{
+            color: black;
+            font-size: 16px;
+            letter-spacing: 1.3pt;
+            line-height:28px;
+            text-align: left;
+            white-space: pre-line;
+            padding-left: 40px;padding-right: 40px;
+        }
+        .relation{color: grey; font-size: 16px;
+            letter-spacing: 1pt;line-height:28px;text-align: left;
+            padding-left: 40px;padding-right: 40px;
+        }
+        .tag{
+            color:grey;font-size: 16px; letter-spacing: 1pt;line-height:28px;
+            text-align: left;padding-left: 40px;padding-right: 40px;
+        }
+        .info_a{text-decoration: none;color: black}
+        .info_a:hover{color:royalblue;}
 
     </style>
 
@@ -73,7 +97,20 @@
             </div>
             <div class="clearfix"></div>
             <div class="bg5">
-                <%@ include file="infoContent.jsp"%>
+                <p class="title">${info.title}</p>
+                <hr id="con_line">
+                <p class="sub">发布时间：<fmt:formatDate value="${info.createTime}" pattern="yyyy-MM-dd"/>  &nbsp&nbsp&nbsp&nbsp  发布者：${info.author}&nbsp&nbsp&nbsp&nbsp 阅读量：${info.readSize} </p><br>
+                <p class="content">${info.content}</p><br><br>
+                <c:if test="${ info.relation!='' }">
+                    <p class="relation">附件：<a href="#" class="info_a">${info.relation}</a></p>
+                </c:if>
+                <c:if test="${ info.labels!='' }">
+                <p class="tag">标签：
+                    <c:forTokens var="label" items="${info.labels}" delims=", ">
+                        <a href="/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
+                    </c:forTokens>
+                </p><br>
+                </c:if>
             </div>
             <div align="center">
                 <form action="" method="post" name="PageForm" style="align-self: center">

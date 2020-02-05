@@ -37,24 +37,75 @@ public class AdminController {//管理员相关控制
     //以下是页面显示
 
 
-    @GetMapping("/tzggupload")
-    public ModelAndView uploadTzggView(){
+    //信息上传功能
+    /**
+     * 1.就业信息上传
+     * @return
+     */
+    @GetMapping("/jobupload")
+    public ModelAndView uploadJyxxView(){
 
-        return new ModelAndView("noteupload");
+        return new ModelAndView("jobUpload");
     }
 
-    @GetMapping("/tzggsubmit")
-    public ModelAndView uploadTzgg(
+    /**
+     * 2.通知公告上传
+     * @return
+     */
+    @GetMapping("/noticeupload")
+    public ModelAndView uploadTzggView(){
+
+        return new ModelAndView("noticeUpload");
+    }
+
+    /**
+     * 3.政策制度上传
+     * @return
+     */
+    @GetMapping("/policyupload")
+    public ModelAndView uploadZczdView(){
+
+        return new ModelAndView("policyUpload");
+    }
+
+    /**
+     * 4.其它信息上传
+     * @return
+     */
+    @GetMapping("/otherupload")
+    public ModelAndView uploadQtxxView(){
+
+        return new ModelAndView("otherUpload");
+    }
+
+    /**
+     * 信息上传后的逻辑
+     * @param title
+     * @param field
+     * @param subject
+     * @param labels
+     * @param content
+     * @return
+     */
+    @PostMapping("/infosubmit")
+    public String uploadJob(
             @RequestParam(value = "title",required = true)String title,
             @RequestParam(value = "field",required = true)String field,
             @RequestParam(value = "subject",required = true)String subject,
-            @RequestParam(value = "labels",required = false,defaultValue = "null")String labels,
+            @RequestParam(value = "labels",required = false,defaultValue = "")String labels,
             @RequestParam(value = "content",required = true)String content
     ){
         Information information=new Information(field,subject,"author",labels,title,content,0,new Timestamp(System.currentTimeMillis()),"");
-        informationService.saveInfo(information);
-        return new ModelAndView("noteupload");
+        System.out.println(informationService.saveInfo(information));
+        switch (field){
+            case "job":return "redirect:/admin/jobupload";
+            case "notice":return "redirect:/admin/noticeupload";
+            case "policy":return "redirect:/admin/policyupload";
+            case "other":return "redirect:/admin/otherupload";
+            default:return "redirect:/admin/otherupload";
+        }
     }
+
 
 
 
