@@ -75,10 +75,60 @@ public interface UserService {
     Page<User> listUsersByAccount(String account, Pageable pageable);
 
     /**
+     * 根据用户角色和姓名进行分页查询
+     * @param role
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByRoleAndName(int role, String name, Pageable pageable);
+
+    /**
+     * 根据用户角色和账号进行分页查询
+     * @param role
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByRoleAndAccount(int role, String account, Pageable pageable);
+
+    /**
+     * 根据用户角色和年级进行分页查询
+     * @param role
+     * @param grade
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByRoleAndGrade(int role, String grade, Pageable pageable);
+
+    /**
+     * 根据用户角色和专业进行分页查询
+     * @param role
+     * @param major
+     * @param pageable
+     * @return
+     */
+    Page<User> listUsersByRoleAndMajor(int role, String major, Pageable pageable);
+
+    /**
      * 登录
      * @param account
      * @param password
      * @return
      */
     User login(String account, String password);
+
+    /**
+     * 根据角色统计用户
+     * @role
+     * @return
+     */
+    int countUserByRole(int role);
+
+    /**
+     * 根据年级统计学生数量
+     * @role
+     * @return
+     */
+    int countUserByRoleAndGrade(int role,String grade);
 }

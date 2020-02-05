@@ -45,4 +45,13 @@ public interface CommentService {
      */
     Page<Comment> getByDate(Date date, Pageable pageable);
 
+    /**
+     * 根据日期查询评论
+     * @param date
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<Comment> getByDateAndAccount(Date date, String account, Pageable pageable);
+
 }
