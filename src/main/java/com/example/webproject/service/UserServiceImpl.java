@@ -67,8 +67,38 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Page<User> listUsersByRoleAndName(int role,String name, Pageable pageable) {
+        return userRepository.findByRoleAndName(role,name,pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByRoleAndAccount(int role,String account, Pageable pageable) {
+        return userRepository.findByRoleAndAccount(role,account,pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByRoleAndGrade(int role,String grade, Pageable pageable) {
+        return userRepository.findByRoleAndGrade(role,grade,pageable);
+    }
+
+    @Override
+    public Page<User> listUsersByRoleAndMajor(int role,String major, Pageable pageable) {
+        return userRepository.findByRoleAndMajor(role,major,pageable);
+    }
+
+    @Override
     public User login(String account, String password) {
         return userRepository.login(account,password);
+    }
+
+    @Override
+    public int countUserByRole(int role){
+        return userRepository.countByRole(role);
+    }
+
+    @Override
+    public int countUserByRoleAndGrade(int role,String grade){
+        return userRepository.countByRoleAndGrade(role,grade);
     }
 
 }
