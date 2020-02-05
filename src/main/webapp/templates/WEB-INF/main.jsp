@@ -2,30 +2,48 @@
 <html>
 <head>
     <title>首页</title>
+    <style type="text/css">
+        body{margin:0; font-family: 微软雅黑;}
+        .bg0{background-image: url(../../static/img/back.png);background-size:cover; background-repeat:no-repeat;overflow: hidden;margin: 0;}
+        .bg1{height: 50%;width:100%;text-align: center;}
+        .bg1 img{height:60%;padding-top:40px;}
+
+        .bg2{height:50%;width:100%;}
+        .bg2 td{height:120px;width: 225px; text-align: center;}
+        .bg2 img{height: 120px;width: 120px;}
+    </style>
 </head>
-<body style="margin: 0">
-<%@ include file="header.jsp"%>
-<div style="height: 290px;width:100%;background-image: url(../../static/img/back3.png);background-position:center top;background-size:100%; background-repeat:no-repeat;padding-top: 400px;">
-    <div style="height:auto;width:100%;text-align: center">
-        <div style="width:600px;text-align: center;display: inline-block;">
-                    <div style="width: 150px;float:left;">
-                        <a href="/info/notice"><img src="../../static/img/item_tzgg.png" name="tzgg" style="height:120px;width: 120px;"></a>
-                    </div>
 
-                    <div style="width: 150px;float:left;">
-                        <a href="/info/policy"><img src="../../static/img/item_zczd.png" name="zczd" style="height:120px;width: 120px;"></a>
-                    </div>
+<body>
+<%@include file="header.jsp"%>
 
-                    <div style="width: 150px;float:left;">
-                        <a href="/info/job"><img src="../../static/img/item_jyxx.png" name="jyxx" style="height:120px;width: 120px;"></a>
-                    </div>
-
-                    <div style="width: 150px;float:left;">
-                        <a href="/info/other"><img src="../../static/img/item_qtxx.png" name="qtxx" style="height:120px;width: 120px;"></a>
-                    </div>
-        </div>
+<div class="bg0">
+    <div class="bg1">
+        <img src="../../static/img/mainlogo.png">
+    </div>
+    <div class="bg2">
+    <table align="center">
+        <tr>
+            <td>
+                <a href="/info/notice"><img src="../../static/img/item_tzgg.png"></a>
+            </td>
+            <td>
+                <a href="/info/policy"><img src="../../static/img/item_zczd.png"></a>
+            </td>
+            <td>
+                <a href="/info/job"><img src="../../static/img/item_jyxx.png"></a>
+            </td>
+            <td>
+                <a href="/info/other"><img src="../../static/img/item_qtxx.png"></a>
+            </td>
+        </tr>
+    </table>
     </div>
 </div>
+
 <%@ include file="footer.jsp"%>
+
+
+
 </body>
 </html>

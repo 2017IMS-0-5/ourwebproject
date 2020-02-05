@@ -4,6 +4,7 @@ import com.example.webproject.entity.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +36,22 @@ public interface CommentService {
      * @return
      */
     Comment addComment(Comment comment);
+
+    /**
+     * 根据日期查询评论
+     * @param date
+     * @param pageable
+     * @return
+     */
+    Page<Comment> getByDate(Date date, Pageable pageable);
+
+    /**
+     * 根据日期查询评论
+     * @param date
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<Comment> getByDateAndAccount(Date date, String account, Pageable pageable);
 
 }
