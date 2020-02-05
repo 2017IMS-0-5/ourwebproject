@@ -11,4 +11,5 @@ import java.util.List;
 public interface InfoClassRepository extends JpaRepository<InfoClass, Long> {
 
     List<InfoClass> findByField(String field);
+    InfoClass findByFieldAndSubValue(String field,String subValue);
 }

@@ -11,7 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import java.sql.Date;
+
 @SpringBootTest
 public class TestCommentService {
     @Autowired
@@ -36,5 +37,16 @@ public class TestCommentService {
     void deleteComment(){//删除评论
         commentService.removeComment((long) 1);
         System.out.println("删除成功");
+    }
+    @Test
+    void selectByDate(){//根据时间查询评论
+        Pageable pageable= PageRequest.of(0,20);
+        String s= "2020-01-27";
+        Date date=java.sql.Date.valueOf(s);
+        Page<Comment> page=commentService.getByDate(date, (Pageable) pageable);
+        for(Comment comment:page){
+            System.out.println(comment.toString());
+        }
+        System.out.println("显示完毕");
     }
 }
