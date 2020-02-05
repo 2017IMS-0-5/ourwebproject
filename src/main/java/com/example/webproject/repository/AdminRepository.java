@@ -37,6 +37,31 @@ public interface AdminRepository extends JpaRepository<Admin,Long> {
     Page<Admin> findByRole(String role,Pageable pageable);
 
     /**
+     * 根据管理员角色和姓名查询管理员
+     * @param role
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<Admin> findByRoleAndNameLike(String role,String name,Pageable pageable);
+
+    /**
+     * 根据管理员角色和账号查询管理员
+     * @param role
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<Admin> findByRoleAndAccount(String role,String account,Pageable pageable);
+
+    /**
+     * 根据管理员角色统计人数
+     * @param role
+     * @return
+     */
+    int countByRole(String role);
+
+    /**
      * 登录
      * @param account
      * @param password
