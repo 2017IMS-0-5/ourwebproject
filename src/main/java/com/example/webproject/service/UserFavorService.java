@@ -26,4 +26,11 @@ public interface UserFavorService {
      @return
      */
     List<UserFavor> getUserFavorByUserAccount(String userAccount);
+
+    /**根据学工号和信息ID判断是否有该收藏
+     * @param userAccount
+     * @param infold
+     * @return
+     */
+    Boolean ifexistsFavor(String userAccount, String infold);
 }

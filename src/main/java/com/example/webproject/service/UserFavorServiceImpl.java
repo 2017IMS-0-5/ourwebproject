@@ -31,4 +31,9 @@ public class UserFavorServiceImpl implements UserFavorService {
     public List<UserFavor> getUserFavorByUserAccount(String userAccount) {
         return userFavorRepository.findByUserAccount(userAccount);
     }
+
+    @Override
+    public Boolean ifexistsFavor(String userAccount, String infold){
+        return userFavorRepository.existsByUserAccountAndInfold(userAccount, infold);
+    }
 }
