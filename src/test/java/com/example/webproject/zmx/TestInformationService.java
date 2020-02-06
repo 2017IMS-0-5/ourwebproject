@@ -147,7 +147,7 @@ public class TestInformationService {
 
     @Test
     void testDeleteById(){
-        informationService.deleteInfoById("i03ZCXAB2Ybm4Q_g1FvG");
+        informationService.deleteInfoById("EpQoGXAB3eEdR3YK-brm");
     }
 
     @Test

@@ -2,18 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-    switch((String) request.getAttribute("field")){
-        case "job":request.setAttribute("field","就业信息");break;
-        case "policy":request.setAttribute("field","政策制度");break;
-        case "notice":request.setAttribute("field","通知公告");break;
-        case "other":request.setAttribute("field","其它信息");break;
-    }
-%>
 <html>
 <head>
     <title>${info.title}</title>
-
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
@@ -46,6 +37,7 @@
 
         .bg5{padding-top: 10px;padding-right: 30px;padding-left: 30px;padding-bottom: 30px;}
         .input_submit{width: 80px;height:30px;color:white;font-size: 15px;font-weight: bold;background-color:rgb(4,130,200);border:none;border-radius: 5px; }
+        .input_no{width: 80px;height:30px;color:white;font-size: 15px;font-weight: bold;background-color:orange;border:none;border-radius: 5px; }
 
         /**Content**/
         .title{text-align: center; font-size: 20px;  font-weight: bold;letter-spacing: 1pt;white-space: pre-line;}
@@ -83,7 +75,19 @@
 <div class="bg2_2">
     <div class="bg3_1">
         <ul>
-            <li><p ><a href="/info${fieldValue}">${field}</a></p> </li>
+            <li>
+                <p >
+                <a href="/info${fieldValue}">
+                    <c:choose>
+                        <c:when test="${field == 'job'}">就业信息</c:when>
+                        <c:when test="${field == 'notice'}">通知公告</c:when>
+                        <c:when test="${field == 'policy'}">政策制度</c:when>
+                        <c:when test="${field == 'other'}">其它信息</c:when>
+                        <c:otherwise>${field}</c:otherwise>
+                    </c:choose>
+                </a>
+                </p>
+            </li>
             <c:forEach var="sub" items="${subjectList}">
                 <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
             </c:forEach>
@@ -92,8 +96,25 @@
     <div class="bg3_2">
         <div class="bg4">
             <div class="bg6">
-                <span class="span1">${field}</span>
-                <span class="span2">当前位置：<a href="/index">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
+                <span class="span1">
+                    <c:choose>
+                        <c:when test="${field == 'job'}">就业信息</c:when>
+                        <c:when test="${field == 'notice'}">通知公告</c:when>
+                        <c:when test="${field == 'policy'}">政策制度</c:when>
+                        <c:when test="${field == 'other'}">其它信息</c:when>
+                        <c:otherwise>${field}</c:otherwise>
+                    </c:choose>
+                </span>
+                <span class="span2">当前位置：<a href="/index">首页</a>/
+                    <a href="/info${fieldValue}">
+                         <c:choose>
+                             <c:when test="${field == 'job'}">就业信息</c:when>
+                             <c:when test="${field == 'notice'}">通知公告</c:when>
+                             <c:when test="${field == 'policy'}">政策制度</c:when>
+                             <c:when test="${field == 'other'}">其它信息</c:when>
+                             <c:otherwise>${field}</c:otherwise>
+                         </c:choose>
+                    </a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
             </div>
             <div class="clearfix"></div>
             <div class="bg5">
@@ -113,8 +134,16 @@
                 </c:if>
             </div>
             <div align="center">
-                <form action="" method="post" name="PageForm" style="align-self: center">
-                    <input type="submit" name="shoucang" value="收 藏" class="input_submit">
+                <form action="/info/favor" method="post" name="PageForm" style="align-self: center">
+                    <input type="hidden" name="infoId" value="${info.id}">
+                    <c:choose>
+                        <c:when test="${ favored =='false' }">
+                            <input type="submit" name="shoucang" value="收 藏" class="input_submit">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="button" name="shoucang" value="已收藏" disabled="true" class="input_no">
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </div>
         </div>
@@ -124,10 +153,5 @@
 <div class="bg2_3">
     <%@ include file="footer.jsp"%>
 </div>
-
-
-
-
-
 </body>
 </html>

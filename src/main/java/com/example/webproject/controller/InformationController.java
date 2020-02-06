@@ -16,12 +16,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class InformationController {//信息文件相关控制（检索、查询
      */
    @GetMapping("/generalSearch")
     public ModelAndView genSearchView(){
-       return new ModelAndView("noretrieval");
+       return new ModelAndView("nosearch");
    }
 
     /**
@@ -107,9 +107,11 @@ public class InformationController {//信息文件相关控制（检索、查询
         for(Information information:page){
             list.add(information);
         }
-        ModelAndView modelAndView=new ModelAndView("susearch");
+        ModelAndView modelAndView=new ModelAndView("nosearch");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("hotList",hotList);
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
 
     }
@@ -152,6 +154,8 @@ public class InformationController {//信息文件相关控制（检索、查询
         ModelAndView modelAndView=new ModelAndView("susearch");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("hotList",hotList);
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
 
     }
@@ -172,9 +176,12 @@ public class InformationController {//信息文件相关控制（检索、查询
         modelAndView.addObject("info",information);
         modelAndView.addObject("field",field);
         modelAndView.addObject("fieldValue","/"+field);
-        modelAndView.addObject("subject","实习信息");
+        modelAndView.addObject("subject",infoClass.getSubject());
         modelAndView.addObject("subjectValue","/"+subject);
         modelAndView.addObject("subjectList",infoClassService.selectByField(field));
+        if(true){
+            modelAndView.addObject("favored","false");
+        }
         return modelAndView;
     }
 
@@ -588,6 +595,22 @@ public class InformationController {//信息文件相关控制（检索、查询
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
     }
+
+    //三、信息收藏
+    @PostMapping("/favor")
+    public void addFavor(
+            @RequestParam(value = "infoId",required = true)String infoId,
+            HttpServletResponse response
+    ) throws IOException {
+        String account="201711260105";
+        try {
+            UserFavor userFavor=new UserFavor(account,infoId);
+            userFavorService.saveOrUpdateUserFavor(userFavor);
+        }catch (Exception e){
+        }
+        response.sendRedirect("/info/information?infoId="+infoId);
+    }
+
 
    //以下是JSON交互
 

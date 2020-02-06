@@ -148,12 +148,7 @@
 		<input type="button" class="searchbut" value="检索" onclick="tores()">
 	</dt>
 </div>
-<% 
-int flag=1;
-if(flag==1){%>
 <%@include file="sures.jsp"%>
-<%}
-%>
 <%@include file="footer.jsp"%>
 </body>
 </html>
@@ -251,37 +246,48 @@ if(flag==1){%>
 		return n.options[index].value;
 
 	}
-	function tores(){
-		var obj=document.getElementsByClassName("items");
+    function tores(){
+        var obj=document.getElementsByClassName("items");
+        var text= '';
 
-		var text= '';
-		var chi=obj[0].childNodes;
+        var chi=obj[0].childNodes;
+        for(var i=0; i<chi.length;i++){
+            if(chi[i].nodeName === "#text" && !/\s/.test(chi.nodeValue)){
+                obj[0].removeChild(chi[i]);
+            }
+        }
 
-		for(var i=0; i<chi.length;i++){
-			if(chi[i].nodeName === "#text" && !/\s/.test(chi.nodeValue)){
-				obj[0].removeChild(chi[i]);
-			}
-		}
+        if (chi[3].value == '' || chi[3].value == undefined || chi[3].value == null) {  }
+        else{
+            text=text+getva(chi[2])+'='+chi[3].value;}
+        if (chi[5].value == '' || chi[5].value == undefined || chi[5].value == null) {}
+        else{
+            text=text+' '+getva(chi[4])+' '+chi[5].value;
+        }
 
-		var value=getva(chi[4]);
+        for (var i = 1; i < obj.length-1; i++) {
+            chi=obj[i].childNodes;
+            for(var j=0; j<chi.length;j++){
+                if(chi[j].nodeName == "#text" && !/\s/.test(chi.nodeValue)){
+                    obj[i].removeChild(chi[j]);
+                }
+            }
+            if (chi[2].value == '' || chi[2].value == undefined || chi[2].value == null) {  }
+            else{
+                text=text+'&'+getva(chi[1])+'='+chi[2].value;}
+            if (chi[4].value == '' || chi[4].value == undefined || chi[4].value == null) {}
+            else{
+                text=text+' '+getva(chi[3])+' '+chi[4].value;
+            }
+        }
 
-
-		text=text+getva(chi[2])+'=='+chi[3].innerText+value+chi[5].innerText;
-		for (var i = 1; i < obj.length-1; i++) {
-			chi=obj[i].childNodes;
-			for(var j=0; j<chi.length;j++){
-				if(chi[j].nodeName == "#text" && !/\s/.test(chi.nodeValue)){
-					obj[i].removeChild(chi[j]);
-				}
-			}
-			var value=getva(chi[3]);
-
-			text=text+'&'+getva(chi[1])+'=='+chi[2].innerText+value+chi[4].innerText;
-		}
-		chi=obj[i].childNodes;
-		text=text+'&from '+chi[2].innerText+'to'+chi[4].innerText
-		+'flag=1';
-		window.location.href='susearch.jsp?'+text;
-	}
+        chi=obj[i].childNodes;
+        if (chi[2].value == '' || chi[2].value == undefined || chi[2].value == null){}
+        else{text=text+'&from '+chi[2].innerText;}
+        if (chi[4].value == '' || chi[4].value == undefined || chi[4].value == null){}
+        else{text=text+'to'+chi[4].innerText;}
+        text=text+'&flag=1';
+        window.location.href='/info/adSearchV?'+text;
+    }
 
 </script>

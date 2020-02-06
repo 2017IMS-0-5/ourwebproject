@@ -11,7 +11,7 @@
         body{margin:0;font-family: "微软雅黑";background-color: white;}
         .bg2_1{height:120px;width: 100%;margin:0px;}
         .bg2_1 img{width: 100%;height: 100%}
-        .bg2_2{width: 100%;margin:0px;overflow:hidden;margin-bottom:30px;}
+        .bg2_2{width: 100%;margin:0px;overflow:hidden;margin-bottom:30px;min-height: 600px;}
         .bg2_3{width: 100%;margin-top:10%; clear: both;position: relative;}
         .clearfix{clear: both;}
 
@@ -22,13 +22,21 @@
         .bg3_1 ul { list-style: none;width: 75%; margin: 0 30px; background-color: #f2f2f2; position: relative; padding: 0px; }
         .bg3_1 ul li { height: 40px; line-height: 40px; text-align: left; border-bottom: 1px solid #F8F8F8;padding-left: 10px; }
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
-        .bg3_1 ul li a { color:black; display: block; font-size: 12px;letter-spacing: 1pt;text-decoration:none;}
+        .bg3_1 ul li a {
+            width: 85%;
+            color:black;
+            display: block;
+            font-size: 12px;
+            letter-spacing: 1pt;
+            text-decoration:none;
+            overflow: hidden;
+            text-overflow: ellipsis;}
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
 
         /** 右侧标题展示 **/
         .bg3_2{ width: 73%; padding-top: 30px; float: left;margin:0px;}
         .bg3_2:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
-        .bg4{width: 100%;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;}
+        .bg4{width: 100%;min-height:400px;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;position: relative;}
         .bg4 table{width: 95%;border-collapse:collapse;}
         .bg4_tr1{height: 40px;border-bottom: 2px solid darkblue;}
         .bg4_th1{width:65%;text-align: left;letter-spacing: 2pt; font-size: 15px; color: darkblue;font-weight: bold;}
@@ -54,7 +62,7 @@
         <ul>
             <li style="background-color: #5187C5;"><p >热门信息榜</p> </li>
             <c:forEach var="hot" items="${hotList}">
-                <li><a href="/info/information?infoId=${hot.id}">${hot.title}</a></li>
+                <li><a href="/info/information?infoId=${hot.id}"><NOBR>${hot.title}</NOBR></a></li>
             </c:forEach>
         </ul>
     </div>
@@ -79,18 +87,25 @@
                         </td>
                     </tr>
                 </c:forEach>
-
-                <tr class="bg4_tr3">
-                    <td colspan="2">
-                        当前页1&nbsp;
-                        共3页&nbsp;&nbsp;&nbsp;
-                        <a href="">首页</a>&nbsp;
-                        <a href="">上一页</a>&nbsp;
-                        <a href="">下一页</a>&nbsp;
-                        <a href="">尾页</a>
-                    </td>
-                </tr>
             </table>
+            <table align="center" valign="middle" style="position: absolute;bottom: 10px;">
+                <tr class="bg4_tr3" >
+                    <td colspan="2">
+                        <input id="size" name="size" type="hidden" value="${pageTotal}">
+                        <input id="index" type="hidden" value="${pageIndex}">
+                        第${pageIndex}页&nbsp;
+                        共${pageTotal}页&nbsp;&nbsp;&nbsp;
+                        <a href="/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
+                        <c:if test="${ pageIndex>=2 }">
+                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                        </c:if>
+                        <c:if test="${pageIndex<pageTotal}">
+                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
+                        </c:if>
+                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
+                </td>
+                </tr>
+        </table>
         </div>
     </div>
 </div>

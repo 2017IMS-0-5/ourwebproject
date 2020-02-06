@@ -84,12 +84,12 @@
                         第${pageIndex}页&nbsp;
                         共${pageTotal}页&nbsp;&nbsp;&nbsp;
                         <a href="/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
-                        <%if((int)request.getAttribute("pageIndex")>1){ %>
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
-                        <% }%>
-                        <% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
-                        <% }%>
+                        <c:if test="${ pageIndex>=2 }">
+                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                        </c:if>
+                        <c:if test="${pageIndex<pageTotal}">
+                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
+                        </c:if>
                         <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
                     </td>
                 </tr>

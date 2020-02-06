@@ -93,15 +93,38 @@ public class AdminController {//管理员相关控制
             @RequestParam(value = "field",required = true)String field,
             @RequestParam(value = "subject",required = true)String subject,
             @RequestParam(value = "labels",required = false,defaultValue = "")String labels,
-            @RequestParam(value = "content",required = true)String content
+            @RequestParam(value = "content",required = true)String content,
+            //特征信息
+            @RequestParam(value = "corporation",required = false,defaultValue = "")String corporation,
+            @RequestParam(value = "address",required = false,defaultValue = "")String address,
+            @RequestParam(value = "salary",required = false,defaultValue = "")String salary,
+            @RequestParam(value = "call",required = false,defaultValue = "")String call
     ){
+        if(!corporation.equals("") && !corporation.equals("undefined")){
+            content="【公司名称】 "+corporation+"\n"+content;
+        }
+        if(!address.equals("") && !address.equals("undefined")){
+            content="【工作地点】 "+address+"\n"+content;
+        }
+        if(!salary.equals("") && !salary.equals("undefined")){
+            content="【薪资待遇】 "+salary+"\n"+content;
+        }
+        if(!call.equals("") && !call.equals("undefined")){
+            content="【联系方式】 "+call+"\n"+content;
+        }
+
+
         Information information=new Information(field,subject,"author",labels,title,content,0,new Timestamp(System.currentTimeMillis()),"");
         System.out.println(informationService.saveInfo(information));
         switch (field){
-            case "job":return "redirect:/admin/jobupload";
-            case "notice":return "redirect:/admin/noticeupload";
-            case "policy":return "redirect:/admin/policyupload";
-            case "other":return "redirect:/admin/otherupload";
+            case "job":
+                return "redirect:/admin/jobupload";
+            case "notice":
+                return "redirect:/admin/noticeupload";
+            case "policy":
+                return "redirect:/admin/policyupload";
+            case "other":
+                return "redirect:/admin/otherupload";
             default:return "redirect:/admin/otherupload";
         }
     }
