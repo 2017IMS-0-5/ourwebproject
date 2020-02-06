@@ -5,7 +5,9 @@ import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -109,5 +111,15 @@ public class InformationServiceImpl implements InformationService{
     @Override
     public Page<Information> selectByLabel(String label,Pageable pageable) {
         return informationRepository.findByLabelsContaining(label, pageable);
+    }
+
+    @Override
+    public List<Information> findHotInfo(int hotNum) {
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"readSize"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(0,hotNum,sort);
+        Page<Information> page=informationRepository.findAll("",pageable);
+        return page.getContent();
     }
 }

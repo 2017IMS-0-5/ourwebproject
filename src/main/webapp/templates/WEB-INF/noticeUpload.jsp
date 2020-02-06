@@ -1,167 +1,10 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-	<style type="text/css">
-		body{
-			margin:0;
-			font-family: "微软雅黑"
-		}
-		.mantainer{
-			height: 600px;
-			margin-bottom: 40px;
-		}
-		.noteuploadzone{
-			width: auto;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
-			height: auto;
-			margin-left: 280px;
-			margin-top: 28px;
-			padding-left: 18%;
-
-		}
-		label{
-			width: 15%;
-			min-width: 150px;
-			display:inline-block;
-			letter-spacing:2px;
-			font-size: 20px;
-		}
-		.sel{
-			height:  34px;
-			width: 40%;
-			min-width: 400px;
-			padding:2px;
-			font-size: 18px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-			border: 1px solid gray;
-			padding-left: 12px;
-		}
-		.items{
-			
-			margin-bottom: 15px;
-		}
-		.uploadinput{
-			width: 40%;
-			min-width: 400px;
-			height:  34px;
-			padding-left: 12px;
-			letter-spacing: 1px;
-			font-size: 18px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-			border: 1px solid gray;
-		}
-		.abs{
-			width: 40%;
-			min-width: 400px;
-			height: 96px;
-			font-size: 18px;
-			padding-left: 12px;
-		}
-		.filezone{
-			margin-top: 0;
-
-		}
-		.filepath{
-			width: 400px;
-			height:  34px;
-			padding-left: 10px;
-			letter-spacing: 1px;
-			font-size: 18px;
-			
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-			border: 1px solid gray;
-		}
-		.filebut{
-			height:  34px;
-			width: 70px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-			border: 1px solid gray;
-			font-size: 18px;
-		}
-		.funcbutadd{
-			border-radius: 50%;
-			border: none;
-			background-color: green;
-			color: white;
-			height: 20px;
-			width: 20px;
-			margin-left: 34px;
-			font-weight:  bold;
-			font-size: 18px;
-			text-align: center;
-            
-
-           }
-		.funcbutdel{
-			border-radius: 50%;
-			border: none;
-			background-color: red;
-			color: white;
-			height: 20px;
-			width: 20px;
-			margin-left: 15px;
-			font-weight:  bold;
-			font-size: 18px;
-			text-align: center;
-		
-		}
-		span{
-			margin-left: 9px;
-		}
-		.butzone{
-			margin-top: 18px;
-			width: 100%;
-			text-align: center;
-		}
-		.submitbut{
-			padding: 2px;
-			font-size: 18px;
-			font-weight: bold;
-			color: white;
-			width: 100px;
-			min-width: 90px;
-			height: 34px;
-			letter-spacing:5px;
-			background-color: green;
-			text-align: center;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-		}
-		.resetbut{
-			padding: 2px;
-			font-size: 18px;
-			font-weight: bold;
-			color: white;
-			width: 100px;
-			min-width: 90px;
-			height: 34px;
-			letter-spacing:5px;
-			background-color: red;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			border-radius: 2px;
-		}
-		.list{
-			
-			height: auto;
-			
-		}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="../../static/css/upload.css">
 </head>
 <body>
-		<%@include file="managerheader.jsp"%>	
+	<%@include file="managerheader.jsp"%>	
 	<div class="mantainer">
 	<%@include file="Administratornavigatorbar.jsp"%>
 	<div class="noteuploadzone">
@@ -174,7 +17,7 @@
                     <label>文件类别:</label><input type="text" name="field" value="通知公告" contenteditable="false" class="uploadinput">
                 </dt>
                 <dt class="items">
-                    <label>文件类型:</label>
+                    <label>文件主题:</label>
                     <select name="subject" class="sel">
                         <option value="kyxm">科研项目通知</option>
                         <option value="jsbs">竞赛比赛通知</option>
@@ -187,7 +30,7 @@
                 </dt>
             </dl>
             <dt class="items" style="margin-bottom: 60px;">
-                <label style="vertical-align: top;">通知摘要：</label><textarea name="content" class="abs"></textarea>
+                <label style="vertical-align: top;">信息内容：</label><textarea name="content" class="abs"></textarea>
             </dt>
             <input type="hidden" name="labels" id="labels"/>
             <div class="filezone">
@@ -195,7 +38,7 @@
             </div>
 
             <div class="butzone">
-                <input type="submit" name="" value="提交" class="submitbut">
+                <label></label><input type="submit" name="" value="提交" class="submitbut">
                 <input type="button" class="resetbut" value="重置" name="">
             </div>
 		</form>

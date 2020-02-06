@@ -4,12 +4,16 @@ import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.Information;
 import com.example.webproject.repository.InformationRepository;
 import com.example.webproject.service.InformationService;
+import net.bytebuddy.dynamic.loading.ClassInjector;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -64,7 +68,7 @@ public class TestInformationService {
 
     @Test
     void serviceFindByIdANDUpdate(){//测试根据ID查询功能以及更新功能
-        Optional<Information> information=informationService.selectInfoById("fvKKxm8BTa4F5iFyOyDz");
+        Optional<Information> information=informationService.selectInfoById("XaVFAHAB3EokamPTADIw");
         System.out.println(information.toString());
         System.out.println("查询完毕");
        //information.get().setTitle("新闻推荐任务中用户画像的构建和使用--以QQ看点为例");
@@ -87,7 +91,7 @@ public class TestInformationService {
     @Test
     void testShow() {//测试分类显示
         Pageable pageable= PageRequest.of(0,20);
-        String field="通知公告";
+        String field="job";
         String subject="all";
         Page<Information> page=informationService.show(field,subject,pageable);
         System.out.println("============start");
@@ -142,8 +146,23 @@ public class TestInformationService {
     }
 
     @Test
-    void test(){
+    void testDeleteById(){
+        informationService.deleteInfoById("i03ZCXAB2Ybm4Q_g1FvG");
+    }
 
+    @Test
+    void testFindAll(){
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"readSize"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(0,2,sort);
+        Page<Information> page=informationRepository.findAll("",pageable);
+        System.out.println("============start");
+        for(Information information:page){
+            System.out.println(information.toString());
+        }
+        System.out.println("============end");
+        System.out.println("查询完毕");
     }
 
 }

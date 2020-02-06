@@ -3,9 +3,11 @@ package com.example.webproject.controller;
 import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.InfoClass;
 import com.example.webproject.entity.Information;
+import com.example.webproject.entity.UserFavor;
 import com.example.webproject.repository.InformationRepository;
 import com.example.webproject.service.InfoClassService;
 import com.example.webproject.service.InformationService;
+import com.example.webproject.service.UserFavorService;
 import com.example.webproject.vo.Response;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/info")
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
-   @Autowired
-   private InformationService informationService;
+    @Autowired
+    private InformationService informationService;
     @Autowired
     private InfoClassService infoClassService;
+    @Autowired
+    private UserFavorService userFavorService;
 
    //以下是测试页
    @GetMapping("/test")//测试页
@@ -74,17 +78,82 @@ public class InformationController {//信息文件相关控制（检索、查询
      */
     @GetMapping("/advancedSearch")
     public ModelAndView advSearchView(){
-        return new ModelAndView("susearch");
+        List<Information> hotList=informationService.findHotInfo(10);
+        ModelAndView modelAndView=new ModelAndView("susearch");
+        modelAndView.addObject("hotList",hotList);
+        return modelAndView;
+    }
+
+    //以下是JSON交互
+
+
+    /**
+     * 模糊检索结果集获取
+     * @param keyword
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/genSearchV")
+    public ModelAndView genSearchResultView(
+            @RequestParam(value = "keyword",required = false,defaultValue = "")String keyword,
+            @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+            @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
+    ){
+        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        Page<Information> page= informationService.generalSearch(keyword, pageable);
+        List<Information> hotList=informationService.findHotInfo(10);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        ModelAndView modelAndView=new ModelAndView("susearch");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("hotList",hotList);
+        return modelAndView;
+
     }
 
     /**
-     * 检索结果详情
-     * @param infoId
+     * 高级检索结果集获取
+     * @param title
+     * @param label
+     * @param content
+     * @param author
+     * @param from
+     * @param to
+     * @param field
+     * @param subject
+     * @param pageIndex
+     * @param pageSize
      * @return
      */
-    @GetMapping("/detail")
-    public ModelAndView searchResultView(String infoId){
-        return new ModelAndView("");
+    @GetMapping("/adSearchV")
+    public ModelAndView advSearchResultView(
+            @RequestParam(value = "title",required = false,defaultValue = "")String title,
+            @RequestParam(value = "label",required = false,defaultValue = "")String label,
+            @RequestParam(value = "content",required = false,defaultValue = "")String content,
+            @RequestParam(value = "author",required = false,defaultValue = "")String author,
+            @RequestParam(value = "from",required = false,defaultValue = "")String from,
+            @RequestParam(value = "to",required = false,defaultValue = "")String to,
+            @RequestParam(value = "field",required = false,defaultValue = "")String field,
+            @RequestParam(value = "subject",required = false,defaultValue = "")String subject,
+            @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+            @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
+    ){
+        AdSearch adSearch=new AdSearch(title,label,content,author,field,subject,from,to);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        Page<Information> page= informationService.advancedSearch(adSearch,pageable);
+        List<Information> hotList=informationService.findHotInfo(10);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        ModelAndView modelAndView=new ModelAndView("susearch");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("hotList",hotList);
+        return modelAndView;
+
     }
 
     //二、信息分类展示功能
@@ -94,6 +163,8 @@ public class InformationController {//信息文件相关控制（检索、查询
             @RequestParam(value = "infoId",required = true)String infoId//信息ID
     ){
         Information information=informationService.selectInfoById(infoId).get();
+        information.setReadSize(information.getReadSize()+1);//阅读量+1
+        informationService.updateInfo(information);
         String field=information.getField();
         String subject=information.getSubject();
         InfoClass infoClass=infoClassService.selectByFieldAndSubValue(field,subject);

@@ -91,7 +91,7 @@
 <script type="text/javascript">
 	function toGenSearch() {
 			var ky = document.getElementById("ky").value;
-			window.location.href= "/info/genSearch";
+			window.location.href= "/info/genSearchV?keyword="+ky;
 			window.event.returnvalue = false;
 	}
 </script>

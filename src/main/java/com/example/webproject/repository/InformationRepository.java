@@ -26,6 +26,7 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      * @param subject
      * @return
      */
+
     Page<Information> findByFieldAndSubject(String field,String subject,Pageable pageable);
 
     /**
