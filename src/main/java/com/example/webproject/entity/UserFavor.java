@@ -3,18 +3,24 @@ package com.example.webproject.entity;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
+@IdClass(UserFavorMultiKey.class)
 public class UserFavor {
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;//主键
+    private long id;
+    @Id
+    @Column(nullable = false)
     private String userAccount;//用户学工号
+    @Id
+    @Column(nullable = false)
+    private String infold;//信息编号
     @Column(nullable = false)
     @org.hibernate.annotations.CreationTimestamp
     private Timestamp createTime;//收藏时间
-    private String infold;//信息编号
+
 
     public long getId() {
         return id;
