@@ -147,7 +147,7 @@ public class TestInformationService {
 
     @Test
     void testDeleteById(){
-        informationService.deleteInfoById("i03ZCXAB2Ybm4Q_g1FvG");
+        informationService.deleteInfoById("EpQoGXAB3eEdR3YK-brm");
     }
 
     @Test
@@ -164,5 +164,6 @@ public class TestInformationService {
         System.out.println("============end");
         System.out.println("查询完毕");
     }
+
 
 }
