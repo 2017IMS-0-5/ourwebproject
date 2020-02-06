@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by Ingrid
 --%>
@@ -72,53 +73,41 @@
 			}
 		</style>
 	</head>
-	
 	<body>
 	<%@include file="header.jsp"%>
 	<div id="bg">
 		<div id="bg1">
 			<h1>留 言 区</h1>
 			<table width="740" border="1" cellspacing="0" cellpadding="6" align="center">
-				<tr>
-			      <td height="40" valign="middle" rowspan="2"><img src="../../static/img/photo.jpg"></td>
-			      <td>第1楼：201711260125${comm.userAccount}</td>
-			      <td>2019-11-24${comm.date}</td>
-			    </tr>
-			    <tr>
-			    	<td colspan="2" style="font-weight:600;">组队组队</td>
-			    </tr>
-			    <tr>
-			      <td height="40" valign="middle" rowspan="2"><img src="../../static/img/photo.jpg"></td>
-			      <td>第2楼：201711260125${comm.userAccount}</td>
-			      <td>2019-11-24${comm.date}</td>
-			    </tr>
-			    <tr>
-			    	<td colspan="2" style="font-weight:600;">组队组队</td>
-			    </tr>
-			    <tr>
-			      <td height="40" valign="middle" rowspan="2"><img src="../../static/img/photo.jpg"></td>
-			      <td>第3楼：201711260125${comm.userAccount}</td>
-			      <td>2019-11-24${comm.date}</td>
-			    </tr>
-			    <tr>
-			    	<td colspan="2" style="font-weight:600;">组队组队</td>
-			    </tr>
+				<c:forEach var="comm" items="${commList}" varStatus="status">
+					<tr>
+						<td height="40" valign="middle" rowspan="2"><img src="../../static/img/photo.jpg"></td>
+						<td>第${row-status.count+1-pageSize*(pageIndex-1)}楼：${comm.userAccount}</td>
+						<td>${comm.createTime}</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-weight:600;">${comm.content}</td>
+					</tr>
+				</c:forEach>
 			</table>
-			
-			<form action="message_board.jsp" method="post" name="PageForm">
-				当前页1&nbsp;
-				共100页&nbsp;
-				<a href="">首页</a>&nbsp;
-				<a href="">上一页</a>&nbsp;
-				<a href="">下一页</a>&nbsp;
-				<a href="">尾页</a>
-		 	</form>
+			<input id="size" name="size" type="hidden" value="${pageTotal}">
+			<input id="index" type="hidden" value="${pageIndex}">
+			第${pageIndex}页&nbsp;
+			共${pageTotal}页&nbsp;&nbsp;&nbsp;
+			<a href="/usersp/lyb?pageIndex=0">首页</a>&nbsp;
+			<%if((int)request.getAttribute("pageIndex")>1){ %>
+			<a href="/usersp/lyb?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+			<% }%>
+			<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
+			<a href="/usersp/lyb?pageIndex=${pageIndex}">下一页</a>&nbsp;
+			<% }%>
+			<a href="/usersp/lyb?pageIndex=${pageTotal-1}">尾页</a>
 		</div>
 	
 		<div id="bg2">
 			<p></p>
 		    <p>留言</p>
-		    <form  action="lyb.jsp" method="get">
+		    <form  action="/usersp/addComment" method="get">
 			<p><input type="text" name="comment" placeholder="请输入内容..."></p>
 			<p><input type="submit" value="我要发布留言" style="background-color:#7373B9;margin-top:2%;"></p>
 			</form>

@@ -78,7 +78,7 @@
 	</form>
 	<div class="navigator">
 		<table>
-			<td><a href="/index">首页</a></th>
+			<td><a href="/main">首页</a></th>
 			<td><a href="/info/job">就业信息</a></th>
 			<td><a href="/info/policy">政策规章</a></th>
 			<td><a href="/info/notice">通知公告</a></th>

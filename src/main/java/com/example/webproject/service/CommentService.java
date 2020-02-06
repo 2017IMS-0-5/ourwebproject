@@ -38,6 +38,12 @@ public interface CommentService {
     Comment addComment(Comment comment);
 
     /**
+     * 查询所有评论
+     * @return
+     */
+    Page<Comment> getAllCommentByTime(Pageable pageable);
+
+    /**
      * 根据日期查询评论
      * @param date
      * @param pageable

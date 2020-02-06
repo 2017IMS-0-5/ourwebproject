@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 	<head>
 	    <title>个人主页-我发布的留言</title>
-	    <link rel="stylesheet" type="text/css" href="../../static/homepage.css">
+	    <link rel="stylesheet" type="text/css" href="../../static/css/homepage.css">
 	    <style type="text/css">
 			#foot{
 				width:100%;
@@ -38,16 +39,16 @@
 					<td style="font-size:20px;font-weight:600;height:50px;">常用应用</td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="最新通知" onclick='window.open("zxtz.jsp")' ></td>
+					<td><input required="required"  type="button" value="最新通知" onclick="window.location.href='/usersp/zxtz'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我的收藏" onclick='window.open("wdsc.jsp")'></td>
+					<td><input required="required"  type="button" value="我的收藏" onclick="window.location.href='/usersp/wdsc'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我发布过的留言" onclick='window.open("fbly.jsp")' style="background-color:#8080C0;"></td>
+					<td><input required="required"  type="button" value="我发布过的留言" onclick="window.location.href='/usersp/fbly'") style="background-color:#8080C0;"></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="编辑资料" onclick='window.open("bjzl.jsp")'></td>
+					<td><input required="required"  type="button" value="编辑资料" onclick="window.location.href='/usersp/bjzl'")></td>
 				</tr>
 			</table>
 		</div>
@@ -56,27 +57,25 @@
 			<table cellspacing="30">
 				<tr style="font-size:20px;font-weight:600;">
 					<td>我发布的留言</td>
-				</tr>
+					<c:forEach var="comm" items="${commList}">
 				<tr>
-					<td>求组队呀呀呀呀呀呀呀${Comment.content}</td>
+					<td>${comm.content}</td>
 				</tr>
-				<tr>
-					<td>求组队呀呀呀呀呀呀呀${Comment.content}</td>
-				</tr>
-				<tr>
-					<td>求组队呀呀呀呀呀呀呀${Comment.content}</td>
-				</tr>
+				</c:forEach>
 			</table>
-		
 			<div id="form1">
-				<form action="fbly.jsp" method="post" name="PageForm">
-						 当前页1&nbsp;
-						 共3页&nbsp;
-						<a href="">首页</a>&nbsp;
-					    <a href="">上一页</a>&nbsp;
-					    <a href="">下一页</a>&nbsp;
-					    <a href="">尾页</a>
-				</form>
+				<input id="size" name="size" type="hidden" value="${pageTotal}">
+				<input id="index" type="hidden" value="${pageIndex}">
+				第${pageIndex}页&nbsp;
+				共${pageTotal}页&nbsp;&nbsp;&nbsp;
+				<a href="/usersp/fbly?pageIndex=0">首页</a>&nbsp;
+				<%if((int)request.getAttribute("pageIndex")>1){ %>
+				<a href="/usersp/fbly?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+				<% }%>
+				<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
+				<a href="/usersp/fbly?pageIndex=${pageIndex}">下一页</a>&nbsp;
+				<% }%>
+				<a href="/usersp/fbly?pageIndex=${pageTotal-1}">尾页</a>
 			</div>
 		</div>  
 	</div>	
