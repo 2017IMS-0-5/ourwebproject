@@ -166,6 +166,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView showContent(
             @RequestParam(value = "infoId",required = true)String infoId//信息ID
     ){
+        String account="";
         Information information=informationService.selectInfoById(infoId).get();
         information.setReadSize(information.getReadSize()+1);//阅读量+1
         informationService.updateInfo(information);
@@ -179,9 +180,13 @@ public class InformationController {//信息文件相关控制（检索、查询
         modelAndView.addObject("subject",infoClass.getSubject());
         modelAndView.addObject("subjectValue","/"+subject);
         modelAndView.addObject("subjectList",infoClassService.selectByField(field));
-        if(true){
-            modelAndView.addObject("favored","false");
+        if(
+                userFavorService.ifexistsFavor(account,infoId)
+        ){
+            modelAndView.addObject("favored","true");
         }
+        else
+            modelAndView.addObject("favored","false");
         return modelAndView;
     }
 
