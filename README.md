@@ -15,6 +15,8 @@
 2020.01.26|20: 11|李歆然|补充并实现InformationService的两个关于用户收藏、用户推荐的功能  
 2020.02.01|15：20|孙静彤|重新提交Admin的entity、repository、service  
 2020.02.04|22：07|郑明煊|信息展示界面完全集成！【/info/job,/info/policy,/info/notice,/info/other及其内容】  
+2020.02.06|23：39|郑明煊|InfoController完结撒花！  
+
 
   
 （注意：本文件（MD文件）的换行符为在当行结束后加两个空格）  
