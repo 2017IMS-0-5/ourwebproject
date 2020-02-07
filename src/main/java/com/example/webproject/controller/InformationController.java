@@ -217,111 +217,6 @@ public class InformationController {//信息文件相关控制（检索、查询
     }
 
     /**
-     * 1.1 就业信息-实习信息
-     * @return
-     */
-    @GetMapping("/job/sxxx")
-    public ModelAndView sxxxView(
-            @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-            @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("job","sxxx",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","就业信息");
-        modelAndView.addObject("fieldValue","/job");
-        modelAndView.addObject("subject","实习信息");
-        modelAndView.addObject("subjectValue","/sxxx");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 1.2 就业信息-选调信息
-     * @return
-     */
-    @GetMapping("/job/xdxx")
-    public ModelAndView xdxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("job","xdxx",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","就业信息");
-        modelAndView.addObject("fieldValue","/job");
-        modelAndView.addObject("subject","选调信息");
-        modelAndView.addObject("subjectValue","/xdxx");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 1.3 就业信息-招聘会信息
-     * @return
-     */
-    @GetMapping("/job/zphxx")
-    public ModelAndView zphxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("job","zph",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","就业信息");
-        modelAndView.addObject("fieldValue","/job");
-        modelAndView.addObject("subject","招聘会信息");
-        modelAndView.addObject("subjectValue","/zphxx");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 1.4 就业信息-往年就业信息
-     * @return
-     */
-    @GetMapping("/job/wnjyxx")
-    public ModelAndView wnjyxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                   @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("job","wnjy",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","就业信息");
-        modelAndView.addObject("fieldValue","/job");
-        modelAndView.addObject("subject","往年就业信息");
-        modelAndView.addObject("subjectValue","/wnjyxx");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("job"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
      * 2.通知公告首页
      * @return
      */
@@ -339,110 +234,6 @@ public class InformationController {//信息文件相关控制（检索、查询
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("field","通知公告");
         modelAndView.addObject("fieldValue","/notice");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 2.1 通知公告-科研项目
-     * @return
-     */
-    @GetMapping("/notice/kyxm")
-    public ModelAndView kyxmView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("notice","kyxm",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","通知公告");
-        modelAndView.addObject("fieldValue","/notice");
-        modelAndView.addObject("subject","科研项目");
-        modelAndView.addObject("subjectValue","/kyxm");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 2.2 通知公告-竞赛比赛
-     * @return
-     */
-    @GetMapping("/notice/jsbs")
-    public ModelAndView jsbsView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("notice","jsbs",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","通知公告");
-        modelAndView.addObject("fieldValue","/notice");
-        modelAndView.addObject("subject","竞赛比赛");
-        modelAndView.addObject("subjectValue","/jsbs");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 2.3 通知公告-讲座通知
-     * @return
-     */
-    @GetMapping("/notice/jztz")
-    public ModelAndView jztzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("notice","jztz",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","通知公告");
-        modelAndView.addObject("fieldValue","/notice");
-        modelAndView.addObject("subject","讲座通知");
-        modelAndView.addObject("subjectValue","/jztz");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 2.4 通知公告-会议通知
-     * @return
-     */
-    @GetMapping("/notice/hytz")
-    public ModelAndView hytzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("notice","hytz",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","通知公告");
-        modelAndView.addObject("fieldValue","/notice");
-        modelAndView.addObject("subject","会议通知");
-        modelAndView.addObject("subjectValue","/hytz");
         modelAndView.addObject("subjectList",infoClassService.selectByField("notice"));
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
@@ -477,105 +268,39 @@ public class InformationController {//信息文件相关控制（检索、查询
      * 3.1 政策制度-保研政策
      * @return
      */
-    @GetMapping("/policy/byzc")
-    public ModelAndView byzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
+    @GetMapping("/{field}/{subject}")
+    public ModelAndView policySubView(
+            @PathVariable("field")String field,
+            @PathVariable("subject")String subject,
+            @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+            @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("policy","byzc",pageable);
+        Page<Information> page=informationService.show(field,subject,pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
+        InfoClass infoClass=infoClassService.selectByFieldAndSubValue(field,subject);
         ModelAndView modelAndView=new ModelAndView("jyxx");
         modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","政策制度");
-        modelAndView.addObject("fieldValue","/policy");
-        modelAndView.addObject("subject","保研政策");
-        modelAndView.addObject("subjectValue","/byzc");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("policy"));
+        switch (field)
+        {
+            case "job":modelAndView.addObject("field","就业信息");break;
+            case "policy":modelAndView.addObject("field","政策制度");break;
+            case "notice":modelAndView.addObject("field","通知公告");break;
+            case "other":modelAndView.addObject("field","其它信息");break;
+        }
+        modelAndView.addObject("fieldValue","/"+field);
+        modelAndView.addObject("subject",infoClass.getSubject());
+        modelAndView.addObject("subjectValue","/"+subject);
+        modelAndView.addObject("subjectList",infoClassService.selectByField(field));
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
     }
 
-    /**
-     * 3.2 政策制度-招生政策
-     * @return
-     */
-    @GetMapping("/policy/zszc")
-    public ModelAndView zszcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("policy","zszc",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","政策制度");
-        modelAndView.addObject("fieldValue","/policy");
-        modelAndView.addObject("subject","招生政策");
-        modelAndView.addObject("subjectValue","/zszc");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("policy"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
 
-    /**
-     * 3.3 政策制度-培养政策
-     * @return
-     */
-    @GetMapping("/policy/pyzc")
-    public ModelAndView pyzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("policy","pyzc",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","政策制度");
-        modelAndView.addObject("fieldValue","/policy");
-        modelAndView.addObject("subject","培养政策");
-        modelAndView.addObject("subjectValue","/pyzc");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("policy"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
-    /**
-     * 3.4 政策制度-其它政策
-     * @return
-     */
-    @GetMapping("/policy/qtzc")
-    public ModelAndView qtzcView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("policy","atzc",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","政策制度");
-        modelAndView.addObject("fieldValue","/policy");
-        modelAndView.addObject("subject","其它政策");
-        modelAndView.addObject("subjectValue","/qtzc");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("policy"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
 
     /**
      * 4.其它信息
