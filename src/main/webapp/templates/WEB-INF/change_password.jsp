@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>北京师范大学政府管理学院</title>
+	<title>个人主页——修改密码</title>
 	<style type="text/css">
 		div.container
 		{

@@ -6,10 +6,7 @@ import com.example.webproject.service.InformationService;
 import com.example.webproject.service.UserFavorService;
 import com.example.webproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +41,10 @@ public class UserspaceController {//用户空间相关功能
     public ModelAndView zxtzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Information> page=informationService.selectByLabel("信管",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
@@ -64,20 +64,16 @@ public class UserspaceController {//用户空间相关功能
     public ModelAndView wdscView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        List<UserFavor> uflist=userFavorService.getUserFavorByUserAccount("201711260115");
-        List<String> infoldList=new ArrayList<>();
-        for(UserFavor userFavor:uflist){
-            infoldList.add(userFavor.getInfold());
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
+        Page<UserFavor> page=userFavorService.getUserFavorByUserAccount("201711260115",pageable);
+        List<Information> list=new ArrayList<>();
+        for(UserFavor userFavor:page){
+            Optional<Information> information=informationService.selectInfoById(userFavor.getInfold());
+            list.add(information.get());
         }
-        List<Information> list=informationService.selectByIdList(infoldList);
-        int fromIndex = pageable.getPageSize()*pageable.getPageNumber();
-        int toIndex = pageable.getPageSize()*(pageable.getPageNumber()+1);
-        if(toIndex>list.size()){
-            toIndex = list.size();
-        }
-        List<Information> indexObjects=list.subList(fromIndex, toIndex);
-        Page<Information> page = new PageImpl<>(indexObjects,pageable,list.size());
         ModelAndView modelAndView=new ModelAndView("wdsc");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("pageIndex",pageIndex+1);
@@ -92,7 +88,10 @@ public class UserspaceController {//用户空间相关功能
     public ModelAndView fblyView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Comment> page=commentService.showUserComments("201711260115",pageable);
         List<Comment> list=new ArrayList<>();
         for(Comment comment:page){

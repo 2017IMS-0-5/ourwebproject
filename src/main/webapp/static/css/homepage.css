@@ -1,107 +1,108 @@
-.bg1{
-	background-image:url(../img/bg1.jpg);
-	background-position:center;
-	background-size:100% 300%;
-	height:20%;
-}
-#bg2{
-	position:relative;
-	margin: 0 25%;
-	top:15%;
-	width:70%;
-	height:70%;
-	background-size:contain;
-	background:rgba(255,255,255,.6);
-	font-size:18px;
-	font-family:"微软雅黑";
-	color:#7373B9;
-}
-p{
-	text-align:center;
-}
-#bg2 table{
-	position:relative;
-	left:-9%;
-	top:5px;
-	text-align:left;
-	font-family:"微软雅黑";
-	font-size:13px;
-	color:#484891;
-	font-weight:600;
-}
-.bg3{
-	font-family:"微软雅黑";
-	color:#fff;
-	float:left;
-}
-.bg3 table{
-	background-color:#D8D8EB;
-	width:200px;
-	text-align:center;
-	color:#fff;
-}
-.bg3 table input{
-	height:50px;
-	width:100%;
-	background-color:#D8D8EB;
-	font-size:15px;
-	border:0;
-}
-.bg3 input:hover{
-	background-color:#8080C0;
-}
-.bg4{
-	position:relative;
-	margin:1% 1%;
-	width:82%;
-	height:65%;
-	background-size:contain;
-	background-color:#d0d0d0;
-	font-size:18px;
-	font-family:"微软雅黑";
-	float:right;
-}
-.bg4 table{
-	margin-left:10%;
-}
-.bg4 tr{
-	text-decoration:underline;
-	height:40px;
-	background-color:#8E8E8E;
-}
-.bg4 a:hover{
-	color:#930000;
-}
-
-.bg5{
-	position:relative;
-	margin: 1% 1%;
-	width:82%;
-	height:65%;
-	background-size:contain;
-	background-color:#d0d0d0;
-	font-size:18px;
-	font-family:"微软雅黑";
-	float:right;
-}
-.bg5 table{
-	text-align:center;
-	width:60%;
-	margin-left:15%;
-}
-.bg5 td{
-	height:40px;
-	border-bottom: 3px solid #6C6C6C;
-}
-.bg5 a:hover{
-	color:#4B0091;
-}
-#form1{
-	font-size:15px;
-	margin-top:4%;
-	margin-left:35%;
-}
-#form2{
-	font-size:15px;
-	margin-left:35%;
-}
+			.bg1{
+				background-image:url(../../static/img/bg1.jpg);
+				background-position:center;
+				background-size:100% 300%;
+				height:20%;
+			}
+			#bg2{
+				position:relative;
+				margin: 0 25%;
+				top:15%;
+				width:70%;
+				height:70%;
+				background-size:contain;
+				background:rgba(255,255,255,.6);
+				font-size:18px;
+				font-family:"΢���ź�";
+				color:#7373B9;
+			}
+			p{
+				text-align:center;
+			}
+			#bg2 table{
+				position:relative;
+				top:1%;
+				text-align:left;
+				font-family:"΢���ź�";
+				font-size:13px;
+				color:#484891;
+				font-weight:600;
+			}
+			.bg3{
+				font-family:"΢���ź�";
+				color:#fff;
+				float:left;
+			}
+			.bg3 table{
+				background-color:#D8D8EB;
+				width:200px;
+				text-align:center;
+				color:#fff;
+			}
+			.bg3 table input{
+				height:50px;
+				width:100%;
+				background-color:#D8D8EB;
+				font-size:15px;
+				border:0;
+			}
+			.bg3 input:hover{
+				background-color:#8080C0;
+			}
+			.bg4{
+				position:relative;
+				margin:1% 1%;
+				width:82%;
+				height:65%;
+				background-size:contain;
+				background-color:#d0d0d0;
+				font-size:18px;
+				font-family:"΢���ź�";
+				float:right;
+			}
+			.bg4 table{
+				margin-left:10%;
+			}
+			.bg4 tr{
+				text-decoration:underline;
+				height:40px;
+				background-color:#8E8E8E;
+			}
+			.bg4 a:hover{
+				color:#930000;
+			}
+			
+			.bg5{
+				position:relative;
+				margin: 1% 1%;
+				width:82%;
+				height:65%;
+				background-size:contain;
+				background-color:#d0d0d0;
+				font-size:18px;
+				font-family:"΢���ź�";
+				float:right;
+			}
+			.bg5 table{
+				text-align:center;
+				width:60%;
+				margin-left:15%;
+			}
+			.bg5 td{
+				height:40px;
+				border-bottom: 3px solid #6C6C6C;
+			}
+			.bg5 a:hover{
+				color:#4B0091;
+			}
+			#form1{
+				font-size:15px;
+				margin-top:4%;
+				margin-left:35%;
+			}
+			#form2{
+				position:absolute;
+				font-size:15px;
+				left:35%;
+				bottom:2%;
+			}

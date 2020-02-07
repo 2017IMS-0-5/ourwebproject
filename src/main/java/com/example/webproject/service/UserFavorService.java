@@ -1,6 +1,8 @@
 package com.example.webproject.service;
 
 import com.example.webproject.entity.UserFavor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +27,7 @@ public interface UserFavorService {
      @param userAccount
      @return
      */
-    List<UserFavor> getUserFavorByUserAccount(String userAccount);
+    Page<UserFavor> getUserFavorByUserAccount(String userAccount, Pageable pageable);
 
     /**根据学工号和信息ID判断是否有该收藏
      * @param userAccount

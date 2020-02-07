@@ -9,15 +9,20 @@
 				width:100%;
 				float:left;
 			}
+			.bg1 img{
+				float:left;
+				margin-left:15%;
+				margin-top:2%;
+			}
 	    </style>
 	</head>
 	<body>
 	<%@include file="header.jsp" %>
 	<div class="bg1">
+		<img src="../../static/img/photo.jpg">
 		<div id="bg2">
 			<table cellpadding="3" cellspacing="3">
 				<tr>
-					<td rowspan="3" style="text-align:center;"><img src="../../static/img/photo.jpg"></td>
 					<td  colspan="2" style="font-size:17px;font-weight:800;">${stu.name}李华</td>
 				</tr>
 				<tr>
@@ -63,7 +68,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-			<div id="form1">
+			<div id="form2">
 				<input id="size" name="size" type="hidden" value="${pageTotal}">
 				<input id="index" type="hidden" value="${pageIndex}">
 				第${pageIndex}页&nbsp;

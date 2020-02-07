@@ -3,17 +3,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<title>北京师范大学政府管理学院</title>
+	<title>个人主页——编辑资料</title>
 	<style type="text/css">
 		div.container
 		{
-			width:300px;
+			width:360px;
 			height:520px;
-			margin:0px;
 			padding-left:20px;
 			padding-right:20px;
 			padding-top:10px;
-			margin-left:40%;
+			margin-left:38%;
+			margin-top:10px;
 			border:1px Lavender;
 			border-radius: 5px;
 			background-color:Lavender;
@@ -50,7 +50,7 @@
 			text-decoration:none;
 			background:rgba(143,130,188,1);color:White;
 			padding:10px 30px 10px 30px;
-			font-family: "微软雅黑";font-size:100%;font-weight:bold;border:none;border-radius: 5px;align:center
+			font-family: "微软雅黑";font-size:100%;font-weight:bold;border:none;border-radius: 5px;align:center;
 			-webkit-transition:all linear 0.30s;
 			-moz-transition:all linear 0.30s;
 			transition:all linear 0.30s;
@@ -67,7 +67,7 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div style="background-color:rgba(143,130,188,1);width:100%;height:550px;padding-top:15px;">
+	<div style="background-color:rgba(143,130,188,1);width:100%;height:570px;padding-top:15px;">
 	<div class="container">
 		<img src="../../static/img/photo.jpg" style="text-align:center;"/>
 		<p class="title">编辑资料</p>
@@ -85,6 +85,7 @@
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">年级</p></div>
 			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">2017</p></div>
 		</div>
+		<br>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">专业</p></div>
 			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">信息管理与信息系统</p></div>
@@ -102,7 +103,7 @@
 			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">201711260115@mail.bnu.edu.cn</p></div>
 		</div>
 		<br>
-		<div style="text-align:center">
+		<div style="text-align:center;margin-top:-10px;">
 			<button type="button" class="new_button2" onclick="window.location.href='/usersp/zxtz'">返回</button>
 		</div>
 		<br>
