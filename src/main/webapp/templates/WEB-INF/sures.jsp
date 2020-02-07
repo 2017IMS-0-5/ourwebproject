@@ -95,14 +95,14 @@
                         <input id="index" type="hidden" value="${pageIndex}">
                         第${pageIndex}页&nbsp;
                         共${pageTotal}页&nbsp;&nbsp;&nbsp;
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
+                        <a href="/info/${searchType}?${formulation}&pageIndex=0">首页</a>&nbsp;
                         <c:if test="${ pageIndex>=2 }">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex-2}">上一页</a>&nbsp;
                         </c:if>
                         <c:if test="${pageIndex<pageTotal}">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
+                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex}">下一页</a>&nbsp;
                         </c:if>
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
+                        <a href="/info/${searchType}?${formulation}&pageIndex=${pageTotal-1}">尾页</a>
                 </td>
                 </tr>
         </table>

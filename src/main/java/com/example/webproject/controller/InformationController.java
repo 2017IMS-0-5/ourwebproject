@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -84,9 +85,6 @@ public class InformationController {//信息文件相关控制（检索、查询
         return modelAndView;
     }
 
-    //以下是JSON交互
-
-
     /**
      * 模糊检索结果集获取
      * @param keyword
@@ -110,6 +108,8 @@ public class InformationController {//信息文件相关控制（检索、查询
         ModelAndView modelAndView=new ModelAndView("nosearch");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("hotList",hotList);
+        modelAndView.addObject("searchType","genSearchV");
+        modelAndView.addObject("formulation","keywords="+keyword);
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
@@ -151,9 +151,18 @@ public class InformationController {//信息文件相关控制（检索、查询
         for(Information information:page){
             list.add(information);
         }
+        String formulation="title="+title;
+        formulation+="&label="+label;
+        formulation+="&content="+content;
+        formulation+="&author="+author;
+        formulation+="&to="+to;
+        formulation+="&field="+field;
+        formulation+="&subject="+subject;
         ModelAndView modelAndView=new ModelAndView("susearch");
         modelAndView.addObject("infoList",list);
         modelAndView.addObject("hotList",hotList);
+        modelAndView.addObject("searchType","genSearchV");
+        modelAndView.addObject("formulation",formulation);
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
@@ -166,7 +175,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView showContent(
             @RequestParam(value = "infoId",required = true)String infoId//信息ID
     ){
-        String account="";
+        String account="201711260105";
         Information information=informationService.selectInfoById(infoId).get();
         information.setReadSize(information.getReadSize()+1);//阅读量+1
         informationService.updateInfo(information);
@@ -200,7 +209,10 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView jyxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Information> page=informationService.show("job","all",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
@@ -224,7 +236,10 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView tzggView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Information> page=informationService.show("notice","all",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
@@ -245,10 +260,14 @@ public class InformationController {//信息文件相关控制（检索、查询
      * @return
      */
     @GetMapping("/policy")
-    public ModelAndView zczdView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
+    public ModelAndView zczdView(
+            @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+            @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Information> page=informationService.show("policy","all",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
@@ -265,7 +284,34 @@ public class InformationController {//信息文件相关控制（检索、查询
     }
 
     /**
-     * 3.1 政策制度-保研政策
+     * 4.其它信息
+     * @return
+     */
+    @GetMapping("/other")
+    public ModelAndView qtxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
+    ){
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
+        Page<Information> page=informationService.show("other","all",pageable);
+        List<Information> list=new ArrayList<>();
+        for(Information information:page){
+            list.add(information);
+        }
+        ModelAndView modelAndView=new ModelAndView("jyxx");
+        modelAndView.addObject("infoList",list);
+        modelAndView.addObject("field","其它信息");
+        modelAndView.addObject("fieldValue","/other");
+        modelAndView.addObject("subjectList",infoClassService.selectByField("other"));
+        modelAndView.addObject("pageIndex",pageIndex+1);
+        modelAndView.addObject("pageTotal",page.getTotalPages());
+        return modelAndView;
+    }
+
+    /**
+     * 各大信息主题页
      * @return
      */
     @GetMapping("/{field}/{subject}")
@@ -275,7 +321,10 @@ public class InformationController {//信息文件相关控制（检索、查询
             @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
             @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
     ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
         Page<Information> page=informationService.show(field,subject,pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
@@ -301,31 +350,6 @@ public class InformationController {//信息文件相关控制（检索、查询
     }
 
 
-
-    /**
-     * 4.其它信息
-     * @return
-     */
-    @GetMapping("/other")
-    public ModelAndView qtxxView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "10")int pageSize
-    ){
-        Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("other","all",pageable);
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        ModelAndView modelAndView=new ModelAndView("jyxx");
-        modelAndView.addObject("infoList",list);
-        modelAndView.addObject("field","其它信息");
-        modelAndView.addObject("fieldValue","/other");
-        modelAndView.addObject("subjectList",infoClassService.selectByField("other"));
-        modelAndView.addObject("pageIndex",pageIndex+1);
-        modelAndView.addObject("pageTotal",page.getTotalPages());
-        return modelAndView;
-    }
-
     //三、信息收藏
     @PostMapping("/favor")
     public void addFavor(
@@ -342,7 +366,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     }
 
 
-   //以下是JSON交互
+   //以下是JSON交互，用于直接获取信息
 
 
     /**
