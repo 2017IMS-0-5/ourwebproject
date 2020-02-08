@@ -1,7 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 	<head>
-	    <title>消息信息统计页面</title>
+	    <title>消息信息统计</title>
 	    <link rel="stylesheet" type="text/css" href="../../static/homepage.css">
 	    <link rel="stylesheet" type="text/css" href="../../static/jquery.jqChart.css" />
 	    

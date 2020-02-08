@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<!--引入My97DatePicker日期组件的js文件 -->
+	<title>高级检索</title>
 	<script type="text/javascript" src="../../static/js/My97DatePicker/WdatePicker.js"> </script>
 
 	<style type="text/css">
@@ -120,6 +120,7 @@
 			<input type="button" value="+" class="butts" onclick="addBotton()"/>
 			<input type="button" value="-" class="butts" onclick="deletBotton()"/>
 			<select class="sel1">
+				<option value="title">标题</option>
 				<option value="field">信息类型</option>
 				<option value="subject">主题</option>
 				<option value="author">发布者</option>

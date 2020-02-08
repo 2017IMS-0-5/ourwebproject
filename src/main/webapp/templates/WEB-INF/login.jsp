@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>登录界面</title>
+    <title>登录</title>
 
     <style type="text/css">
         body{margin:0;font-family: 微软雅黑;}

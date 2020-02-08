@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>信息展示</title>
+    <title>${field}</title>
 
     <style type="text/css">
         /** 总 **/
