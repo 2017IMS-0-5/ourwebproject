@@ -1,17 +1,25 @@
 package com.example.webproject.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class InfoClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;//主键
+    @NotEmpty(message = "类型不能为空")
+    @Size(min=2, max=20)
+    @Column(nullable = false, length = 20)
     private String field;
+    @NotEmpty(message = "主题不能为空")
+    @Size(min=2, max=20)
+    @Column(nullable = false, length = 20)
     private String subject;
+    @NotEmpty(message = "主题代号不能为空")
+    @Size(min=2, max=20)
+    @Column(nullable = false, length = 20)
     private String subValue;
 
     public InfoClass(){}
