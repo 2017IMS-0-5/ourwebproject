@@ -18,6 +18,7 @@
                 <dt class="items">
                     <label>文件类别:</label><input type="text" name="fieldName" value="其他信息" disabled="true" class="uploadinput">
                     <input type="hidden" name="field" value="other" />
+                    <input type="hidden" name="subject" value="qtxx" />
                 </dt>
                 
                 <dt class="items" id="tags">

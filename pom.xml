@@ -92,14 +92,14 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!-- 添加Hibernate依赖 -->
+        <!-- Hibernate依赖 -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.3.Final</version>
         </dependency>
 
-        <!-- data jpa依赖包 -->
+        <!-- data jpa依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -132,7 +132,12 @@
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        <!-- MongoDB依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>2.2.2.RELEASE</version>
+        </dependency>
 
     </dependencies>
 

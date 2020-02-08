@@ -38,6 +38,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     private UserFavorService userFavorService;
 
    //以下是测试页
+    /**
    @GetMapping("/test")//测试页
     public ModelAndView testInfoBean(){
 
@@ -60,6 +61,7 @@ public class InformationController {//信息文件相关控制（检索、查询
     public ModelAndView testInfoCon(){
         return new ModelAndView("showCon");
     }
+    **/
 
    //以下是MVC交互
 
@@ -364,6 +366,18 @@ public class InformationController {//信息文件相关控制（检索、查询
         }
         response.sendRedirect("/info/information?infoId="+infoId);
     }
+
+    //四、URL跳转--清理URL
+    @GetMapping("")
+    public void redirect1(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/main");
+    }
+
+    @GetMapping("/")
+    public void redirect2(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/main");
+    }
+
 
 
    //以下是JSON交互，用于直接获取信息
