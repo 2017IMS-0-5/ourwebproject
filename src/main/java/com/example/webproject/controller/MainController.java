@@ -21,6 +21,15 @@ public class MainController {//处理整个系统相关的控制：登录、退�
     @Autowired
     private AdminService adminService;
 
+    /**
+     * 重定向到LOGIN
+     * @return
+     */
+    @GetMapping("/")
+    public String root(){
+        return "redirect:/login";
+    }
+
     @GetMapping("/login")//登录界面
     public ModelAndView testlogin(){
         return new ModelAndView("login");
