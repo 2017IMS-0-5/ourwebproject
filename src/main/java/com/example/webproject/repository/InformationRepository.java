@@ -26,6 +26,7 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      * @param subject
      * @return
      */
+
     Page<Information> findByFieldAndSubject(String field,String subject,Pageable pageable);
 
     /**
@@ -67,4 +68,13 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
 
     @Query("{\"bool\": {\"must\":[?0]}}")
     Page<Information> findAll(String formulation, Pageable pageable);
+
+    /**
+     * 查询Field内信息发布量
+     * @param field
+     * @return
+     */
+    Integer countByField(String field);
+
+    List<Information> findByField(String field);
 }

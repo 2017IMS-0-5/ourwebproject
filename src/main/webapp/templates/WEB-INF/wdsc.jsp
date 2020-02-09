@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: asus
@@ -8,16 +9,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>test</title>
-    <link rel="stylesheet" type="text/css" href="../../static/homepage.css">
+    <title>个人主页——我的收藏</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/homepage.css">
+    <style type="text/css">
+		.bg1 img{
+				float:left;
+				margin-left:15%;
+				margin-top:2%;
+			}
+	</style>
 </head>
 <body>
 	<%@include file="header.jsp"%>
 	<div class="bg1">
+	<img src="../../static/img/photo.jpg">
 		<div id="bg2">
 			<table cellpadding="3" cellspacing="3">
 				<tr>
-					<td rowspan="3" style="text-align:center;"><img src="../../static/img/photo.jpg"></td>
 					<td  colspan="2" style="font-size:17px;font-weight:800;">${stu.name}李华</td>
 				</tr>
 				<tr>
@@ -39,46 +47,43 @@
 					<td style="font-size:20px;font-weight:600;height:50px;">常用应用</td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="最新通知" onclick='window.open("zxtz.jsp")'></td>
+					<td><input required="required"  type="button" value="最新通知" onclick="window.location.href='/usersp/zxtz'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我的收藏" onclick='window.open("wdsc.jsp")' style="background-color:#8080C0;"></td>
+					<td><input required="required"  type="button" value="我的收藏" onclick="window.location.href='/usersp/wdsc'") style="background-color:#8080C0;"></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我发布过的留言" onclick='window.open("fbly.jsp")'></td>
+					<td><input required="required"  type="button" value="我发布过的留言" onclick="window.location.href='/usersp/fbly'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="编辑资料" onclick='window.open("bjzl.jsp")'></td>
+					<td><input required="required"  type="button" value="编辑资料" onclick="window.location.href='/usersp/bjzl'")></td>
 				</tr>
 			</table>
 		</div>
-		
+
 		<div class="bg4" style="float:left;">
 		<table cellspacing="40">
+			<c:forEach var="infor" items="${infoList}">
 				<tr>
-					<td><a href="">【政策】2017级信息管理与信息系统专业保研条例</a></td>
+					<td><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
 				</tr>
-				<tr>
-					<td><a href="">我的收藏2</a></td>
-				</tr>
-				<tr>
-					<td><a href="">我的收藏3</a></td>
-				</tr>
-				<tr>
-					<td><a href="">我的收藏4</a></td>
-				</tr>
-			</table>
-		
+			</c:forEach>
+		</table>
 			<div id="form2">
-				<form action="wdsc.jsp" method="post" name="PageForm">
-						 当前页1&nbsp;
-						 共3页&nbsp;
-						<a href="">首页</a>&nbsp;
-					    <a href="">上一页</a>&nbsp;
-					    <a href="">下一页</a>&nbsp;
-					    <a href="">尾页</a>
-				</form>
+				<input id="size" name="size" type="hidden" value="${pageTotal}">
+				<input id="index" type="hidden" value="${pageIndex}">
+				第${pageIndex}页&nbsp;
+				共${pageTotal}页&nbsp;&nbsp;&nbsp;
+				<a href="/usersp/wdsc?pageIndex=0">首页</a>&nbsp;
+				<%if((int)request.getAttribute("pageIndex")>1){ %>
+				<a href="/usersp/wdsc?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+				<% }%>
+				<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
+				<a href="/usersp/wdsc?pageIndex=${pageIndex}">下一页</a>&nbsp;
+				<% }%>
+				<a href="/usersp/wdsc?pageIndex=${pageTotal-1}">尾页</a>
 			</div>
+
 		</div>
 	</div>
 	

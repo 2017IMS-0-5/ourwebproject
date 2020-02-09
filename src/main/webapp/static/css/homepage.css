@@ -1,6 +1,7 @@
-.bg1{
-				background-image:url(img/bg3.jpg);
-				background-size:cover;
+			.bg1{
+				background-image:url(../../static/img/bg1.jpg);
+				background-position:center;
+				background-size:100% 300%;
 				height:20%;
 			}
 			#bg2{
@@ -20,8 +21,7 @@
 			}
 			#bg2 table{
 				position:relative;
-				left:-9%;
-				top:5px;
+				top:1%;
 				text-align:left;
 				font-family:"Î¢ÈíÑÅºÚ";
 				font-size:13px;
@@ -101,6 +101,8 @@
 				margin-left:35%;
 			}
 			#form2{
+				position:absolute;
 				font-size:15px;
-				margin-left:35%;
+				left:35%;
+				bottom:2%;
 			}

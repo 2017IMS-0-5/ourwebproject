@@ -4,32 +4,39 @@
 
 <html>
 <head>
-    <title>${field}</title>
+    <title>就业信息</title>
 
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
-        .bg2_1{height:115px;width: 100%;margin:0;}
+        .bg2_1{height:120px;width: 100%;margin:0px;}
         .bg2_1 img{width: 100%;height: 100%}
-        .bg2_2{width: 100%;margin:0;overflow:hidden;}
+        .bg2_2{width: 100%;margin:0px;overflow:hidden;margin-bottom:30px;min-height: 600px;}
         .bg2_3{width: 100%;margin-top:10%; clear: both;position: relative;}
         .clearfix{clear: both;}
 
         /** 左侧导航**/
-        .bg3_1{width: 25%;padding-top: 35px;float: left;margin:0;
-        }
+        .bg3_1{width: 25%;padding-top: 15px;float: left;margin:0px}
         .bg3_1:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
 
-        .bg3_1 ul { list-style: none;width: 190px; margin: 0 auto; background-color: #f2f2f2; position: relative; padding: 0; }
-        .bg3_1 ul li { height: 40px; line-height: 40px; text-align: center; border-bottom: 1px solid #F8F8F8; }
+        .bg3_1 ul { list-style: none;width: 75%; margin: 0 30px; background-color: #f2f2f2; position: relative; padding: 0px; }
+        .bg3_1 ul li { height: 40px; line-height: 40px; text-align: left; border-bottom: 1px solid #F8F8F8;padding-left: 10px; }
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
-        .bg3_1 ul li a { color:black; display: block; font-size: 12px;letter-spacing: 1pt;text-decoration:none;}
+        .bg3_1 ul li a {
+            width: 85%;
+            color:black;
+            display: block;
+            font-size: 12px;
+            letter-spacing: 1pt;
+            text-decoration:none;
+            overflow: hidden;
+            text-overflow: ellipsis;}
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
 
         /** 右侧标题展示 **/
-        .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;min-height: 500px;}
+        .bg3_2{ width: 73%; padding-top: 30px; float: left;margin:0px;}
         .bg3_2:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
-        .bg4{width: 90%;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;}
+        .bg4{width: 100%;min-height:400px;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;position: relative;}
         .bg4 table{width: 95%;border-collapse:collapse;}
         .bg4_tr1{height: 40px;border-bottom: 2px solid darkblue;}
         .bg4_th1{width:65%;text-align: left;letter-spacing: 2pt; font-size: 15px; color: darkblue;font-weight: bold;}
@@ -47,60 +54,62 @@
 
 </head>
 <body>
-<%@ include file="header.jsp"%>
 
-<div class="bg2_1">
-    <img src="../../static/img/topback.jpg" >
-</div>
+
+
 <div class="bg2_2">
     <div class="bg3_1">
         <ul>
-            <li><p ><a href="/info${fieldValue}">${field}</a></p> </li>
-            <c:forEach var="sub" items="${subjectList}">
-                <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
+            <li style="background-color: #5187C5;"><p >热门信息榜</p> </li>
+            <c:forEach var="hot" items="${hotList}">
+                <li><a href="/info/information?infoId=${hot.id}"><NOBR>${hot.title}</NOBR></a></li>
             </c:forEach>
-
         </ul>
     </div>
     <div class="bg3_2">
         <div class="bg4">
             <table align="center" valign="middle">
                 <tr class="bg4_tr1">
-                    <th class="bg4_th1">${field}</th>
-                    <th class="bg4_th2">当前位置：<a href="/index">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a> </th>
+                    <th class="bg4_th1">检索结果</th>
+                    <th class="bg4_th2"></th>
                 </tr>
                 <c:forEach var="infor" items="${infoList}">
                     <tr class="bg4_tr2">
                         <td class="bg4_td1"><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
-                        <td class="bg4_td2"><fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/></td>
+                        <td class="bg4_td2"><fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/>. . . . . .
+                            <c:choose>
+                                <c:when test="${infor.field == 'job'}">就业信息</c:when>
+                                <c:when test="${infor.field == 'notice'}">通知公告</c:when>
+                                <c:when test="${infor.field == 'policy'}">政策制度</c:when>
+                                <c:when test="${infor.field == 'other'}">其它信息</c:when>
+                                <c:otherwise>${infor.field}</c:otherwise>
+                            </c:choose>
+                        </td>
                     </tr>
                 </c:forEach>
-
-
-                <tr class="bg4_tr3">
+            </table>
+            <table align="center" valign="middle" style="position: absolute;bottom: 10px;">
+                <tr class="bg4_tr3" >
                     <td colspan="2">
                         <input id="size" name="size" type="hidden" value="${pageTotal}">
                         <input id="index" type="hidden" value="${pageIndex}">
                         第${pageIndex}页&nbsp;
                         共${pageTotal}页&nbsp;&nbsp;&nbsp;
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
+                        <a href="/info/${searchType}?${formulation}&pageIndex=0">首页</a>&nbsp;
                         <c:if test="${ pageIndex>=2 }">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex-2}">上一页</a>&nbsp;
                         </c:if>
                         <c:if test="${pageIndex<pageTotal}">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
+                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex}">下一页</a>&nbsp;
                         </c:if>
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
-                    </td>
+                        <a href="/info/${searchType}?${formulation}&pageIndex=${pageTotal-1}">尾页</a>
+                </td>
                 </tr>
-            </table>
+        </table>
         </div>
     </div>
 </div>
-<div class="clearfix"></div>
-<div class="bg2_3">
-    <%@ include file="footer.jsp"%>
-</div>
+
 
 
 

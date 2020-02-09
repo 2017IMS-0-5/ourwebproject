@@ -4,12 +4,14 @@ import com.example.webproject.entity.Comment;
 import com.example.webproject.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     /**
@@ -19,6 +21,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
      * @return
      */
     Page<Comment> findByUserAccount(String userAccount,Pageable pageable);
+
+    /**
+     * 查询所有评论
+     * @return
+     */
+    Page<Comment> findAllByOrderByCreateTimeDesc(Pageable pageable);
 
     /**
      *根据日期分页查询评论列表

@@ -39,6 +39,11 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
+    public Page<Comment> getAllCommentByTime(Pageable pageable){
+        return commentRepository.findAllByOrderByCreateTimeDesc(pageable);
+    }
+
+    @Override
     public Page<Comment> getByDate(Date date, Pageable pageable){
         return commentRepository.findByDate(date,pageable);
     }

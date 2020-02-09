@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员导航栏 -->
 		 <style type="text/css">
 		.menu

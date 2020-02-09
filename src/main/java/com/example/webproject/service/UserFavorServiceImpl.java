@@ -3,6 +3,8 @@ package com.example.webproject.service;
 import com.example.webproject.entity.UserFavor;
 import com.example.webproject.repository.UserFavorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,7 +30,12 @@ public class UserFavorServiceImpl implements UserFavorService {
     }
 
     @Override
-    public List<UserFavor> getUserFavorByUserAccount(String userAccount) {
-        return userFavorRepository.findByUserAccount(userAccount);
+    public Page<UserFavor> getUserFavorByUserAccount(String userAccount, Pageable pageable) {
+        return userFavorRepository.findByUserAccount(userAccount, pageable);
+    }
+
+    @Override
+    public Boolean ifexistsFavor(String userAccount, String infold){
+        return userFavorRepository.existsByUserAccountAndInfold(userAccount, infold);
     }
 }

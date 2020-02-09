@@ -1,17 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    switch((String) request.getAttribute("field")){
-        case "job":request.setAttribute("field","就业信息");break;
-        case "policy":request.setAttribute("field","政策制度");break;
-        case "notice":request.setAttribute("field","通知公告");break;
-        case "other":request.setAttribute("field","其它信息");break;
-    }
-%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>${info.title}</title>
-
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
@@ -44,8 +37,31 @@
 
         .bg5{padding-top: 10px;padding-right: 30px;padding-left: 30px;padding-bottom: 30px;}
         .input_submit{width: 80px;height:30px;color:white;font-size: 15px;font-weight: bold;background-color:rgb(4,130,200);border:none;border-radius: 5px; }
+        .input_no{width: 80px;height:30px;color:white;font-size: 15px;font-weight: bold;background-color:orange;border:none;border-radius: 5px; }
 
-
+        /**Content**/
+        .title{text-align: center; font-size: 20px;  font-weight: bold;letter-spacing: 1pt;white-space: pre-line;}
+        #con_line hr{color: royalblue}
+        .sub{color: grey; font-size: 16px;letter-spacing: 1pt;text-align: center}
+        .content{
+            color: black;
+            font-size: 16px;
+            letter-spacing: 1.3pt;
+            line-height:28px;
+            text-align: left;
+            white-space: pre-line;
+            padding-left: 40px;padding-right: 40px;
+        }
+        .relation{color: grey; font-size: 16px;
+            letter-spacing: 1pt;line-height:28px;text-align: left;
+            padding-left: 40px;padding-right: 40px;
+        }
+        .tag{
+            color:grey;font-size: 16px; letter-spacing: 1pt;line-height:28px;
+            text-align: left;padding-left: 40px;padding-right: 40px;
+        }
+        .info_a{text-decoration: none;color: black}
+        .info_a:hover{color:royalblue;}
 
     </style>
 
@@ -59,7 +75,19 @@
 <div class="bg2_2">
     <div class="bg3_1">
         <ul>
-            <li><p ><a href="/info${fieldValue}">${field}</a></p> </li>
+            <li>
+                <p >
+                <a href="/info${fieldValue}">
+                    <c:choose>
+                        <c:when test="${field == 'job'}">就业信息</c:when>
+                        <c:when test="${field == 'notice'}">通知公告</c:when>
+                        <c:when test="${field == 'policy'}">政策制度</c:when>
+                        <c:when test="${field == 'other'}">其它信息</c:when>
+                        <c:otherwise>${field}</c:otherwise>
+                    </c:choose>
+                </a>
+                </p>
+            </li>
             <c:forEach var="sub" items="${subjectList}">
                 <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
             </c:forEach>
@@ -68,16 +96,54 @@
     <div class="bg3_2">
         <div class="bg4">
             <div class="bg6">
-                <span class="span1">${field}</span>
-                <span class="span2">当前位置：<a href="/index">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
+                <span class="span1">
+                    <c:choose>
+                        <c:when test="${field == 'job'}">就业信息</c:when>
+                        <c:when test="${field == 'notice'}">通知公告</c:when>
+                        <c:when test="${field == 'policy'}">政策制度</c:when>
+                        <c:when test="${field == 'other'}">其它信息</c:when>
+                        <c:otherwise>${field}</c:otherwise>
+                    </c:choose>
+                </span>
+                <span class="span2">当前位置：<a href="/index">首页</a>/
+                    <a href="/info${fieldValue}">
+                         <c:choose>
+                             <c:when test="${field == 'job'}">就业信息</c:when>
+                             <c:when test="${field == 'notice'}">通知公告</c:when>
+                             <c:when test="${field == 'policy'}">政策制度</c:when>
+                             <c:when test="${field == 'other'}">其它信息</c:when>
+                             <c:otherwise>${field}</c:otherwise>
+                         </c:choose>
+                    </a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
             </div>
             <div class="clearfix"></div>
             <div class="bg5">
-                <%@ include file="infoContent.jsp"%>
+                <p class="title">${info.title}</p>
+                <hr id="con_line">
+                <p class="sub">发布时间：<fmt:formatDate value="${info.createTime}" pattern="yyyy-MM-dd"/>  &nbsp&nbsp&nbsp&nbsp  发布者：${info.author}&nbsp&nbsp&nbsp&nbsp 阅读量：${info.readSize} </p><br>
+                <p class="content">${info.content}</p><br><br>
+                <c:if test="${ info.relation!='' }">
+                    <p class="relation">附件：<a href="#" class="info_a">${info.relation}</a></p>
+                </c:if>
+                <c:if test="${ info.labels!='' }">
+                <p class="tag">标签：
+                    <c:forTokens var="label" items="${info.labels}" delims=", ">
+                        <a href="/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
+                    </c:forTokens>
+                </p><br>
+                </c:if>
             </div>
             <div align="center">
-                <form action="" method="post" name="PageForm" style="align-self: center">
-                    <input type="submit" name="shoucang" value="收 藏" class="input_submit">
+                <form action="/info/favor" method="post" name="PageForm" style="align-self: center">
+                    <input type="hidden" name="infoId" value="${info.id}">
+                    <c:choose>
+                        <c:when test="${ favored =='false' }">
+                            <input type="submit" name="shoucang" value="收 藏" class="input_submit">
+                        </c:when>
+                        <c:otherwise>
+                            <input type="button" name="shoucang" value="已收藏" disabled="true" class="input_no">
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </div>
         </div>
@@ -87,10 +153,5 @@
 <div class="bg2_3">
     <%@ include file="footer.jsp"%>
 </div>
-
-
-
-
-
 </body>
 </html>

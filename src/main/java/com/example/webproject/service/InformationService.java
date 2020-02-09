@@ -71,4 +71,11 @@ public interface InformationService {
      * @return
      */
     Page<Information> selectByLabel(String label,Pageable pageable);
+
+    /**
+     * 热搜前几
+     * @param hotNum
+     * @return
+     */
+    List<Information> findHotInfo(int hotNum);
 }
