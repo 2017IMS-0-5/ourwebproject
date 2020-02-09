@@ -66,6 +66,12 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
     @Query("{ \"match\": {\"labels\": \"?0\"} }")
     Page<Information> findByLabelsContaining(String label,Pageable pageable);
 
+    /**
+     * 高级检索
+     * @param formulation
+     * @param pageable
+     * @return
+     */
     @Query("{\"bool\": {\"must\":[?0]}}")
     Page<Information> findAll(String formulation, Pageable pageable);
 
@@ -76,5 +82,17 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      */
     Integer countByField(String field);
 
+    /**
+     * 用于信息分析
+     * @param field
+     * @return
+     */
     List<Information> findByField(String field);
+
+    /**
+     * 用于查询最新信息
+     * @param pageable
+     * @return
+     */
+    Page<Information> findAll(Pageable pageable);
 }

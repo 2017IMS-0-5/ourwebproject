@@ -122,4 +122,13 @@ public class InformationServiceImpl implements InformationService{
         Page<Information> page=informationRepository.findAll("",pageable);
         return page.getContent();
     }
+
+    @Override
+    public List<Information> findNewInfo(int newNum) {
+        List<Sort.Order> orders=new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort=Sort.by(orders);
+        Pageable pageable= PageRequest.of(0,newNum,sort);
+        return informationRepository.findAll(pageable).getContent();
+    }
 }
