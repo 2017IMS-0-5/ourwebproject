@@ -58,15 +58,15 @@ public class AdminController {//管理员相关控制
         return new ModelAndView("Administratornavigatorbar");
     }
     //以下是页面显示
-/*    @GetMapping("/homepage")
+    @GetMapping("/homepage")
     public ModelAndView homepage(){
         long student=userRepository.count();
-        List<Integer> infomlist=analysisService.
+        int information=analysisService.countAllInfo();
         ModelAndView num=new ModelAndView("administrator homepage");
         num.addObject("student",student);
         num.addObject("information",information);
         return num;
-    }*/
+    }
     /**
      * 以下是人员管理 管理员只能按照姓名和账号检索  人员类型必选
      * @param pageIndex

@@ -58,7 +58,7 @@
 		<div class="information" style="margin: 0px 360px;">
 			<img src="../../static/img/book.png" style="float:left;"/>
 			<p class="piple">消息信息</p>
-			<p class="gray">当前系统中已发布1条消息</p>
+			<p class="gray">当前系统中已发布${information}条消息</p>
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>
