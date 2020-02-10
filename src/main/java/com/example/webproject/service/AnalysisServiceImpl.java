@@ -48,5 +48,13 @@ public class AnalysisServiceImpl implements  AnalysisService{
         return sizeList;
     }
 
-
+    @Override
+    public Integer countAllInfo() {
+        List<Integer> sizeList=getInfoSizeByField();
+        Integer sum=0;
+        for(Integer integer:sizeList){
+            sum+=integer;
+        }
+        return sum;
+    }
 }

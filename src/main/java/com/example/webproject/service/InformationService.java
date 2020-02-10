@@ -78,4 +78,11 @@ public interface InformationService {
      * @return
      */
     List<Information> findHotInfo(int hotNum);
+
+    /**
+     * 最新消息
+     * @param newNum
+     * @return
+     */
+    List<Information> findNewInfo(int newNum);
 }
