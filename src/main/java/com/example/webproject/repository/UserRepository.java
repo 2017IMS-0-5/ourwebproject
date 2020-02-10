@@ -108,4 +108,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return
      */
     int countByRoleAndGrade(int role,String grade);
+
+    /**
+     * 统计用户总数
+     * @return
+     */
+    @Query(name="countAllUsers",nativeQuery = true,value =
+            "select count(*) from user")
+    int countAllUsers();
+
 }
