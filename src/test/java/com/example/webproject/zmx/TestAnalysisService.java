@@ -1,9 +1,14 @@
 package com.example.webproject.zmx;
 
+import com.example.webproject.entity.AdSearch;
+import com.example.webproject.entity.Information;
 import com.example.webproject.service.AnalysisService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,4 +35,10 @@ public class TestAnalysisService {
         System.out.println("average:"+hotList.toString());
 
     }
+
+    @Test
+    void testCountAllInfo(){
+        System.out.println(analysisService.countAllInfo());
+    }
+    
 }

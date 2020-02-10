@@ -19,5 +19,11 @@ public interface AnalysisService {
      */
     List<Integer> getInfoSizeByField();
 
+    /**
+     * 查询总信息发布量
+     * @return
+     */
+    Integer countAllInfo();
+
 
 }
