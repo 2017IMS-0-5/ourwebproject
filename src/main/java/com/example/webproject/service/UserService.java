@@ -131,4 +131,10 @@ public interface UserService {
      * @return
      */
     int countUserByRoleAndGrade(int role,String grade);
+
+    /**
+     * 统计用户总数
+     * @return
+     */
+    int countAllUsers();
 }

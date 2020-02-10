@@ -101,4 +101,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.countByRoleAndGrade(role,grade);
     }
 
+    @Override
+    public int countAllUsers(){
+        return userRepository.countAllUsers();
+    }
+
 }
