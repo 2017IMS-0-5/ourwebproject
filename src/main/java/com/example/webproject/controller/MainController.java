@@ -66,6 +66,11 @@ public class MainController {//处理整个系统相关的控制：登录、退�
             }
         }
     }
+
+    @GetMapping("/error")
+    public ModelAndView error(){
+        return new ModelAndView("error");
+    }
 }
 
 
