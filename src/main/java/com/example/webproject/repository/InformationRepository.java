@@ -82,6 +82,7 @@ public interface InformationRepository extends ElasticsearchRepository<Informati
      */
     Integer countByField(String field);
 
+
     /**
      * 用于信息分析
      * @param field
