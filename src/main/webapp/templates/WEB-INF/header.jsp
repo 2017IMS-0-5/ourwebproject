@@ -9,7 +9,6 @@
 		.welcome{
 			width: 100%;
 			height:30px;
-			min-width:1364px;
 			background-color: rgba(72,81,174,1);
 			padding-top: 3px;
 		}

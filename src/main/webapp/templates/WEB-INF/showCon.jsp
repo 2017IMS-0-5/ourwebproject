@@ -8,6 +8,7 @@
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
+		.topback{width: 100%;height:auto;}
         .bg2_1{height:115px;width: 100%;margin:0;}
         .bg2_1 img{width: 100%;height: 100%}
         .bg2_2{width: 100%;margin:0;overflow:hidden;}
@@ -24,6 +25,7 @@
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
         .bg3_1 ul li a { color:black; display: block; font-size: 12px;letter-spacing: 1pt;text-decoration:none;}
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
+		.hover{color: white; background-color: #5187C5;}
 
         /** 右侧标题展示 **/
         .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;min-height: 500px;}
@@ -64,17 +66,40 @@
         .info_a:hover{color:royalblue;}
 
     </style>
+	
+	<script>
+        window.onload=function(){
+            var obj=document.getElementById('nav');
+            var lis=obj.getElementsByTagName('li');
+
+            obj.onclick=function(event){
+                var e=event||window.event;
+                var obj=e.srcElement?e.srcElement:e.target;
+                for(var i=0, l=lis.length; i < l; i++){
+                    lis[i].className="";
+                }
+                switch(obj.tagName){
+                    case 'LI':
+                        obj.className="hover";
+                        break;
+                    case 'A':
+                        obj.parentNode.className="hover";
+                        break;
+                }
+            }
+        }
+    </script>
 
 </head>
 <body>
 <%@ include file="header.jsp"%>
 
-<div class="bg2_1">
-    <img src="../../static/img/topback.jpg" >
+<div>
+    <img src="../../static/img/topback.jpg" class="topback" >
 </div>
 <div class="bg2_2">
     <div class="bg3_1">
-        <ul>
+        <ul id="nav">
             <li>
                 <p >
                 <a href="/info${fieldValue}">

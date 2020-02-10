@@ -40,5 +40,5 @@ public class TestAnalysisService {
     void testCountAllInfo(){
         System.out.println(analysisService.countAllInfo());
     }
-    
+
 }
