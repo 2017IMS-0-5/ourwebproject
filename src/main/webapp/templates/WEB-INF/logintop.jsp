@@ -17,7 +17,7 @@
     <table align="center">
         <tr>
             <td class="lt_td1">
-                <img src="../../static/img/logintop.png">
+                <img src="${pageContext.request.contextPath}/static/img/logintop.png">
             </td>
             <td class="lt_td2">
                 <p>欢迎登录政府管理学院信息资源集合平台</p>

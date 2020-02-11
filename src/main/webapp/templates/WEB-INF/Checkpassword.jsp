@@ -11,13 +11,13 @@
 	<c:when test="${result==true}">
 		<script>
 			alert("密码修改成功！");
-			window.document.location.href="/usersp/xgmm";
+			window.document.location.href="${pageContext.request.contextPath}/usersp/xgmm";
 		</script>
 	</c:when>
 	<c:otherwise>
 		<script>
 			alert("密码错误，请重新输入！");
-			window.document.location.href="/usersp/xgmm";
+			window.document.location.href="${pageContext.request.contextPath}/usersp/xgmm";
 		</script>
 	</c:otherwise>
 </c:choose>

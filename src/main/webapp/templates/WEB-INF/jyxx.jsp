@@ -11,15 +11,16 @@
         body{margin:0;font-family: "微软雅黑";background-color: white;}
         .topback{width: 100%;height:auto;}
         .bg2_1 img{width: 100%;height: 100%}
-        .bg2_2{width: 100%;margin:0px;overflow:hidden;}
+        .bg2_2{width: 100%;margin:0;overflow:hidden;}
         .bg2_3{width: 100%;margin-top:10%; clear: both;position: relative;}
         .clearfix{clear: both;}
 
         /** 左侧导航**/
-        .bg3_1{width: 25%;padding-top: 35px;float: left;margin:0px}
+        .bg3_1{width: 25%;padding-top: 35px;float: left;margin:0
+        }
         .bg3_1:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
 
-        .bg3_1 ul { list-style: none;width: 190px; margin: 0 auto; background-color: #f2f2f2; position: relative; padding: 0px; }
+        .bg3_1 ul { list-style: none;width: 190px; margin: 0 auto; background-color: #f2f2f2; position: relative; padding: 0; }
         .bg3_1 ul li { height: 40px; line-height: 40px; text-align: center; border-bottom: 1px solid #F8F8F8; }
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
         .bg3_1 ul li a { color:black; display: block; font-size: 12px;letter-spacing: 1pt;text-decoration:none;}
@@ -27,7 +28,7 @@
         .hover{color: white; background-color: #5187C5;}
 
         /** 右侧标题展示 **/
-        .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0px;}
+        .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;}
         .bg3_2:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
         .bg4{width: 90%;min-height:400px;padding-top:20px;background-color: #c6d5f2;position: relative;min-height: 480px;}
         .bg4 table{width: 95%;border-collapse:collapse;}
@@ -72,14 +73,14 @@
 <%@ include file="header.jsp"%>
 
 <div>
-    <img src="../../static/img/topback.jpg" class="topback" >
+    <img src="${pageContext.request.contextPath}/static/img/topback.jpg" class="topback" >
 </div>
 <div class="bg2_2">
     <div class="bg3_1">
         <ul id="nav">
-            <li><p ><a href="/info${fieldValue}">${field}</a></p> </li>
+            <li><p ><a href="${pageContext.request.contextPath}/info${fieldValue}">${field}</a></p> </li>
             <c:forEach var="sub" items="${subjectList}">
-                <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
+                <li><a href="${pageContext.request.contextPath}/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
             </c:forEach>
 
         </ul>
@@ -89,11 +90,11 @@
             <table align="center" valign="middle">
                 <tr class="bg4_tr1">
                     <th class="bg4_th1">${field}</th>
-                    <th class="bg4_th2">当前位置：<a href="/index">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a> </th>
+                    <th class="bg4_th2">当前位置：<a href="${pageContext.request.contextPath}/main">首页</a>/<a href="/info${fieldValue}">${field}</a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a> </th>
                 </tr>
                 <c:forEach var="infor" items="${infoList}">
                     <tr class="bg4_tr2">
-                        <td class="bg4_td1"><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
+                        <td class="bg4_td1"><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
                         <td class="bg4_td2"><fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/></td>
                     </tr>
                 </c:forEach>
@@ -105,14 +106,14 @@
                         <input id="index" type="hidden" value="${pageIndex}">
                         第${pageIndex}页&nbsp;
                         共${pageTotal}页&nbsp;&nbsp;&nbsp;
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
+                        <a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}?pageIndex=0">首页</a>&nbsp;
                         <c:if test="${ pageIndex>=2 }">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                            <a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
                         </c:if>
                         <c:if test="${pageIndex<pageTotal}">
-                            <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
+                            <a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}?pageIndex=${pageIndex}">下一页</a>&nbsp;
                         </c:if>
-                        <a href="/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
+                        <a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}?pageIndex=${pageTotal-1}">尾页</a>
                     </td>
                 </tr>
             </table>

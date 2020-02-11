@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>个人主页——我的收藏</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/homepage.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/homepage.css">
     <style type="text/css">
 		.bg1 img{
 				float:left;
@@ -22,7 +22,7 @@
 <body>
 	<%@include file="header.jsp"%>
 	<div class="bg1">
-	<img src="../../static/img/photo.jpg">
+	<img src="${pageContext.request.contextPath}/static/img/photo.jpg">
 		<div id="bg2">
 			<table cellpadding="3" cellspacing="3">
 				<tr>
@@ -47,16 +47,16 @@
 					<td style="font-size:20px;font-weight:600;height:50px;">常用应用</td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="最新通知" onclick="window.location.href='/usersp/zxtz'")></td>
+					<td><input required="required"  type="button" value="最新通知" onclick="window.location.href='${pageContext.request.contextPath}/usersp/zxtz'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我的收藏" onclick="window.location.href='/usersp/wdsc'") style="background-color:#8080C0;"></td>
+					<td><input required="required"  type="button" value="我的收藏" onclick="window.location.href='${pageContext.request.contextPath}/usersp/wdsc'") style="background-color:#8080C0;"></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="我发布过的留言" onclick="window.location.href='/usersp/fbly'")></td>
+					<td><input required="required"  type="button" value="我发布过的留言" onclick="window.location.href='${pageContext.request.contextPath}/usersp/fbly'")></td>
 				</tr>
 				<tr>
-					<td><input required="required"  type="button" value="编辑资料" onclick="window.location.href='/usersp/bjzl'")></td>
+					<td><input required="required"  type="button" value="编辑资料" onclick="window.location.href='${pageContext.request.contextPath}/usersp/bjzl'")></td>
 				</tr>
 			</table>
 		</div>
@@ -65,7 +65,7 @@
 		<table cellspacing="40">
 			<c:forEach var="infor" items="${infoList}">
 				<tr>
-					<td><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
+					<td><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -74,14 +74,14 @@
 				<input id="index" type="hidden" value="${pageIndex}">
 				第${pageIndex}页&nbsp;
 				共${pageTotal}页&nbsp;&nbsp;&nbsp;
-				<a href="/usersp/wdsc?pageIndex=0">首页</a>&nbsp;
+				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=0">首页</a>&nbsp;
 				<%if((int)request.getAttribute("pageIndex")>1){ %>
-				<a href="/usersp/wdsc?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
 				<% }%>
 				<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
-				<a href="/usersp/wdsc?pageIndex=${pageIndex}">下一页</a>&nbsp;
+				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageIndex}">下一页</a>&nbsp;
 				<% }%>
-				<a href="/usersp/wdsc?pageIndex=${pageTotal-1}">尾页</a>
+				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageTotal-1}">尾页</a>
 			</div>
 
 		</div>

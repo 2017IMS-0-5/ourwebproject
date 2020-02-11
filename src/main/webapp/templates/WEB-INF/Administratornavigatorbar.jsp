@@ -96,7 +96,7 @@
 		<div class="menu" id="menu">
 			<div>
 				<box>信息管理
-				<img src="../../static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
 				</box>
 				<ul style="display:block">
 					<li>> 信息发布</li>
@@ -105,7 +105,7 @@
 			</div>
 			<div>
 				<box>人员管理
-				<img src="../../static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
 				</box>
 				<ul style="display:block">
 					<li>> 管理员管理</li>
@@ -115,7 +115,7 @@
 			</div>
 			<div>
 				<box>留言管理
-				<img src="../../static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
 				</box>
 				<ul style="display:block">
 				    <li>> 留言发布</li>

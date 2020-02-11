@@ -68,22 +68,24 @@
 
 <div class="bg0">
     <div class="bg1">
-        <img src="../../static/img/mainlogo.png">
+        <img src="${pageContext.request.contextPath}/static/img/mainlogo.png">
     </div>
     <div class="bg2">
     <table align="center">
         <tr>
             <td>
-                <a href="/info/notice"><img src="../../static/img/item_tzgg.png"></a>
+                <a href="${pageContext.request.contextPath}/info/notice">
+                    <img src="${pageContext.request.contextPath}/static/img/item_tzgg.png">
+                </a>
             </td>
             <td>
-                <a href="/info/policy"><img src="../../static/img/item_zczd.png"></a>
+                <a href="${pageContext.request.contextPath}/info/policy"><img src="${pageContext.request.contextPath}/static/img/item_zczd.png"></a>
             </td>
             <td>
-                <a href="/info/job"><img src="../../static/img/item_jyxx.png"></a>
+                <a href="${pageContext.request.contextPath}/info/job"><img src="${pageContext.request.contextPath}/static/img/item_jyxx.png"></a>
             </td>
             <td>
-                <a href="/info/other"><img src="../../static/img/item_qtxx.png"></a>
+                <a href="${pageContext.request.contextPath}/info/other"><img src="${pageContext.request.contextPath}/static/img/item_qtxx.png"></a>
             </td>
         </tr>
     </table>
@@ -96,7 +98,7 @@
             <table align="center" valign="middle">
                 <c:forEach var="infor" items="${infoList}">
                     <tr class="bg4_tr2">
-                        <td class="bg4_td1"><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
+                        <td class="bg4_td1"><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
                         <td class="bg4_td2">
                             <fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/>
                             . . . . . .

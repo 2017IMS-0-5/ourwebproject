@@ -2,15 +2,15 @@
 <html>
 <head>
     <title>信息上传</title>
-    <script type="text/javascript" src="../../static/js/infoUpload.js"> </script>
-	<link rel="stylesheet" type="text/css" href="../../static/css/upload.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/infoUpload.js"> </script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/upload.css">
 </head>
 <body>
 	<%@include file="managerheader.jsp"%>	
 	<div class="mantainer">
 	<%@include file="Administratornavigatorbar.jsp"%>
 	<div class="noteuploadzone">
-		<form action="/admin/infosubmit" method="post" class="form" onsubmit="deal()">
+		<form action="${pageContext.request.contextPath}/admin/infosubmit" method="post" class="form" onsubmit="deal()">
             <dl id="li" class="list">
                 <dt class="items">
                     <label>文件标题:</label><input type="text" name="title" class="uploadinput">

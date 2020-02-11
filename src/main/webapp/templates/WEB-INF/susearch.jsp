@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>高级检索</title>
-	<script type="text/javascript" src="../../static/js/My97DatePicker/WdatePicker.js"> </script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/My97DatePicker/WdatePicker.js"> </script>
 
 	<style type="text/css">
 		body{
@@ -288,7 +288,7 @@
         if (chi[4].value == '' || chi[4].value == undefined || chi[4].value == null){}
         else{text=text+'to'+chi[4].innerText;}
         text=text+'&flag=1';
-        window.location.href='/info/adSearchV?'+text;
+        window.location.href='${pageContext.request.contextPath}/info/adSearchV?'+text;
     }
 
 </script>

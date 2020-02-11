@@ -80,7 +80,7 @@
 	<%@ include file="header.jsp"%>
 	<div style="background-color:rgba(143,130,188,1);width:100%;height:470px;padding-top:15px;">
 	<div class="container">
-		<form method=get action="/usersp/changepassword">
+		<form method=get action="${pageContext.request.contextPath}/usersp/changepassword">
 		<p class="title">修改密码</p>
 		<br>
 		<div class="box">
@@ -97,7 +97,7 @@
 		<br>
 		<div style="text-align:center">
 			<button type="submit" class="new_button2">提交</button>
-			<button type="button" class="new_button2" onclick="window.location.href='/usersp/bjzl'">返回</button>
+			<button type="button" class="new_button2" onclick="window.location.href='${pageContext.request.contextPath}/usersp/bjzl'">返回</button>
 		</div>
 		<br>
 		</form>

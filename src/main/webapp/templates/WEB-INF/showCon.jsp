@@ -95,14 +95,14 @@
 <%@ include file="header.jsp"%>
 
 <div>
-    <img src="../../static/img/topback.jpg" class="topback" >
+    <img src="${pageContext.request.contextPath}/static/img/topback.jpg" class="topback" >
 </div>
 <div class="bg2_2">
     <div class="bg3_1">
         <ul id="nav">
             <li>
                 <p >
-                <a href="/info${fieldValue}">
+                <a href="${pageContext.request.contextPath}/info${fieldValue}">
                     <c:choose>
                         <c:when test="${field == 'job'}">就业信息</c:when>
                         <c:when test="${field == 'notice'}">通知公告</c:when>
@@ -114,7 +114,7 @@
                 </p>
             </li>
             <c:forEach var="sub" items="${subjectList}">
-                <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
+                <li><a href="${pageContext.request.contextPath}/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
             </c:forEach>
         </ul>
     </div>
@@ -131,7 +131,7 @@
                     </c:choose>
                 </span>
                 <span class="span2">当前位置：<a href="/index">首页</a>/
-                    <a href="/info${fieldValue}">
+                    <a href="${pageContext.request.contextPath}/info${fieldValue}">
                          <c:choose>
                              <c:when test="${field == 'job'}">就业信息</c:when>
                              <c:when test="${field == 'notice'}">通知公告</c:when>
@@ -139,7 +139,7 @@
                              <c:when test="${field == 'other'}">其它信息</c:when>
                              <c:otherwise>${field}</c:otherwise>
                          </c:choose>
-                    </a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
+                    </a>/<a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
             </div>
             <div class="clearfix"></div>
             <div class="bg5">
@@ -153,13 +153,13 @@
                 <c:if test="${ info.labels!='' }">
                 <p class="tag">标签：
                     <c:forTokens var="label" items="${info.labels}" delims=", ">
-                        <a href="/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
+                        <a href="${pageContext.request.contextPath}/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
                     </c:forTokens>
                 </p><br>
                 </c:if>
             </div>
             <div align="center">
-                <form action="/info/favor" method="post" name="PageForm" style="align-self: center">
+                <form action="${pageContext.request.contextPath}/info/favor" method="post" name="PageForm" style="align-self: center">
                     <input type="hidden" name="infoId" value="${info.id}">
                     <c:choose>
                         <c:when test="${ favored =='false' }">

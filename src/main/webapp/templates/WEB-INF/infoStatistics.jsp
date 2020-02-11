@@ -2,11 +2,11 @@
 <html>
 	<head>
 	    <title>消息信息统计</title>
-	    <link rel="stylesheet" type="text/css" href="../../static/homepage.css">
-	    <link rel="stylesheet" type="text/css" href="../../static/jquery.jqChart.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/homepage.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery.jqChart.css" />
 	    
-	    <script src="../../static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-	    <script src="../../static/js/jquery.jqChart.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery.jqChart.min.js" type="text/javascript"></script>
 	    <script lang="javascript" type="text/javascript">
 	    $(document).ready(function () {
 	    	
@@ -161,7 +161,7 @@
 			.manager_apt{
 				width: 20%;
 				height: 100px;
-				background-image: url(../../static/img/schoollogo.JPG);
+				background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
 				background-repeat: no-repeat;
 				text-align: right;
 				display:table-cell; 

@@ -5,7 +5,7 @@
 
     <style type="text/css">
         body{margin:0;font-family: 微软雅黑;}
-        .bg1{height: 100%;width:100%;background-image: url(../../static/img/back.png);background-size:cover; background-repeat:no-repeat;overflow: hidden;margin: 0;}
+        .bg1{height: 100%;width:100%;background-image: url(${pageContext.request.contextPath}/static/img/back.png);background-size:cover; background-repeat:no-repeat;overflow: hidden;margin: 0;}
         .bg2{height: 360px;width:300px;background:rgba(242, 242, 242, 0.5);padding-left: 21px;padding-right: 21px;padding-bottom: 21px;padding-top:1px;margin-left:63%;margin-top:11%;border-radius: 5px;}
         .bg2 p{font-size: 30px;font-weight: bold; align:left; padding-left:5px; color:darkblue}
         .bg2 a{font-size: 12px;color:dimgray;text-decoration: none;float: left;padding-left: 8px;}
@@ -36,7 +36,7 @@
     <div class="bg2">
         <p>平台登录</p>
 
-        <form method=post action="/checkLogin" align="center">
+        <form method=post action="${pageContext.request.contextPath}/checkLogin" align="center">
             <div class="input_radio">
                 <label>
                     <input type="radio" checked name="role" value="user" class="a-radio" >

@@ -18,7 +18,7 @@
 <body>
 <%@include file="header.jsp"%>
 <div>
-	<img src="../../static/img/topback.jpg" class="topback">
+	<img src="${pageContext.request.contextPath}/static/img/topback.jpg" class="topback">
 </div>
 <%@include file="sures.jsp"%>
 <%@include file="footer.jsp"%>

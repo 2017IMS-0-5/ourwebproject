@@ -12,7 +12,7 @@
 		<style type="text/css">
 			#bg{
 				position:relative;
-				background-image:url(../../static/img/bg1.jpg);
+				background-image:url(${pageContext.request.contextPath}/static/img/bg1.jpg);
 				background-size:cover;
 				align:center;
 				height:600px;
@@ -81,7 +81,7 @@
 			<table width="740" border="1" cellspacing="0" cellpadding="6" align="center">
 				<c:forEach var="comm" items="${commList}" varStatus="status">
 					<tr>
-						<td height="40" valign="middle" rowspan="2"><img src="../../static/img/photo.jpg"></td>
+						<td height="40" valign="middle" rowspan="2"><img src="${pageContext.request.contextPath}/static/img/photo.jpg"></td>
 						<td>第${row-status.count+1-pageSize*(pageIndex-1)}楼：${comm.userAccount}</td>
 						<td>${comm.createTime}</td>
 					</tr>
@@ -94,20 +94,20 @@
 			<input id="index" type="hidden" value="${pageIndex}">
 			第${pageIndex}页&nbsp;
 			共${pageTotal}页&nbsp;&nbsp;&nbsp;
-			<a href="/usersp/lyb?pageIndex=0">首页</a>&nbsp;
+			<a href="${pageContext.request.contextPath}/usersp/lyb?pageIndex=0">首页</a>&nbsp;
 			<%if((int)request.getAttribute("pageIndex")>1){ %>
-			<a href="/usersp/lyb?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+			<a href="${pageContext.request.contextPath}/usersp/lyb?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
 			<% }%>
 			<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
-			<a href="/usersp/lyb?pageIndex=${pageIndex}">下一页</a>&nbsp;
+			<a href="${pageContext.request.contextPath}/usersp/lyb?pageIndex=${pageIndex}">下一页</a>&nbsp;
 			<% }%>
-			<a href="/usersp/lyb?pageIndex=${pageTotal-1}">尾页</a>
+			<a href="${pageContext.request.contextPath}/usersp/lyb?pageIndex=${pageTotal-1}">尾页</a>
 		</div>
 	
 		<div id="bg2">
 			<p></p>
 		    <p>留言</p>
-		    <form  action="/usersp/addComment" method="get">
+		    <form  action="${pageContext.request.contextPath}/usersp/addComment" method="get">
 			<p><input type="text" name="comment" placeholder="请输入内容..."></p>
 			<p><input type="submit" value="我要发布留言" style="background-color:#7373B9;margin-top:2%;"></p>
 			</form>

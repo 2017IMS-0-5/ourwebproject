@@ -4,7 +4,7 @@
     <style type="text/css">
         #foot{
             height: 170px;
-            background-image:url(../../static/img/footer.jpg);
+            background-image:url(${pageContext.request.contextPath}/static/img/footer.jpg);
             background-repeat:no-repeat;
             background-size: cover;
             background-color: rgb(81,89,174);
