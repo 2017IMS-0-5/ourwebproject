@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -38,20 +40,26 @@ public class UserspaceController {//用户空间相关功能
      * @return
      */
     @GetMapping("/zxtz")
-    public ModelAndView zxtzView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
+    public ModelAndView zxtzView(HttpServletRequest request, HttpServletResponse response,
+                                 @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+                                 @RequestParam(value = "pageSize",required = false,defaultValue = "4")int pageSize
     ){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
         List<Sort.Order> orders=new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
         Sort sort=Sort.by(orders);
         Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
-        Page<Information> page=informationService.selectByLabel("信管",pageable);
+        Page<Information> page=informationService.selectByLabel(user.getMajor(),pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
         ModelAndView modelAndView=new ModelAndView("zxtz");
         modelAndView.addObject("infoList",list);
+        modelAndView.addObject("user",user);
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
@@ -61,14 +69,19 @@ public class UserspaceController {//用户空间相关功能
      * @return
      */
     @GetMapping("/wdsc")
-    public ModelAndView wdscView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
+    public ModelAndView wdscView(HttpServletRequest request, HttpServletResponse response,
+                                 @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+                                 @RequestParam(value = "pageSize",required = false,defaultValue = "4")int pageSize
     ){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
         List<Sort.Order> orders=new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
         Sort sort=Sort.by(orders);
         Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
-        Page<UserFavor> page=userFavorService.getUserFavorByUserAccount("201711260115",pageable);
+        Page<UserFavor> page=userFavorService.getUserFavorByUserAccount(user.getAccount(),pageable);
         List<Information> list=new ArrayList<>();
         for(UserFavor userFavor:page){
             Optional<Information> information=informationService.selectInfoById(userFavor.getInfold());
@@ -76,29 +89,54 @@ public class UserspaceController {//用户空间相关功能
         }
         ModelAndView modelAndView=new ModelAndView("wdsc");
         modelAndView.addObject("infoList",list);
+        modelAndView.addObject("user",user);
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
     }
     /**
+     * 取消收藏
+     * @param infold
+     * @return
+     */
+    @GetMapping("/deleteUF")
+    public String deleteUserFavor(HttpServletRequest request, HttpServletResponse response,
+                                  @RequestParam(value = "infold", required = true) String infold
+    ) {
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        userFavorService.deleteUserFavor(infold,user.getAccount());
+        return "redirect:/usersp/wdsc";
+    }
+
+
+    /**
      * 3.个人主页——我发布的留言
      * @return
      */
     @GetMapping("/fbly")
-    public ModelAndView fblyView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                 @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize
+    public ModelAndView fblyView(HttpServletRequest request, HttpServletResponse response,
+                                 @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+                                 @RequestParam(value = "pageSize",required = false,defaultValue = "4")int pageSize
     ){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
         List<Sort.Order> orders=new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.DESC,"createTime"));
         Sort sort=Sort.by(orders);
         Pageable pageable= PageRequest.of(pageIndex,pageSize,sort);
-        Page<Comment> page=commentService.showUserComments("201711260115",pageable);
+        Page<Comment> page=commentService.showUserComments(user.getAccount(),pageable);
         List<Comment> list=new ArrayList<>();
         for(Comment comment:page){
             list.add(comment);
         }
         ModelAndView modelAndView=new ModelAndView("fbly");
         modelAndView.addObject("commList",list);
+        modelAndView.addObject("user",user);
         modelAndView.addObject("pageIndex",pageIndex+1);
         modelAndView.addObject("pageTotal",page.getTotalPages());
         return modelAndView;
@@ -108,16 +146,28 @@ public class UserspaceController {//用户空间相关功能
      * @return
      */
     @GetMapping("/bjzl")//返回
-    public ModelAndView returnbjzl(){
-        return new ModelAndView("the change of person information ");
+    public ModelAndView returnbjzl(HttpServletRequest request, HttpServletResponse response){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
+        ModelAndView modelAndView=new ModelAndView("the change of person information ");
+        modelAndView.addObject("user",user);
+        return modelAndView;
     }
 
     /**5.个人主页——修改密码
      * @return
      */
     @GetMapping("/xgmm")//返回
-    public ModelAndView returnxgmm(){
-        return new ModelAndView("change_password");
+    public ModelAndView returnxgmm(HttpServletRequest request, HttpServletResponse response){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
+        ModelAndView modelAndView=new ModelAndView("change_password");
+        modelAndView.addObject("user",user);
+        return modelAndView;
     }
 
     /**
@@ -128,16 +178,19 @@ public class UserspaceController {//用户空间相关功能
      * @return
      */
     @GetMapping("/changepassword")//修改密码
-    public ModelAndView testLoginCheck(
-            @RequestParam(value = "old_password", required = true, defaultValue = "0000") String old_password,//value-变量名；required-参数是否必要
-            @RequestParam(value = "new_password", required = true, defaultValue = "0000") String new_password,//defaultValue默认值
-            @RequestParam(value = "verify_new", required = true, defaultValue = "0000") String verify_new
+    public ModelAndView testLoginCheck(HttpServletRequest request, HttpServletResponse response,
+                                       @RequestParam(value = "old_password", required = true, defaultValue = "0000") String old_password,//value-变量名；required-参数是否必要
+                                       @RequestParam(value = "new_password", required = true, defaultValue = "0000") String new_password,//defaultValue默认值
+                                       @RequestParam(value = "verify_new", required = true, defaultValue = "0000") String verify_new
     ) {
-        Optional<User> user = userService.getUserById((long) 1);
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
         Boolean res;
-        if (user.get().getPassword().equals(old_password)&&new_password.equals(verify_new)) {
-            user.get().setPassword(new_password);
-            userService.saveOrUpdateUser(user.get());
+        if (user.getPassword().equals(old_password)&&new_password.equals(verify_new)) {
+            user.setPassword(new_password);
+            userService.saveOrUpdateUser(user);
             res=true;
         }
         else{
@@ -148,13 +201,33 @@ public class UserspaceController {//用户空间相关功能
         return modelAndView;
     }
     /**
-     * 7.留言板
+     * 7.重置密码
+     * @return
+     */
+    @GetMapping("/resetPassword")
+    public String resetPW(HttpServletRequest request, HttpServletResponse response){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        String new_pw = user.getAccount().substring(6,12);
+        user.setPassword(new_pw);
+        userService.saveOrUpdateUser(user);
+        return "redirect:/usersp/xgmm";
+    }
+    /**
+     * 8.留言板
      * @return
      */
     @GetMapping("/lyb")
-    public ModelAndView lybView(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
+    public ModelAndView lybView(HttpServletRequest request, HttpServletResponse response,
+                                @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                  @RequestParam(value = "pageSize",required = false,defaultValue = "3")int pageSize
     ){
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return new ModelAndView("/login");
+        }
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
         Page<Comment> page=commentService.getAllCommentByTime(pageable);
         List<Comment> list=new ArrayList<>();
@@ -170,8 +243,14 @@ public class UserspaceController {//用户空间相关功能
         return modelAndView;
     }
     @GetMapping("/addComment")//添加评论
-    public String addComment(@RequestParam(value = "comment", required = true, defaultValue = " ") String content) {
-        commentService.addComment(new Comment("201711260111",content));
+    public String addComment(HttpServletRequest request, HttpServletResponse response,
+                             @RequestParam(value = "comment", required = true) String content
+    ) {
+        User user=(User) request.getSession().getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
+        commentService.addComment(new Comment(user.getAccount(),content));
         return "redirect:/usersp/lyb";
 
     }

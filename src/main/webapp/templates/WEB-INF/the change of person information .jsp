@@ -73,22 +73,22 @@
 		<p class="title">编辑资料</p>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">性别</p></div>
-			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">女</p></div>
+			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">${user.gender}</p></div>
 		</div>
 		<br>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">姓名</p></div>
-			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">李歆然</p></div>
+			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">${user.name}</p></div>
 		</div>
 		<br>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">年级</p></div>
-			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">2017</p></div>
+			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">${user.grade}</p></div>
 		</div>
 		<br>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">专业</p></div>
-			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">信息管理与信息系统</p></div>
+			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">${user.major}</p></div>
 		</div>
 		<br>
 		<div class="box">
@@ -100,7 +100,7 @@
 		<br>
 		<div class="box">
 			<div style="width:20%;float:left;text-align:center;margin-top:-5px;"><p class="normal">邮箱</p></div>
-			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">201711260115@mail.bnu.edu.cn</p></div>
+			<div style="width:80%;float:right;text-align:center;margin-top:-5px;"><p class="normal">${user.email}</p></div>
 		</div>
 		<br>
 		<div style="text-align:center;margin-top:-10px;">

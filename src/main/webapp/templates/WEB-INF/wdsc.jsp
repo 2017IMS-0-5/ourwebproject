@@ -26,15 +26,15 @@
 		<div id="bg2">
 			<table cellpadding="3" cellspacing="3">
 				<tr>
-					<td  colspan="2" style="font-size:17px;font-weight:800;">${stu.name}李华</td>
+					<td  colspan="2" style="font-size:17px;font-weight:800;">${user.name}</td>
 				</tr>
 				<tr>
-					<td>年级：${stu.grade}2017级本科生</td>
-					<td>专业：${stu.major}信息管理与信息系统</td>
+					<td>年级：${user.grade}</td>
+					<td>专业：${user.major}</td>
 				</tr>
 				<tr>
-					<td>学号：${stu.account}201711260000</td>
-					<td>电子邮箱：${stu.email}201711260000@mail.bnu.edu.cn</td>
+					<td>学号：${user.account}</td>
+					<td>电子邮箱：${user.email}</td>
 				</tr>
 			</table>
 		</div>
@@ -62,12 +62,17 @@
 		</div>
 
 		<div class="bg4" style="float:left;">
-		<table cellspacing="40">
-			<c:forEach var="infor" items="${infoList}">
+			<table cellspacing="30">
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
+					<td><h1>收藏内容</h1></td>
+					<td><h1>操作</h1></td>
 				</tr>
-			</c:forEach>
+				<c:forEach var="infor" items="${infoList}">
+					<tr>
+						<td><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
+						<td><input type="button" value="取消收藏" οnclick="location.href='${pageContext.request.contextPath}/deleteUF?infold=${infor.id}"></td>
+					</tr>
+				</c:forEach>
 		</table>
 			<div id="form2">
 				<input id="size" name="size" type="hidden" value="${pageTotal}">
@@ -75,12 +80,12 @@
 				第${pageIndex}页&nbsp;
 				共${pageTotal}页&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=0">首页</a>&nbsp;
-				<%if((int)request.getAttribute("pageIndex")>1){ %>
+                <c:if test="${ pageIndex>=2 }">
 				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
-				<% }%>
-				<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
+                </c:if>
+                <c:if test="${pageIndex<pageTotal}">
 				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageIndex}">下一页</a>&nbsp;
-				<% }%>
+                </c:if>
 				<a href="${pageContext.request.contextPath}/usersp/wdsc?pageIndex=${pageTotal-1}">尾页</a>
 			</div>
 
