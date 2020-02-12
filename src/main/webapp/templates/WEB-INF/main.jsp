@@ -6,7 +6,7 @@
     <title>首页</title>
     <style type="text/css">
         body{margin:0; font-family: 微软雅黑;}
-        .bg0{background-image: url(../../static/img/back.png);background-size:cover; background-repeat:no-repeat;overflow: hidden;margin: 0;}
+        .bg0{background-image: url(${pageContext.request.contextPath}/static/img/back.png);background-size:cover; background-repeat:no-repeat;overflow: hidden;margin: 0;}
         .bg1{height: 45%;width:100%;text-align: center;}
         .bg1 img{height:85%;padding-top:40px;}
 

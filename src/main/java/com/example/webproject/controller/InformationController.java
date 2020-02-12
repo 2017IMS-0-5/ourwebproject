@@ -4,7 +4,6 @@ import com.example.webproject.entity.AdSearch;
 import com.example.webproject.entity.InfoClass;
 import com.example.webproject.entity.Information;
 import com.example.webproject.entity.UserFavor;
-import com.example.webproject.repository.InformationRepository;
 import com.example.webproject.service.InfoClassService;
 import com.example.webproject.service.InformationService;
 import com.example.webproject.service.UserFavorService;
@@ -19,15 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/info")
 public class InformationController {//信息文件相关控制（检索、查询、浏览）
     @Autowired
@@ -354,28 +348,27 @@ public class InformationController {//信息文件相关控制（检索、查询
 
     //三、信息收藏
     @PostMapping("/favor")
-    public void addFavor(
-            @RequestParam(value = "infoId",required = true)String infoId,
-            HttpServletResponse response
-    ) throws IOException {
+    public String addFavor(
+            @RequestParam(value = "infoId",required = true)String infoId
+    )  {
         String account="201711260105";
         try {
             UserFavor userFavor=new UserFavor(account,infoId);
             userFavorService.saveOrUpdateUserFavor(userFavor);
         }catch (Exception e){
         }
-        response.sendRedirect("/info/information?infoId="+infoId);
+        return "redirect:/info/information?infoId="+infoId;
     }
 
     //四、URL跳转--清理URL
     @GetMapping("")
-    public void redirect1(HttpServletResponse response) throws IOException {
-        response.sendRedirect("/main");
+    public String redirect1() {
+        return "redirect:/main";
     }
 
     @GetMapping("/")
-    public void redirect2(HttpServletResponse response) throws IOException {
-        response.sendRedirect("/main");
+    public String redirect2() {
+        return "redirect:/main";
     }
 
 
