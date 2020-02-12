@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员导航栏 -->
-		 <style type="text/css">
+	<style type="text/css">
 		.menu
 		{
 			background-color:rgba(143,130,188,1);
@@ -14,12 +15,14 @@
 			-moz-border-radius:10px;
 			-webkit-border-radius:10px;
 			border-radius:10px;
-			height:380px;
-			width:290px; 
+			min-height:500px;
+			height: auto;
+			width:340px; 
 			float:left;
 			margin-left:30px;
 			margin-right:30px;
-			padding-left:40px;
+			margin-bottom:50px;
+			padding-bottom: 30px;
 		}
 		.menu box
 		{
@@ -30,7 +33,7 @@
 			-webkit-border-radius:10px;
 			border-radius:10px;
 			height:25px;
-			width:190px;
+			width:250px;
 			font-size:145%;
 		  	font-weight:bold;
 		  	line-height:25px;
@@ -38,9 +41,10 @@
 		 	cursor:pointer;
 		 	text-align:left;
 		 	float:left;
-		 	margin-left:10px;
+		 	margin-left:25px;
 			margin-right:10px;
 			margin-top: 14px;
+			margin-bottom:10px;
 			padding-left:20px;
 			padding-right:20px;
 			padding-top:10px;
@@ -51,42 +55,73 @@
 			display:none;
 			cursor:pointer;
 		 	text-align:left;
-		 	float:left;
 		 	margin:0;
 			padding:0;
 			list-style:none;
 		 	margin-left:10px;
+		 	margin-top:10px;
 			margin-right:10px;
 			padding-left:20px;
 			padding-top:8px;
 		}
 		.menu li
 		{
+			font-family:"微软雅黑";
+			font-size:115%;
 		  	font-weight:bold;
-		  	font-size: 18px;
+		  	padding-bottom: 8px;
 		}
 	</style>
  	<script type="text/javascript">
  		window.onload=function()
  		{
-	 		// 将所有点击的标题和要显示隐藏的列表取出来
-			var ps = document.getElementsByTagName("box");
+	 		
+			var jians = document.getElementsByClassName("jian");
 			var uls = document.getElementsByTagName("ul");
-			// 遍历所有要点击的标题且给它们添加索引及绑定事件
-			for(var i = 0, n = ps.length; i <n; i += 1)
+			
+			for(var i = 0, n = jians.length; i <n; i += 1)
 			{
-				ps[i].id = i;
-				ps[i].onclick = function()
+				jians[i].id=i;
+				jians[i].flag=1;
+				jians[i].onclick = function()
 				{
-					for(var j = 0; j < n ; j += 1)
-					{
-			    		uls[j].style.display = "none";
-					}
-					uls[this.id].style.display = "block";
+					if(this.flag==1){
+					jians[this.id].setAttribute("src","images/jia.png");
+					uls[this.id].style.display="none";
+					this.flag=0;
 				}
-				// 获取点击的标题上的索引属性，根据该索引找到对应的列表
+				else{
+					jians[this.id].setAttribute("src","images/jian.png");
+					uls[this.id].style.display="block";
+					this.flag=1;
+				}
 			}
-			// 判断该列表，如果是显示的则将其隐藏，如果是隐藏的则将其显示出来
+				
+			}
+			var up = document.getElementById("upload");
+			up.flag=0;
+			up.onclick=function(){
+				var upchi = new Array();
+				var names = ['> 通知公告','> 就业实习','> 政策制度','> 其他信息'];
+				if(this.flag==0){
+				for (var i = 0; i <= names.length - 1; i++) {
+					upchi[i]=document.createElement("p");
+					upchi[i].setAttribute("style","padding-left:35px;font-size:85%;");
+					upchi[i].innerText=names[i];
+					this.innerText='Ⅴ';
+					this.parentElement.appendChild(upchi[i]);	
+				}
+			    this.flag=1;}
+				else{
+					for (var i = 0; i <= names.length - 1; i++) {
+					this.innerText='>';
+					h=this.parentElement;
+					h.removeChild(h.lastChild);
+				}
+				this.flag=0;
+				}
+			}
+			
 		}
 	</script>
 </head>
@@ -96,30 +131,33 @@
 		<div class="menu" id="menu">
 			<div>
 				<box>信息管理
-				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jian.png" style="float:right;" class="jian" />
 				</box>
 				<ul style="display:block">
-					<li>> 信息发布</li>
-					<li>> 查看已发布的信息</li>
+					<li><span id="upload" >></span> 信息发布</li>
+					<li><span>></span> 查看已发布的信息</li>
 				</ul>
 			</div>
 			<div>
 				<box>人员管理
-				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jian.png" style="float:right;" class="jian" />
 				</box>
-				<ul style="display:block">
-					<li>> 管理员管理</li>
-				    <li>> 教师管理</li>
-				    <li>> 学生管理</li>
+				<ul style="display:block" onclick="javascript:location.href='/admin/userSearch' ">
+					<li><span>></span> 管理员管理</li>
+				
+				    <li><span>></span> 教师管理</li>
+				
+				    <li><span>></span> 学生管理</li>
 				</ul>
 			</div>
 			<div>
 				<box>留言管理
-				<img src="${pageContext.request.contextPath}/static/img/jia.png" style="float:right;"/>
+				<img src="${pageContext.request.contextPath}/static/img/jian.png" style="float:right;" class="jian" />
 				</box>
-				<ul style="display:block">
-				    <li>> 留言发布</li>
-				    <li>> 查看已发布的留言</li>
+				<ul style="display:block" onclick="javascript:location.href='/admin/commentSearch' ">
+				    <li><span>></span> 留言发布</li>
+				
+				    <li><span>></span> 查看已发布的留言</li>
 				</ul>
 			</div>
 		</div>

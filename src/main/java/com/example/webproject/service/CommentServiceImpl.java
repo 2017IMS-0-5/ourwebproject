@@ -49,8 +49,8 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public Page<Comment> getByDateAndAccount(Date date, String account, Pageable pageable){
-        return commentRepository.findByDateAndAccount(date,account,pageable);
+    public Page<Comment> getByDateAndUserAccount(Date date, String userAccount, Pageable pageable){
+        return commentRepository.findByDateAndUserAccount(date,userAccount,pageable);
     }
 
 }

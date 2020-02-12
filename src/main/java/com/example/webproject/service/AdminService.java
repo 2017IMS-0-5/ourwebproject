@@ -71,4 +71,33 @@ public interface AdminService {
      * @return
      */
     Admin login(String account, String password);
+
+    /**
+     * 根据管理员角色和姓名查询管理员
+     * @param role
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<Admin> selectByRoleAndName(String role,String name,Pageable pageable);
+
+    /**
+     * 根据管理员角色和账号查询管理员
+     * @param role
+     * @param account
+     * @param pageable
+     * @return
+     */
+    Page<Admin> selectByRoleAndAccount(String role,String account,Pageable pageable);
+
+    /**
+     * 根据管理员角色统计人数
+     * @param role
+     * @return
+     */
+    int countByRole(String role);
+
+    Admin selectByAccount(String account);
+
+    List<Admin> listAdmins();
 }

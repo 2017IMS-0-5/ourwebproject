@@ -2,8 +2,8 @@
 <html>
 	<head>
 	    <title>消息信息统计</title>
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/homepage.css">
-	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/jquery.jqChart.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/homepage.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/jquery.jqchart.css" />
 	    
 	    <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
 	    <script src="${pageContext.request.contextPath}/static/js/jquery.jqChart.min.js" type="text/javascript"></script>
@@ -39,7 +39,7 @@
                         },
                         explodedRadius: 10,
                         explodedSlices: [1],
-                        data: [['通知公告', 258], ['政策制度', 80], ['就业信息', 480], ['其他', 94]]//可以换成数据库中统计的学生和老师的人数
+                        data: [['通知公告', ${sizeDataofnotice}], ['政策制度', ${sizeDataofpolicy}], ['就业信息', ${sizeDataofjob}], ['其他', ${sizeDataofother}]]//可以换成数据库中统计的学生和老师的人数
                     }
                 ]
             });
@@ -64,7 +64,7 @@
             };
 
             $('#jqChart2').jqChart({
-                title: { text: '近一周消息数量发布分布图' },
+                title: { text: '消息阅读量分布图' },
                 legend: { title: '消息类型' },
                 border: { strokeStyle: '#d0d0d0' },
                 background: background,
@@ -84,7 +84,7 @@
                         },
                         explodedRadius: 10,
                         explodedSlices: [1],
-                        data: [['通知公告', 8], ['政策制度', 1], ['就业信息', 21], ['其他', 4]]//可以换成数据库中统计的学生和老师的人数
+                        data: [['通知公告', ${readDataofnotice}], ['政策制度', ${readDataofpolicy}], ['就业信息', ${readDataofjob}], ['其他', ${readDataofother}]]//可以换成数据库中统计的学生和老师的人数
                     }
                 ]
             });
@@ -110,7 +110,7 @@
             };
 
             $('#jqChart3').jqChart({
-                title: { text: '近一周消息数量发布分布图' },
+                title: { text: '消息平均阅读量分布图' },
                 legend: { title: '消息类型' },
                 border: { strokeStyle: '#d0d0d0' },
                 background: background,
@@ -130,7 +130,7 @@
                         },
                         explodedRadius: 10,
                         explodedSlices: [1],
-                        data: [['人力资源', 279], ['编程', 87], ['数据库', 21], ['项目管理', 93], ['其他', 400]]//可以换成数据库中统计的学生和老师的人数
+                        data: [['通知公告', ${hotDataofnotice}], ['政策制度', ${hotDataofpolicy}], ['就业信息', ${hotDataofjob}], ['其他', ${hotDataofother}]]//可以换成数据库中统计的学生和老师的人数
                     }
                 ]
             });
@@ -161,7 +161,7 @@
 			.manager_apt{
 				width: 20%;
 				height: 100px;
-				background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
+				background-image: url(../../static/img/schoollogo.JPG);
 				background-repeat: no-repeat;
 				text-align: right;
 				display:table-cell; 

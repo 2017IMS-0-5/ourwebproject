@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -59,6 +60,29 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Admin login(String account, String password) {
         return adminRepository.login(account,password);
+    }
+
+    @Override
+    public Page<Admin> selectByRoleAndName(String role,String name,Pageable pageable){
+        return adminRepository.findByRoleAndNameLike(role,name,pageable);
+    }
+
+    @Override
+    public Page<Admin> selectByRoleAndAccount(String role,String account,Pageable pageable){
+        return adminRepository.findByRoleAndAccount(role, account, pageable);
+    }
+
+    @Override
+    public int countByRole(String role){
+        return adminRepository.countByRole(role);
+    }
+
+    @Override
+    public Admin selectByAccount(String account){return adminRepository.findByAccount(account);}
+
+    @Override
+    public List<Admin> listAdmins(){
+        return adminRepository.findAll();
     }
 }
 

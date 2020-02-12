@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
 public interface UserRepository extends JpaRepository<User, Long> {
     /**
      * 根据用户姓名分页查询用户列表
@@ -119,6 +117,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "select count(*) from user")
     int countAllUsers();
 
-    List<User> findAll();
+    /**
+     * 根据账号查找用户
+     * @param account
+     * @return
+     */
+    User findByAccount(String account);
 
 }
