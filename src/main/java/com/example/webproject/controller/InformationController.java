@@ -1,9 +1,6 @@
 package com.example.webproject.controller;
 
-import com.example.webproject.entity.AdSearch;
-import com.example.webproject.entity.InfoClass;
-import com.example.webproject.entity.Information;
-import com.example.webproject.entity.UserFavor;
+import com.example.webproject.entity.*;
 import com.example.webproject.service.InfoClassService;
 import com.example.webproject.service.InformationService;
 import com.example.webproject.service.UserFavorService;
@@ -18,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,9 +168,11 @@ public class InformationController {//信息文件相关控制（检索、查询
 
     @GetMapping("/information")
     public ModelAndView showContent(
-            @RequestParam(value = "infoId",required = true)String infoId//信息ID
+            @RequestParam(value = "infoId",required = true)String infoId,//信息ID
+            HttpServletRequest request
     ){
-        String account="201711260105";
+        User user=(User) request.getSession().getAttribute("user");
+        String account=user.getAccount();
         Information information=informationService.selectInfoById(infoId).get();
         information.setReadSize(information.getReadSize()+1);//阅读量+1
         informationService.updateInfo(information);
@@ -349,9 +350,11 @@ public class InformationController {//信息文件相关控制（检索、查询
     //三、信息收藏
     @PostMapping("/favor")
     public String addFavor(
-            @RequestParam(value = "infoId",required = true)String infoId
+            @RequestParam(value = "infoId",required = true)String infoId,
+            HttpServletRequest request
     )  {
-        String account="201711260105";
+        User user=(User) request.getSession().getAttribute("user");
+        String account=user.getAccount();
         try {
             UserFavor userFavor=new UserFavor(account,infoId);
             userFavorService.saveOrUpdateUserFavor(userFavor);

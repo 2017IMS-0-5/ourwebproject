@@ -111,7 +111,7 @@
 <body>
 <%@include file="header.jsp"%>
 <div>
-	<img src="../../static/img/topback.jpg" class="topback">
+	<img src="${pageContext.request.contextPath}/static/img/topback.jpg" class="topback">
 </div>
 <div class="keyinputs">
 	<b class="searchtitle">输入检索条件:</b>
