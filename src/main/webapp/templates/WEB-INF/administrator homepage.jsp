@@ -51,14 +51,14 @@
 	<%@ include file="Administratornavigatorbar.jsp"%>
 	<div class="content">
 		<div class="information" style="margin: 0px 0px;">
-			<img src="../../static/img/book.png" style="float:left;"/>
+			<img src="${pageContext.request.contextPath}/static/img/book.png" style="float:left;"/>
 			<p class="piple">人员信息</p>
 			<p class="gray">当前共有${student}名师生使用本系统</p>
 		</div>
 		<div class="information" style="margin: 0px 360px;">
-			<img src="../../static/img/book.png" style="float:left;"/>
+			<img src="${pageContext.request.contextPath}/static/img/book.png" style="float:left;"/>
 			<p class="piple">消息信息</p>
-			<p class="gray">当前系统中已发布${information}条消息</p>
+			<p class="gray">当前系统中已发布0条消息</p>
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

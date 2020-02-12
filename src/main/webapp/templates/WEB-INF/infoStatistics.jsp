@@ -2,11 +2,11 @@
 <html>
 	<head>
 	    <title>消息信息统计</title>
-	    <link rel="stylesheet" type="text/css" href="../../static/homepage.css">
-	    <link rel="stylesheet" type="text/css" href="../../static/jquery.jqChart.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/homepage.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/jquery.jqchart.css" />
 	    
-	    <script src="../../static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-	    <script src="../../static/js/jquery.jqChart.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery.jqChart.min.js" type="text/javascript"></script>
 	    <script lang="javascript" type="text/javascript">
 	    $(document).ready(function () {
 	    	

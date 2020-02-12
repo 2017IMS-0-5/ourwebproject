@@ -40,10 +40,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     /**
      *根据日期和账号分页查询评论列表
      * @param date
-     * @param account
+     * @param userAccount
      * @return
      */
-    @Query(name="findByDateAndAccount",nativeQuery = true,value =
-            "select * from comment where left(createTime,10)=:date and account=:account")
-    Page<Comment> findByDateAndAccount(@Param("date") Date date,@Param("account") String account,Pageable pageable);
+    @Query(name="findByDateAndUserAccount",nativeQuery = true,value =
+            "select * from comment where left(createTime,10)=:date and userAccount=:userAccount")
+    Page<Comment> findByDateAndUserAccount(@Param("date") Date date,@Param("userAccount") String userAccount,Pageable pageable);
 }

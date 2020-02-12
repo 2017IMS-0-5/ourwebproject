@@ -96,4 +96,8 @@ public interface AdminService {
      * @return
      */
     int countByRole(String role);
+
+    Admin selectByAccount(String account);
+
+    List<Admin> listAdmins();
 }

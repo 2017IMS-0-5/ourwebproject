@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface AdminRepository extends JpaRepository<Admin,Long> {
 
     /**
@@ -70,4 +72,8 @@ public interface AdminRepository extends JpaRepository<Admin,Long> {
     @Query(name="login",nativeQuery = true,value =
             "select * from admin where account=:account and password=:password")
     Admin login(@Param("account") String account, @Param("password") String password);
+
+    Admin findByAccount(String account);
+
+    List<Admin> findAll();
 }

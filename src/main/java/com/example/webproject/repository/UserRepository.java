@@ -117,4 +117,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "select count(*) from user")
     int countAllUsers();
 
+    /**
+     * 根据账号查找用户
+     * @param account
+     * @return
+     */
+    User findByAccount(String account);
+
 }

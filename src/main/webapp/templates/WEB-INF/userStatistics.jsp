@@ -2,11 +2,11 @@
 <html>
 	<head>
 	    <title>师生信息统计页面</title>
-	    <link rel="stylesheet" type="text/css" href="../../static/css/homepage.css">
-	    <link rel="stylesheet" type="text/css" href="../../static/jquery.jqchart.css" />
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/homepage.css">
+	    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/jquery.jqchart.css" />
 	    
-	    <script src="../../static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-	    <script src="../../static/js/jquery.jqChart.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+	    <script src="${pageContext.request.contextPath}/static/js/jquery.jqChart.min.js" type="text/javascript"></script>
 	    <script lang="javascript" type="text/javascript">
 	        $(document).ready(function () {
 	
@@ -258,6 +258,5 @@ $(document).ready(function () {
 	<div style="float:left;width:100%;">
 		<%@include file="footer.jsp" %>
 	</div>
-	</body>
 	</body>
 </html>

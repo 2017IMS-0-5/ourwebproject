@@ -137,4 +137,6 @@ public interface UserService {
      * @return
      */
     int countAllUsers();
+
+    User selectByAccount(String account);
 }

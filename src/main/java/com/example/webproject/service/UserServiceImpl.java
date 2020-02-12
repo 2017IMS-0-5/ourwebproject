@@ -106,4 +106,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.countAllUsers();
     }
 
+    @Override
+    public User selectByAccount(String account){return userRepository.findByAccount(account);}
+
 }

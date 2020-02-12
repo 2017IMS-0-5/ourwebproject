@@ -54,10 +54,10 @@ public interface CommentService {
     /**
      * 根据日期查询评论
      * @param date
-     * @param account
+     * @param userAccount
      * @param pageable
      * @return
      */
-    Page<Comment> getByDateAndAccount(Date date, String account, Pageable pageable);
+    Page<Comment> getByDateAndUserAccount(Date date, String userAccount, Pageable pageable);
 
 }

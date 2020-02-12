@@ -16,7 +16,7 @@
 			-webkit-border-radius:5px;
 			border-radius:5px;
 			height:550px;
-			maigin-bottom:30px;
+			margin-bottom:30px;
 			margin-left:390px;
 		}
 		div.search
@@ -82,14 +82,14 @@
 			background:Gainsboro;color:Black;
 			padding:2px 2px 2px 2px;
 			height:20px;width:50px;
-			font-family:"微软雅黑";font-size:80%;font-weight:bold;border:none;border-radius:5px;align:center;
+			font-family:"微软雅黑";font-size:80%;font-weight:bold;border:none;border-radius:5px;text-align: center;
 			-webkit-transition:all linear 0.30s;
 			-moz-transition:all linear 0.30s;
 			transition:all linear 0.30s;
 		}
 	</style>
-	<script src="../../static/js/jquery.min.js"></script>
-	<script src="../../static/js/jedate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/jedate.min.js"></script>
 	<script>
 	$(document).ready(function () {
 		jeDate('#startTime', {
@@ -154,18 +154,10 @@
 						riNum=saliDate[2]-1;
 					}
 				}
-				$("#endTime").val(nianNum+"-"+yueNum+"-"+riNum)
-				// console.log(nianNum,yueNum,riNum)
+				
 			}
 		});
-		jeDate('#endTime', {
-			minDate: '1990-01-01',
-			isinitVal: true,
-			format: 'YYYY-MM-DD',
-			onClose: false
-		});
 		
-	   //判断是否为闰年  若为闰年，返回1，反之则返回0
 		function isLeap(year) {
 			if((year%4==0 && year%100!=0)||(year%400==0)){
 				return 1;
@@ -174,7 +166,7 @@
 		}
 	})
 	</script>
-	<link rel="stylesheet" type="text/css" href="../../static/jedate.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/jedate.css">
 	<style>
         .black_overlay
         { 
@@ -205,7 +197,7 @@
             overflow: auto; 
         } 
     </style>
-    <script type="text/javascript" src="../../static/js/infoupload.js"> </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/infoUpload.js"> </script>
 	<script>
 		var cont = document.getElementById("li");
 	    var i = 1;
@@ -230,7 +222,7 @@
 		<%@ include file="Administratornavigatorbar.jsp"%>
 		<div class="content">
 		<div class="search">
-		<form action="" method="get">
+		<form action="/admin/commentByAccountAndTime" method="get">
 			<img src="../../static/img/search.jpg" style="float:left;"/>
 			<div class="search1" style="margin:-12px 10px;">
 				<p class="black" style="float:left;">账号：</p>
@@ -277,7 +269,7 @@
 						<td style="width:680px;height:30px;">${comm.content}
 						</td>
 						<td style="width:170px;height:30px;">
-							<p><a href="/admin/commentDelete?id=${comm.id}">删除</a></p>
+							<p><a href="${pageContext.request.contextPath}/admin/commentDelete?id=${comm.id}">删除</a></p>
 						</td>
 					</tr>
 				</c:forEach>

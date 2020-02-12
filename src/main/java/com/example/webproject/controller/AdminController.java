@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URLDecoder;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -29,13 +30,7 @@ public class AdminController {//管理员相关控制
     @Autowired
     private AdminService adminService;
     @Autowired
-    private InformationRepository informationRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private UserService userService;
-    @Autowired
-    private CommentRepository commentRepository;
     @Autowired
     private CommentService commentService;
     @Autowired
@@ -60,11 +55,11 @@ public class AdminController {//管理员相关控制
     //以下是页面显示
     @GetMapping("/homepage")
     public ModelAndView homepage(){
-        long student=userRepository.count();
-        int information=analysisService.countAllInfo();
+        int student=userService.countAllUsers();
+//        int information=analysisService.countAllInfo();
         ModelAndView num=new ModelAndView("administrator homepage");
         num.addObject("student",student);
-        num.addObject("information",information);
+//        num.addObject("information",information);
         return num;
     }
     /**
@@ -83,8 +78,23 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        ModelAndView modelAndView=new ModelAndView("personnel management_student");
+        ModelAndView modelAndView=new ModelAndView("Personnel management_user");
         modelAndView.addObject("userList",list);
+        return modelAndView;
+    }
+
+    @GetMapping("/adminSearch")
+    public ModelAndView adminSearch(@RequestParam(value = "pageIndex",required=false, defaultValue="0")int pageIndex,
+                                   @RequestParam(value="pageSize",required=false,defaultValue = "100")int pageSize
+    ){
+        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        Page<Admin> page=adminService.selectAllAdmin(pageable);
+        List<Admin> list=new ArrayList<>();
+        for(Admin admin:page){
+            list.add(admin);
+        }
+        ModelAndView modelAndView=new ModelAndView("Personnel management_manager");
+        modelAndView.addObject("adminList",list);
         return modelAndView;
     }
 
@@ -142,7 +152,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_student","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByTeaAndName")
@@ -156,7 +166,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_teacher","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByAdminAndName")
@@ -170,7 +180,7 @@ public class AdminController {//管理员相关控制
         for(Admin admin:page){
             list.add(admin);
         }
-        return new ModelAndView("personnel management_manager","userList",list);
+        return new ModelAndView("Personnel management_manager","adminList",list);
     }
 
     @GetMapping("/userBySAdminAndName")
@@ -184,7 +194,7 @@ public class AdminController {//管理员相关控制
         for(Admin admin:page){
             list.add(admin);
         }
-        return new ModelAndView("personnel management_manager","userList",list);
+        return new ModelAndView("Personnel management_manager","adminList",list);
     }
 
     @GetMapping("/userByStuAndGrade")
@@ -198,7 +208,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_student","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByTeaAndGrade")
@@ -212,7 +222,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_teacher","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByStuAndMajor")
@@ -226,7 +236,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_student","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByTeaAndMajor")
@@ -240,7 +250,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_teacher","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByStuAndAccount")
@@ -254,7 +264,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_student","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByTeaAndAccount")
@@ -268,7 +278,7 @@ public class AdminController {//管理员相关控制
         for(User user:page){
             list.add(user);
         }
-        return new ModelAndView("personnel management_teacher","userList",list);
+        return new ModelAndView("Personnel management_user","userList",list);
     }
 
     @GetMapping("/userByAdminAndAccount")
@@ -282,7 +292,7 @@ public class AdminController {//管理员相关控制
         for(Admin admin:page){
             list.add(admin);
         }
-        return new ModelAndView("personnel management_manager","userList",list);
+        return new ModelAndView("Personnel management_manager","adminList",list);
     }
 
     @GetMapping("/userBySAdminAndAccount")
@@ -296,28 +306,28 @@ public class AdminController {//管理员相关控制
         for(Admin admin:page){
             list.add(admin);
         }
-        return new ModelAndView("personnel management_manager","userList",list);
+        return new ModelAndView("Personnel management_manager","adminList",list);
     }
 
 
-/*
+
     /**
      * 以下是信息展示
      * @param pageIndex
      * @param pageSize
      * @return
      */
-/*    @GetMapping("/infoSearch")
+    @GetMapping("/infoSearch")
     public ModelAndView infoSearch(@RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                    @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationRepository.findAll(pageable);
+        Page<Information> page=informationService.show("job","实习信息",pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
-        ModelAndView modelAndView=new ModelAndView("message management");
+        ModelAndView modelAndView=new ModelAndView("Message management");
         modelAndView.addObject("infoList",list);
         return modelAndView;
     }
@@ -327,9 +337,7 @@ public class AdminController {//管理员相关控制
                                   @RequestParam(value = "searchWay",required = false)String searchWay,
                                   @RequestParam(value = "searchWord",required = false)String searchWord
     ){
-        if(searchWay.equals("null")){
-            return "redirect:/admin/infoByField?field="+field;}
-        else if(searchWay.equals("按二级标题检索")){
+        if(searchWay.equals("按二级标题检索")){
             return "redirect:/admin/infoByFieldAndSubject?field="+field+"&subject="+searchWord;
         }
         else if(searchWay.equals("按文章标题检索")){
@@ -344,42 +352,13 @@ public class AdminController {//管理员相关控制
         else return "redirect:/admin/infoSearch";
     }
 
-    @GetMapping("/infoByField")
-    public ModelAndView infoByField(String field,
-                                    @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
-                                    @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
-    ){
-        Pageable pageable=PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationRepository.findAll(pageable);
-        if(field.equals("全部")){
-            page=informationRepository.findAll(pageable);
-        }
-        else if(field.equals("就业信息")){
-            page=informationService.show("job","all",pageable);
-        }
-        else if(field.equals("通知公告")){
-            page=informationService.show("notice","all",pageable);
-        }
-        else if(field.equals("政策规章")){
-            page=informationService.show("policy","all",pageable);
-        }
-        else if(field.equals("其它信息")){
-            page=informationService.show("other","all",pageable);
-        }
-        List<Information> list=new ArrayList<>();
-        for(Information information:page){
-            list.add(information);
-        }
-        return new ModelAndView("message management","infoList",list);
-    }
-
     @GetMapping("/infoByFieldAndSubject")
     public ModelAndView infoByFieldAndSubject(String field,String subject,
                                               @RequestParam(value = "pageIndex",required = false,defaultValue = "0")int pageIndex,
                                               @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationRepository.findAll(pageable);
+        Page<Information> page=informationService.show("all",subject,pageable);
         if(field.equals("全部")){
             page=informationService.show("all",subject,pageable);
         }
@@ -399,7 +378,7 @@ public class AdminController {//管理员相关控制
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("message management","infoList",list);
+        return new ModelAndView("Message management","infoList",list);
     }
 
     @GetMapping("/infoByFieldAndTitle")
@@ -408,30 +387,13 @@ public class AdminController {//管理员相关控制
                                             @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-
-        // 按一级标题+文章标题检索  待更
-
-        Page<Information> page=informationRepository.findAll(pageable);
-        if(field.equals("全部")){
-            page=informationService.show("all",title,pageable);
-        }
-        else if(field.equals("就业信息")){
-            page=informationService.show("job",title,pageable);
-        }
-        else if(field.equals("通知公告")){
-            page=informationService.show("notice",title,pageable);
-        }
-        else if(field.equals("政策规章")){
-            page=informationService.show("policy",title,pageable);
-        }
-        else if(field.equals("其它信息")){
-            page=informationService.show("other",title,pageable);
-        }
+        AdSearch adSearch=new AdSearch(title,"","","",field,"","","");
+        Page<Information> page=informationService.advancedSearch(adSearch,pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("message management","infoList",list);
+        return new ModelAndView("Message management","infoList",list);
     }
 
     @GetMapping("/infoByFieldAndAuthor")
@@ -440,30 +402,13 @@ public class AdminController {//管理员相关控制
                                              @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-
-         //按一级标题+作者检索  待更
-
-        Page<Information> page=informationRepository.findAll(pageable);
-        if(field.equals("全部")){
-            page=informationService.show("all",author,pageable);
-        }
-        else if(field.equals("就业信息")){
-            page=informationService.show("job",author,pageable);
-        }
-        else if(field.equals("通知公告")){
-            page=informationService.show("notice",author,pageable);
-        }
-        else if(field.equals("政策规章")){
-            page=informationService.show("policy",author,pageable);
-        }
-        else if(field.equals("其它信息")){
-            page=informationService.show("other",author,pageable);
-        }
+        AdSearch adSearch=new AdSearch("","","",author,field,"","","");
+        Page<Information> page=informationService.advancedSearch(adSearch,pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("message management","infoList",list);
+        return new ModelAndView("Message management","infoList",list);
     }
 
     @GetMapping("/infoByFieldAndLabels")
@@ -472,32 +417,15 @@ public class AdminController {//管理员相关控制
                                              @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-
-         //按一级标题+关键词（标签）检索  待更
-
-        Page<Information> page=informationRepository.findAll(pageable);
-        if(field.equals("全部")){
-            page=informationService.show("all",labels,pageable);
-        }
-        else if(field.equals("就业信息")){
-            page=informationService.show("job",labels,pageable);
-        }
-        else if(field.equals("通知公告")){
-            page=informationService.show("notice",labels,pageable);
-        }
-        else if(field.equals("政策规章")){
-            page=informationService.show("policy",labels,pageable);
-        }
-        else if(field.equals("其它信息")){
-            page=informationService.show("other",labels,pageable);
-        }
+        AdSearch adSearch=new AdSearch("",labels,"","",field,"","","");
+        Page<Information> page=informationService.advancedSearch(adSearch,pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
             list.add(information);
         }
-        return new ModelAndView("message management","infoList",list);
+        return new ModelAndView("Message management","infoList",list);
     }
-*/
+
     //以下是留言管理
 
     @GetMapping("/commentSearch")
@@ -522,7 +450,7 @@ public class AdminController {//管理员相关控制
                                                 @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-        Page<Comment> page=commentService.getByDateAndAccount(createTime,userAccount,pageable);
+        Page<Comment> page=commentService.getByDateAndUserAccount(createTime,userAccount,pageable);
         List<Comment> list=new ArrayList<>();
         for(Comment comment:page){
             list.add(comment);
@@ -586,56 +514,100 @@ public class AdminController {//管理员相关控制
         return modelAndView;
     }*/
     //表单提交
-    @GetMapping("/userSubmit")
-    public String userSubmit(@RequestParam(value = "role",required = true)int role,
+    @PostMapping("/userInsert")
+    public String userInsert(@RequestParam(value = "role",required = true)String role,
+                                   @RequestParam(value = "grade",required = true)String grade,
+                                   @RequestParam(value = "major",required = false)String major,
+                                   @RequestParam(value = "account",required = true)String account,
+                                   @RequestParam(value = "name",required = true)String name,
+                                   @RequestParam(value = "gender",required = true)String gender,
+                                   @RequestParam(value = "email",required = true)String email,
+                                   @RequestParam(value = "password",required = false)String password
+    ){
+        int roleNUm=1;
+        if(role.equals("教师")){
+            int roleNum=2;
+        }
+        User newUser=new User(name,email,password,account,gender,grade,major,roleNUm);
+        User checkNew=userService.registerUser(newUser);
+        if(checkNew==null){
+            return "redirect:/main/error";
+        }
+        else{
+            return "redirect:/admin/userSearch";
+        }
+    }
+
+    @PostMapping("/userSubmit")
+    public String userSubmit(@RequestParam(value = "role",required = true)String role,
                              @RequestParam(value = "grade",required = true)String grade,
                              @RequestParam(value = "major",required = false)String major,
                              @RequestParam(value = "account",required = true)String account,
                              @RequestParam(value = "name",required = true)String name,
                              @RequestParam(value = "gender",required = true)String gender,
                              @RequestParam(value = "email",required = true)String email,
-                             @RequestParam(value = "id",required = false)long id,//不改
-                             @RequestParam(value = "password",required = false)String password//不改
+                             @RequestParam(value = "id",required = false)String id,
+                             @RequestParam(value = "password",required = false)String password
     ){
-        User newUser=new User(name,email,password,account,gender,grade,major,role);
-        User checknew=userService.saveOrUpdateUser(newUser);
-        if(checknew==null){
+        int roleNUm=1;
+        if(role.equals("教师")){
+            int roleNum=2;
+        }
+        User oldUser=userService.selectByAccount(account);
+        Long oldUserId=oldUser.getId();
+        String oldUserPassword=oldUser.getPassword();
+        User newUser=new User(name,email,oldUserPassword,account,gender,grade,major,roleNUm);
+        User checkNew=userService.saveOrUpdateUser(newUser);
+        if(checkNew==null){
             return "redirect:/main/error";
         }
         else{
-            userService.removeUser(id);
+            userService.removeUser(oldUserId);
             return "redirect:/admin/userSearch";
         }
     }
 
     @GetMapping("/userDelete")
-    public ModelAndView userDelete(long id){
+    public String userDelete(long id){
         userService.removeUser(id);
-        return new ModelAndView("personnel management_student");
+        return "redirect:/admin/userSearch";
     }
 
-    @GetMapping("/adminSubmit")
+    @GetMapping("/adminInsert")
+    public ModelAndView adminInsert(Admin admin){
+        Admin newAdmin=new Admin(admin.getAccount(),admin.getPassword(),admin.getName(),admin.getRole());
+        Admin checkAdmin=adminService.SaveNewAdmin(newAdmin);
+        if(checkAdmin==null){
+            return new ModelAndView("error");
+        }
+        else{
+            return new ModelAndView("Personnel management_manager");
+        }
+    }
+
+    @PostMapping("/adminSubmit")
     public String adminSubmit(@RequestParam(value = "role",required = true)String role,
                               @RequestParam(value = "account",required = true)String account,
-                              @RequestParam(value = "name",required = true)String name,
-                              @RequestParam(value = "id",required = false)long id,//不改
-                              @RequestParam(value = "password",required = false)String password//不改
+                              @RequestParam(value = "name",required = true)String name
     ){
+        Admin oldAdmin=adminService.selectByAccount(account);
+//        long id=oldAdmin.getId();
+        String password=oldAdmin.getPassword();
         Admin newAdmin=new Admin(account,password,name,role);
         Admin checknew=adminService.UpdateAdmin(newAdmin);
         if(checknew==null){
-            return "redirect:/admin/userSearch";
+            return "redirect:/main/error";
         }
         else{
-            userService.removeUser(id);
-            return "redirect:/admin/userSearch";
+//            userService.removeUser(id);
+            return "redirect:/admin/adminSearch";
         }
     }
 
     @GetMapping("/adminDelete")
-    public ModelAndView adminDelete(long id){
+    public String adminDelete(long id){
         adminService.DeleteById(id);
-        return new ModelAndView("personnel management_manager");
+        return "redirect:/admin/adminSearch";
     }
 
     @GetMapping("/commentDelete")
@@ -643,7 +615,7 @@ public class AdminController {//管理员相关控制
         commentService.removeComment(id);
         return new ModelAndView("comment management");
     }
-
+/*
     @GetMapping("/infoUpdate")
     public ModelAndView infoUpdate(String id){
         Information oldInfo=informationService.selectInfoById(id).get();
@@ -659,9 +631,9 @@ public class AdminController {//管理员相关控制
         modelAndView.addObject("createTime",oldInfo.getCreateTime());//不改
         modelAndView.addObject("relation",oldInfo.getRelation());
         return modelAndView;
-    }
+    }*/
     //表单提交
-    @GetMapping("/infoSubmit")
+    @PostMapping("/infoSubmit")
     public String infoSubmit(@RequestParam(value = "field",required = true)String field,
                              @RequestParam(value = "subject",required = true)String subject,
                              @RequestParam(value = "author",required = true)String author,
@@ -669,18 +641,24 @@ public class AdminController {//管理员相关控制
                              @RequestParam(value = "title",required = true)String title,
                              @RequestParam(value = "content",required = true)String content,
                              @RequestParam(value = "readSize",required = true)int readSize,
-                             @RequestParam(value = "id",required = true)long id,//不改
+                             @RequestParam(value = "id",required = true)String id,//不改
                              @RequestParam(value = "relation",required = true)String relation
     ){
         Information newInfo=new Information(field,subject,author,labels,title,content,readSize,new Timestamp(System.currentTimeMillis()),relation);
         Information checknew=informationService.updateInfo(newInfo);
         if(checknew==null){
-            return "redirect:/admin/userSearch";
+            return "redirect:/main/error";
         }
         else{
-            userService.removeUser(id);
-            return "redirect:/admin/userSearch";
+            informationService.deleteInfoById(id);
+            return "redirect:/admin/infoSearch";
         }
+    }
+
+    @GetMapping("/infoDelete")
+    public ModelAndView infoDelete(String id){
+        informationService.deleteInfoById(id);
+        return new ModelAndView("Message management");
     }
 
 

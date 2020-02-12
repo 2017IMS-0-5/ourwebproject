@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>北京师范大学政府管理学院</title>
-	<!-- 人员管理 -->
+	<!-- 信息管理 -->
 	<style  type="text/css">
 		div.content
 		{
@@ -118,7 +118,7 @@
             overflow: auto; 
         } 
     </style>
-    <script type="text/javascript" src="../../static/js/infoUpload.js"> </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/infoUpload.js"> </script>
 	<script>
 		var cont = document.getElementById("li");
 	    var i = 1;
@@ -128,11 +128,35 @@
         })
         function openDialog(){
             document.getElementById('light').style.display='block';
-            document.getElementById('fade').style.display='block'
+            document.getElementById('fade').style.display='block';
+            
+            var first_tt=document.getElementById("first_tt");
+            var txt_first_tt=document.getElementById("txt_firsttt").value;
+            txt_first_tt=txt_first_tt+first_tt;
+            document.getElementById("txt_firsttt").value=txt_first_tt;
+            
+            var second_tt=document.getElementById("second_tt");
+            txt_secondtt.options[txt_secondtt.electedIndex].text=txt_second_tt;
+            
+            var tt=document.getElementById("tt");
+            var txt_tt=document.getElementById("txt_tt").value;
+            txt_tt=txt_tt+tt;
+            document.getElementById("txt_tt").value=txt_tt;
+            
+            var label=document.getElementById("label");
+            var txt_label=document.getElementById("txt_label").value;
+            txt_label=txt_label+label;
+            document.getElementById("txt_label").value=txt_label;
+            
+            var relation=document.getElementById("relation");
+            var txt_relation=document.getElementById("txt_relation").value;
+            txt_relation=txt_relation+relationt;
+            document.getElementById("txt_relation").value=txt_relation;
+            
         }
         function closeDialog(){
             document.getElementById('light').style.display='none';
-            document.getElementById('fade').style.display='none'
+            document.getElementById('fade').style.display='none';
         }
     </script>
 </head>
@@ -143,28 +167,29 @@
 		<%@ include file="Administratornavigatorbar.jsp"%>
 		<div class="content">
 		<div class="search">
-		<form action="/admin/checkUserSearch" method="get">
-			<img src="../../static/img/search.jpg" style="float:left;"/>
+		<form action="/admin/checkInfoSearch" method="get">
+			<img src="${pageContext.request.contextPath}/static/img/search.jpg" style="float:left;"/>
 			<div class="search1" style="margin:-12px 15px;">
-				<p class="black" style="float:left;border-radius:5px;">人员类型：</p>
+				<p class="black" style="float:left;border-radius:5px;">信息类型：</p>
 			</div>
 			<div class="search1" style="margin:5px 7px;">
-				<select name="role" style="float:left;border-radius:5px;">
-					<option value="学生" selected="selected">学生</option>
-					<option value="教师">教师</option>
-					<option value="管理员">管理员</option>
-					<option value="超级管理员">超级管理员</option>
+				<select name="field" style="float:left;border-radius:5px;">
+					<option value="全部">全部</option>
+					<option value="就业信息">就业信息</option>
+					<option value="政策规章">政策规章</option>
+					<option value="通知公告">通知公告</option>
+					<option value="其它信息">其它信息</option>
 				</select>
 			</div>
 			<div class="search1" style="margin:-12px 10px;">
 				<p class="black" style="float:left;">检索方式：</p>
 			</div>
-			<div class="search1" style="margin:5px 7px;">
-				<select name="searchWay" style="float:left;border-radius:5px;">
-					<option value="按姓名检索">按姓名检索</option>
-					<option value="按年级检索">按年级检索</option>
-					<option value="按专业检索">按专业检索</option>
-					<option value="按账号检索">按账号检索</option>
+			<div class="searchWay" style="margin:5px 7px;">
+				<select name="type2" style="float:left;border-radius:5px;">
+					<option value="按二级标题检索">按二级标题检索</option>
+					<option value="按文章标题检索">按文章标题检索</option>
+					<option value="按发布者检索">按发布者检索</option>
+					<option value="按关键词检索">按关键词检索</option>
 				</select>
 			</div>
 			<div class="search1" style="margin:-12px 10px;">
@@ -176,93 +201,82 @@
 			<div class="search1" style="margin:3px 7px;">
 				<input type="submit" value="搜索" class="button" >
 			</div>
-			<div class="search1" style="margin:4px 10px;">
-				<input type="submit" value="导出" class="button" >
-			</div>
 		</form>
 		</div>
 		<div class="list_title">
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:150px;">身份</p>
+				<p class="black" style="width:80px;">一级标题</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:50px;">年级</p>
+				<p class="black" style="width:80px;">二级标题</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:200px;">专业</p>
+				<p class="black" style="width:250px;">文章标题</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:200px;">账号</p>
+				<p class="black" style="width:80px;">发布者</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:100px;">姓名</p>
+				<p class="black" style="width:100px;">发布时间</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:50px;">性别</p>
+				<p class="black" style="width:150px;">关键词</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:150px;">电子邮箱</p>
+				<p class="black" style="width:150px;">附件地址</p>
 			</div>
 			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:120px;">操作</p>
+				<p class="black" style="width:150px;">操作</p>
 			</div>
 		</div>
 		<div class="list1">
 			<table style="text-align:center;">
-				<c:forEach var="stu" items="${userList}">
+				<c:forEach var="info" items="${infoList}">
 					<tr>
-						<td style="width:160px;height:30px;">学生
+						<td id="first_tt" style="width:90px;height:30px;">${info.field}
 						</td>
-						<td style="width:80px;height:30px;">${stu.grade}
+						<td id="second_tt" style="width:90px;height:30px;">${info.subject}
 						</td>
-						<td style="width:210px;height:30px;">${stu.major}
+						<td id="tt"style=" width:280px;height:30px;">${info.title}
 						</td>
-						<td style="width:220px;height:30px;">${stu.account}
+						<td id="publisher" style="width:90px;height:30px;">${info.author}
 						</td>
-						<td style="width:110px;height:30px;">${stu.name}
+						<td id="pub_time" style="width:110px;height:30px;">${info.createTime}
 						</td>
-						<td style="width:70px;height:30px;">${stu.gender}
+						<td id="label" style="width:170px;height:30px;">${info.labels}
 						</td>
-						<td style="width:160px;height:30px;">${stu.email}
+						<td id="relation" style="width:170px;height:30px;">${info.relation}
 						</td>
 						<td style="width:170px;height:30px;">
-							<p><a href = "JavaScript:void(0)?id=${stu.id}&&password=${stu.password}" onclick = "openDialog()">修改</a>/<a href="/admin/userDelete?id=${stu.id}">删除</a></p>
+							<p><a href = "JavaScript:void(0)" onclick = "openDialog()">修改</a>/<a href="${pageContext.request.contextPath}/admin/infoDelete?id=${info.id}">删除</a></p>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
+			<!-- 修改按钮的弹窗 -->
 			<div id="light" class="white_content">
 				<div class="noteuploadzone">
-					<form action="/admin/userSubmit?id=id&&password=password" class="form" onsubmit="return deal()">
+					<form action="/admin/infoSubmit" method="post" class="form" onsubmit="return deal()">
 			            <dl id="li" class="list">
 			                <dt class="items">
-			                    <label>身份：</label><input type="text" name="role" value="1-学生 2-教师"  class="uploadinput">
-		                    <input type="hidden" name="field" value="job" />
+			                    <label>一级标题：</label><input type="text" name="field" id="txt_firsttt">
 			                </dt>
 			                <dt class="items">
-			                    <label>年级：</label><input type="text" name="grade" value="" class="uploadinput">
-		                    <input type="hidden" name="field" value="job" />
+			                    <label>二级标题：</label><input type="text" name="subject" id="txt_secondtt">
 			                </dt>
 			                <dt class="items">
-			                    <label>专业：</label><input type="text" name="major" id="title" class="uploadinput">
-			                </dt>
-			                <dt class="items">
-			                    <label>账号：</label><input type="text" name="account" class="uploadinput">
-		                    <input type="hidden" name="field" value="job" />
-			                </dt>
-			                <dt class="items">
-			                    <label>姓名：</label><input type="text" name="name" id="title" class="uploadinput">
+			                    <label>文章标题：</label><input type="text" name="title" id="txt_tt">
 			                </dt>
 			                <dt class="items" id="tags">
-			                    <label>性别：</label><input type="text" name="gender" id="title" class="uploadinput">
+			                    <label>文件标签：</label><input type="text" name="labels" id="txt_label"><input type="button" name="add" class="funcbutadd" value="+" onclick="addBotton()"><span>增加</span><input type="button" class="funcbutdel" name="del" value="x" onclick="delBotton()"><span>删除</span>
 			                </dt>
 			                <dt class="items">
-			                    <label>邮箱：</label><input type="text" name="email" value="" class="uploadinput">
+			                    <label>附件地址：</label></label><input type="text" name="relation" id="txt_relation">
 			                </dt>
 			            </dl>
 			            <div style="text-align:center;">
-			                <label></label><input type="submit" name="" value="提交" class="submitbut">
-			                <button type="button" class="new_button2" href = "javascript:void(0)" onclick="closeDialog()">返回</button>
+			                <label></label><input type="submit" name="submit" value="提交" class="submitbut">
+			                <button type="button" name="return" class="new_button2" href = "javascript:void(0)" onclick="closeDialog()">返回</button>
 			            </div>
 					</form>
 				</div>

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -74,6 +75,14 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public int countByRole(String role){
         return adminRepository.countByRole(role);
+    }
+
+    @Override
+    public Admin selectByAccount(String account){return adminRepository.findByAccount(account);}
+
+    @Override
+    public List<Admin> listAdmins(){
+        return adminRepository.findAll();
     }
 }
 
