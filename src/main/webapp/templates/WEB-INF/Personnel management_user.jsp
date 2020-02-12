@@ -212,8 +212,9 @@ background: #ccc;
                     <input type="button" value="搜索" class="button" onclick="tocheck()">
                 </div>
                 <div class="search1" style="margin:4px 10px;">
-                    <input type="button" value="导出" class="button" >
+                    <input type="button" value="新增" class="button" onclick="openDialog()">
                 </div>
+                
             </form>
         </div>
         
@@ -247,14 +248,14 @@ background: #ccc;
                             <td >${stu.email}
                             </td>
                             <td>
-                                <p><a class="changeinfo">修改</a>/<a href="${pageContext.request.contextPath}/admin/userDelete?id=${stu.id}">删除</a></p>
+                                <p><a class="changeinfo"></a><a href="${pageContext.request.contextPath}/admin/userDelete?id=${stu.id}">删除</a></p>
                             </td>
                         </tr>
                     </c:forEach>
             </table>
             <div id="light" class="white_content">
                 <div class="noteuploadzone">
-                    <form action="${pageContext.request.contextPath}/admin/userSubmit" method="post" class="form" onsubmit="return deal()">
+                    <form action="${pageContext.request.contextPath}/admin/userInsert" method="post" class="form" onsubmit="return deal()">
                         <dl id="li" class="list" id="changeuplist">
                             <dt class="items">
                                 <label class="changelabel">身份：</label><input type="text" name="role" value="" class="uploadinput">
@@ -278,10 +279,7 @@ background: #ccc;
                                 <label class="changelabel">邮箱：</label><input type="text" name="email" value="" class="uploadinput">
                             </dt>
                             <dt class="items">
-                                <label class="changelabel">ID：</label><input type="text" name="id"  disabled="true" class="uploadinput">
-                            </dt>
-                            <dt class="items">
-                                <label>password：</label><input type="text" name="password"  disabled="true" class="uploadinput">
+                                <label>password：</label><input type="text" name="password" class="uploadinput">
                             </dt>
                         </dl>
                         <div style="text-align:center;">
