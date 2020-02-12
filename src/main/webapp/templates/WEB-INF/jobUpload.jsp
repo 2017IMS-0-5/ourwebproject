@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/upload.css">
 </head>
 <body>
+    <input type="hidden" name="" value="就业上传" id="pagedi">
 	<%@include file="managerheader.jsp"%>	
 	<div class="mantainer" style="height: auto">
 	<%@include file="Administratornavigatorbar.jsp"%>
@@ -66,4 +67,6 @@
 <script>
     var cont = document.getElementById("li");
     var i = 1;
+    var pdi = document.getElementById("pagadishow");
+    pdi.innerHTML=document.getElementById("pagedi").value;
 </script>
