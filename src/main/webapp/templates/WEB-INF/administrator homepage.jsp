@@ -6,7 +6,7 @@
 	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员首页 -->
 	<style  type="text/css">
-		div.content
+		.content
 		{
 			background-color:White;
 			width:68%;
@@ -18,7 +18,7 @@
 			maigin-bottom:30px;
 			margin-left:260px;
 		}
-		div.information
+		.information
 		{
 			font-family: "微软雅黑";
 			background-color:GhostWhite;
@@ -33,12 +33,12 @@
 			padding:20px 20px 20px 20px;
 			display:inline
 		}
-		p.piple
+		.piple
 		{
 			font-size:150%;
 			color:MediumPurple;
 		}
-		p.gray
+		.gray
 		{
 			font-size:100%;
 			color:Gray;
@@ -50,15 +50,15 @@
 	<br>
 	<%@ include file="Administratornavigatorbar.jsp"%>
 	<div class="content">
-		<div class="information" style="margin: 0px 0px;">
+		<div class="information" style="margin: 0 0;">
 			<img src="${pageContext.request.contextPath}/static/img/book.png" style="float:left;"/>
-			<p class="piple">人员信息</p>
-			<p class="gray">当前共有${student}名师生使用本系统</p>
+			<p class="piple"><a href="${pageContext.request.contextPath}/admin/userstatistics">人员信息</a></p>
+			<p class="gray"><a href="${pageContext.request.contextPath}/admin/userstatistics">当前共有${student}名师生使用本系统</a></p>
 		</div>
-		<div class="information" style="margin: 0px 360px;">
+		<div class="information" style="margin: 0 360px;">
 			<img src="${pageContext.request.contextPath}/static/img/book.png" style="float:left;"/>
-			<p class="piple">消息信息</p>
-			<p class="gray">当前系统中已发布0条消息</p>
+			<p class="piple"><a href="${pageContext.request.contextPath}/admin/infoStatistics">消息信息</a></p>
+			<p class="gray"><a href="${pageContext.request.contextPath}/admin/infoStatistics">当前系统中已发布${information}条消息</a></p>
 		</div>
 	</div>
 	<%@ include file="footer.jsp"%>

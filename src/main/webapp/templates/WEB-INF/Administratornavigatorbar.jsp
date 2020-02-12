@@ -64,6 +64,10 @@
 			padding-left:20px;
 			padding-top:8px;
 		}
+		.menu div ul a{
+			text-decoration: none;
+			color: black;
+		}
 		.menu li
 		{
 			font-family:"微软雅黑";
@@ -86,12 +90,12 @@
 				jians[i].onclick = function()
 				{
 					if(this.flag==1){
-					jians[this.id].setAttribute("src","images/jia.png");
+					jians[this.id].setAttribute("src","${pageContext.request.contextPath}/static/img/jia.png");
 					uls[this.id].style.display="none";
 					this.flag=0;
 				}
 				else{
-					jians[this.id].setAttribute("src","images/jian.png");
+					jians[this.id].setAttribute("src","${pageContext.request.contextPath}/static/img/jian.png");
 					uls[this.id].style.display="block";
 					this.flag=1;
 				}
@@ -135,29 +139,29 @@
 				</box>
 				<ul style="display:block">
 					<li><span id="upload" >></span> 信息发布</li>
-					<li><span>></span> 查看已发布的信息</li>
+					<li><span>></span><a href="${pageContext.request.contextPath}/admin/infoSearch"> 查看已发布的信息</a></li>
 				</ul>
 			</div>
 			<div>
 				<box>人员管理
 				<img src="${pageContext.request.contextPath}/static/img/jian.png" style="float:right;" class="jian" />
 				</box>
-				<ul style="display:block" onclick="javascript:location.href='/admin/userSearch' ">
-					<li><span>></span> 管理员管理</li>
+				<ul>
+					<li><span>></span><a href="${pageContext.request.contextPath}/admin/adminSearch">管理员管理</a></li>
 				
-				    <li><span>></span> 教师管理</li>
+				    <li><span>></span><a href="${pageContext.request.contextPath}/admin/teachSearch">教师管理</a></li>
 				
-				    <li><span>></span> 学生管理</li>
+				    <li><span>></span><a href="${pageContext.request.contextPath}/admin/userSearch">学生管理</a></li>
 				</ul>
 			</div>
 			<div>
 				<box>留言管理
 				<img src="${pageContext.request.contextPath}/static/img/jian.png" style="float:right;" class="jian" />
 				</box>
-				<ul style="display:block" onclick="javascript:location.href='/admin/commentSearch' ">
-				    <li><span>></span> 留言发布</li>
+				<ul style="display:block">
+				    <li><span>></span> <a href="${pageContext.request.contextPath}/usersp/addComment">留言发布</a></li>
 				
-				    <li><span>></span> 查看已发布的留言</li>
+				    <li><span>></span> <a href="${pageContext.request.contextPath}/admin/commentSearch">查看已发布的留言</a></li>
 				</ul>
 			</div>
 		</div>

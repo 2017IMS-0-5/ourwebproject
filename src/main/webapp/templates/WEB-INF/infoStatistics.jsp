@@ -161,7 +161,7 @@
 			.manager_apt{
 				width: 20%;
 				height: 100px;
-				background-image: url(../../static/img/schoollogo.JPG);
+				background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
 				background-repeat: no-repeat;
 				text-align: right;
 				display:table-cell; 

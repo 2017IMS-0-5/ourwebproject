@@ -71,7 +71,7 @@ public class LoginSession{//Session存着用户信息
             for (Admin admin : list) {
                 if (admin.getAccount().equals(account) && admin.getPassword().equals(password)) {
                     request.getSession().setAttribute("admin", admin);
-                    return "redirect:/admin/generalShow";
+                    return "redirect:/admin/homepage";
                 }
             }
             System.out.println("登录失败：用户名或密码错误");

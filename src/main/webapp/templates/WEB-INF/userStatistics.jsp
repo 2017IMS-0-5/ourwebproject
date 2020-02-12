@@ -160,7 +160,7 @@ $(document).ready(function () {
 			.manager_apt{
 				width: 20%;
 				height: 100px;
-				background-image: url(../../static/img/schoollogo.JPG);
+				background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
 				background-repeat: no-repeat;
 				text-align: right;
 				display:table-cell; 
@@ -233,7 +233,7 @@ $(document).ready(function () {
 		<h>欢迎访问政府管理学院信息资源整合平台管理员界面</h>
 	</div>
 	<div class="manager_apt">
-	    <b>你好，管理员  <span>部门：学术实践部</span></b>
+	    <b>你好，管理员  <span>部门：${admin.name}</span></b>
 	</div>
 	
 	<div id="line"><p>师生信息统计</p></div>

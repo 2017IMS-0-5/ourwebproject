@@ -98,7 +98,7 @@
 			<h>欢迎访问政府管理学院信息资源整合平台管理员界面</h>
 	    </div>
 	    <div class="manager_apt">
-	    	<b>你好，管理员<span>部门：学术实践部</span></b>
+	    	<b>你好，管理员<span>部门：${admin.name}</span></b>
 	    </div>
 	    <div class="infrontpage">
 	    	<h class="fh">系统首页</h>

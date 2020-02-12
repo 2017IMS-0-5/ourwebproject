@@ -29,12 +29,12 @@
     <span class="left">政府管理学院信息资源整合平台</span>
 </div>
 <div class="bg2">
-    <img src="../../static/img/errorlogo.png">
+    <img src="${pageContext.request.contextPath}/static/img/errorlogo.png">
 </div>
 <div class="bg3">
     <p class="p1">哎呀，页面出错啦 ...</p>
     <p class="p2">您访问的页面出现了错误，请重新加载！</p><br><br>
-    <a href="/main"><span class="button">返回首页</span> </a>
+    <a href="${pageContext.request.contextPath}/main"><span class="button">返回首页</span> </a>
 </div>
 
 </body>

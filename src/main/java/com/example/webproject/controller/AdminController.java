@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -56,10 +57,10 @@ public class AdminController {//管理员相关控制
     @GetMapping("/homepage")
     public ModelAndView homepage(){
         int student=userService.countAllUsers();
-//        int information=analysisService.countAllInfo();
+        int information=analysisService.countAllInfo();
         ModelAndView num=new ModelAndView("administrator homepage");
         num.addObject("student",student);
-//        num.addObject("information",information);
+        num.addObject("information",information);
         return num;
     }
     /**
@@ -724,7 +725,8 @@ public class AdminController {//管理员相关控制
             @RequestParam(value = "corporation",required = false,defaultValue = "")String corporation,
             @RequestParam(value = "address",required = false,defaultValue = "")String address,
             @RequestParam(value = "salary",required = false,defaultValue = "")String salary,
-            @RequestParam(value = "call",required = false,defaultValue = "")String call
+            @RequestParam(value = "call",required = false,defaultValue = "")String call,
+                    HttpServletRequest request
     ){
         if(!corporation.equals("") && !corporation.equals("undefined")){
             content="【公司名称】 "+corporation+"\n"+content;
@@ -738,9 +740,9 @@ public class AdminController {//管理员相关控制
         if(!call.equals("") && !call.equals("undefined")){
             content="【联系方式】 "+call+"\n"+content;
         }
-
-
-        Information information=new Information(field,subject,"author",labels,title,content,0,new Timestamp(System.currentTimeMillis()),"");
+        Admin admin=(Admin)request.getSession().getAttribute("admin");
+        String author=admin.getName();
+        Information information=new Information(field,subject,author,labels,title,content,0,new Timestamp(System.currentTimeMillis()),"");
         System.out.println(informationService.saveInfo(information));
         switch (field){
             case "job":
