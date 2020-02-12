@@ -38,4 +38,9 @@ public class UserFavorServiceImpl implements UserFavorService {
     public Boolean ifexistsFavor(String userAccount, String infold){
         return userFavorRepository.existsByUserAccountAndInfold(userAccount, infold);
     }
+
+    @Override
+    public void deleteUserFavor(String infold,String userAccount){
+        userFavorRepository.deleteAllByInfoldAndUserAccount(infold,userAccount);
+    }
 }

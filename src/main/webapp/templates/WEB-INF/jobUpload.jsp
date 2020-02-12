@@ -2,15 +2,16 @@
 <html>
 <head>
     <title>信息上传</title>
-    <script type="text/javascript" src="../../static/js/infoUpload.js"> </script>
-	<link rel="stylesheet" type="text/css" href="../../static/css/upload.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/infoUpload.js"> </script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/upload.css">
 </head>
 <body>
+    <input type="hidden" name="" value="就业上传" id="pagedi">
 	<%@include file="managerheader.jsp"%>	
 	<div class="mantainer" style="height: auto">
 	<%@include file="Administratornavigatorbar.jsp"%>
 	<div class="noteuploadzone">
-		<form action="/admin/infosubmit" method="post" class="form" onsubmit="return deal()">
+		<form action="${pageContext.request.contextPath}/admin/infosubmit" method="post" class="form" onsubmit="return deal()">
             <dl id="li" class="list">
                 <dt class="items">
                     <label>文件标题:</label><input type="text" name="title" id="title" class="uploadinput">
@@ -66,4 +67,6 @@
 <script>
     var cont = document.getElementById("li");
     var i = 1;
+    var pdi = document.getElementById("pagadishow");
+    pdi.innerHTML=document.getElementById("pagedi").value;
 </script>

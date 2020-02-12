@@ -9,17 +9,21 @@
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
-        .bg2_1{height:120px;width: 100%;margin:0px;}
+        .bg2_1{height:120px;width: 100%;margin:0;}
         .bg2_1 img{width: 100%;height: 100%}
-        .bg2_2{width: 100%;margin:0px;overflow:hidden;margin-bottom:30px;min-height: 600px;}
+        .bg2_2{width: 100%;
+            overflow:hidden;
+            margin: 0 0 30px;
+            min-height: 600px;}
         .bg2_3{width: 100%;margin-top:10%; clear: both;position: relative;}
         .clearfix{clear: both;}
 
         /** 左侧导航**/
-        .bg3_1{width: 25%;padding-top: 15px;float: left;margin:0px}
+        .bg3_1{width: 25%;padding-top: 15px;float: left;margin:0
+        }
         .bg3_1:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
 
-        .bg3_1 ul { list-style: none;width: 75%; margin: 0 30px; background-color: #f2f2f2; position: relative; padding: 0px; }
+        .bg3_1 ul { list-style: none;width: 75%; margin: 0 30px; background-color: #f2f2f2; position: relative; padding: 0; }
         .bg3_1 ul li { height: 40px; line-height: 40px; text-align: left; border-bottom: 1px solid #F8F8F8;padding-left: 10px; }
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
         .bg3_1 ul li a {
@@ -34,7 +38,7 @@
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
 
         /** 右侧标题展示 **/
-        .bg3_2{ width: 73%; padding-top: 30px; float: left;margin:0px;}
+        .bg3_2{ width: 73%; padding-top: 30px; float: left;margin:0;}
         .bg3_2:after{content: "";display: block;height: 0;visibility: hidden;clear: both;}
         .bg4{width: 100%;min-height:400px;padding-top:20px;padding-bottom:30px;background-color: #c6d5f2;position: relative;}
         .bg4 table{width: 95%;border-collapse:collapse;}
@@ -62,7 +66,7 @@
         <ul>
             <li style="background-color: #5187C5;"><p >热门信息榜</p> </li>
             <c:forEach var="hot" items="${hotList}">
-                <li><a href="/info/information?infoId=${hot.id}"><NOBR>${hot.title}</NOBR></a></li>
+                <li><a href="${pageContext.request.contextPath}/info/information?infoId=${hot.id}"><NOBR>${hot.title}</NOBR></a></li>
             </c:forEach>
         </ul>
     </div>
@@ -75,7 +79,7 @@
                 </tr>
                 <c:forEach var="infor" items="${infoList}">
                     <tr class="bg4_tr2">
-                        <td class="bg4_td1"><a href="/info/information?infoId=${infor.id}">${infor.title}</a></td>
+                        <td class="bg4_td1"><a href="${pageContext.request.contextPath}/info/information?infoId=${infor.id}">${infor.title}</a></td>
                         <td class="bg4_td2"><fmt:formatDate value="${infor.createTime}" pattern="yyyy-MM-dd"/>. . . . . .
                             <c:choose>
                                 <c:when test="${infor.field == 'job'}">就业信息</c:when>
@@ -95,14 +99,14 @@
                         <input id="index" type="hidden" value="${pageIndex}">
                         第${pageIndex}页&nbsp;
                         共${pageTotal}页&nbsp;&nbsp;&nbsp;
-                        <a href="/info/${searchType}?${formulation}&pageIndex=0">首页</a>&nbsp;
+                        <a href="${pageContext.request.contextPath}/info/${searchType}?${formulation}&pageIndex=0">首页</a>&nbsp;
                         <c:if test="${ pageIndex>=2 }">
-                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex-2}">上一页</a>&nbsp;
+                            <a href="${pageContext.request.contextPath}/info/${searchType}?${formulation}&pageIndex=${pageIndex-2}">上一页</a>&nbsp;
                         </c:if>
                         <c:if test="${pageIndex<pageTotal}">
-                            <a href="/info/${searchType}?${formulation}&pageIndex=${pageIndex}">下一页</a>&nbsp;
+                            <a href="${pageContext.request.contextPath}/info/${searchType}?${formulation}&pageIndex=${pageIndex}">下一页</a>&nbsp;
                         </c:if>
-                        <a href="/info/${searchType}?${formulation}&pageIndex=${pageTotal-1}">尾页</a>
+                        <a href="${pageContext.request.contextPath}/info/${searchType}?${formulation}&pageIndex=${pageTotal-1}">尾页</a>
                 </td>
                 </tr>
         </table>

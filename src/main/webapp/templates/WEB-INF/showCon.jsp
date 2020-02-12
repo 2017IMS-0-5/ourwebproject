@@ -8,6 +8,7 @@
     <style type="text/css">
         /** 总 **/
         body{margin:0;font-family: "微软雅黑";background-color: white;}
+		.topback{width: 100%;height:auto;}
         .bg2_1{height:115px;width: 100%;margin:0;}
         .bg2_1 img{width: 100%;height: 100%}
         .bg2_2{width: 100%;margin:0;overflow:hidden;}
@@ -24,6 +25,7 @@
         .bg3_1 ul li p{background-color: #5187C5;color: white;font-size: 15px;font-weight: bold;letter-spacing: 4pt;}
         .bg3_1 ul li a { color:black; display: block; font-size: 12px;letter-spacing: 1pt;text-decoration:none;}
         .bg3_1 ul li a:hover { background-color: #5187C5;color: white; text-decoration: none; }
+		.hover{color: white; background-color: #5187C5;}
 
         /** 右侧标题展示 **/
         .bg3_2{ width: 75%; padding-top: 30px; float: left;margin:0;min-height: 500px;}
@@ -64,20 +66,43 @@
         .info_a:hover{color:royalblue;}
 
     </style>
+	
+	<script>
+        window.onload=function(){
+            var obj=document.getElementById('nav');
+            var lis=obj.getElementsByTagName('li');
+
+            obj.onclick=function(event){
+                var e=event||window.event;
+                var obj=e.srcElement?e.srcElement:e.target;
+                for(var i=0, l=lis.length; i < l; i++){
+                    lis[i].className="";
+                }
+                switch(obj.tagName){
+                    case 'LI':
+                        obj.className="hover";
+                        break;
+                    case 'A':
+                        obj.parentNode.className="hover";
+                        break;
+                }
+            }
+        }
+    </script>
 
 </head>
 <body>
 <%@ include file="header.jsp"%>
 
-<div class="bg2_1">
-    <img src="../../static/img/topback.jpg" >
+<div>
+    <img src="${pageContext.request.contextPath}/static/img/topback.jpg" class="topback" >
 </div>
 <div class="bg2_2">
     <div class="bg3_1">
-        <ul>
+        <ul id="nav">
             <li>
                 <p >
-                <a href="/info${fieldValue}">
+                <a href="${pageContext.request.contextPath}/info${fieldValue}">
                     <c:choose>
                         <c:when test="${field == 'job'}">就业信息</c:when>
                         <c:when test="${field == 'notice'}">通知公告</c:when>
@@ -89,7 +114,7 @@
                 </p>
             </li>
             <c:forEach var="sub" items="${subjectList}">
-                <li><a href="/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
+                <li><a href="${pageContext.request.contextPath}/info${fieldValue}/${sub.subValue}">${sub.subject}</a></li>
             </c:forEach>
         </ul>
     </div>
@@ -106,7 +131,7 @@
                     </c:choose>
                 </span>
                 <span class="span2">当前位置：<a href="/index">首页</a>/
-                    <a href="/info${fieldValue}">
+                    <a href="${pageContext.request.contextPath}/info${fieldValue}">
                          <c:choose>
                              <c:when test="${field == 'job'}">就业信息</c:when>
                              <c:when test="${field == 'notice'}">通知公告</c:when>
@@ -114,7 +139,7 @@
                              <c:when test="${field == 'other'}">其它信息</c:when>
                              <c:otherwise>${field}</c:otherwise>
                          </c:choose>
-                    </a>/<a href="/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
+                    </a>/<a href="${pageContext.request.contextPath}/info${fieldValue}${subjectValue}">${subject}</a>/${info.title} </span>
             </div>
             <div class="clearfix"></div>
             <div class="bg5">
@@ -128,13 +153,13 @@
                 <c:if test="${ info.labels!='' }">
                 <p class="tag">标签：
                     <c:forTokens var="label" items="${info.labels}" delims=", ">
-                        <a href="/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
+                        <a href="${pageContext.request.contextPath}/info/genSearchV?keyword=${label}" class="info_a">${label}&nbsp&nbsp</a>
                     </c:forTokens>
                 </p><br>
                 </c:if>
             </div>
             <div align="center">
-                <form action="/info/favor" method="post" name="PageForm" style="align-self: center">
+                <form action="${pageContext.request.contextPath}/info/favor" method="post" name="PageForm" style="align-self: center">
                     <input type="hidden" name="infoId" value="${info.id}">
                     <c:choose>
                         <c:when test="${ favored =='false' }">

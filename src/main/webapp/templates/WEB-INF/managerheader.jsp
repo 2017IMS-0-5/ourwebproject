@@ -37,7 +37,7 @@
 			padding-right: 70px;
 			min-width:964px;
 			padding-left: 465px;
-			background-image: url(../../static/img/schoollogo.JPG);
+			background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
 			background-repeat: no-repeat;
 			background-position: center;
 			background-position-x:0;
@@ -48,7 +48,7 @@
 		}
 		.infrontpage{
 			background-color: rgba(143,130,188,1);
-			background-image: url(../../static/img/flo.png);
+			background-image: url(${pageContext.request.contextPath}/static/img/flo.png);
 			background-repeat: no-repeat;
 			background-position: center;
 			background-position-x:8px;

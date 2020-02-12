@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comment`
+-- Table structure for table `Comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `Comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `comment` (
+CREATE TABLE `Comment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) DEFAULT NULL,
   `createTime` datetime NOT NULL,
@@ -32,13 +32,13 @@ CREATE TABLE `comment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comment`
+-- Dumping data for table `Comment`
 --
 
-LOCK TABLES `comment` WRITE;
-/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,'美赛求组队','2020-02-08 04:25:03','201711260115'),(2,'求六级复习资料','2020-02-08 04:25:03','201711260111'),(3,'求师姐推荐女子形体老师！','2020-02-08 04:28:31','201711260115'),(4,'请问最新的保研条例什么时候出啊？','2020-02-08 04:33:48','201711260101'),(5,'什么时候开学啊？','2020-02-08 04:33:49','201711260103'),(6,'可以多一些关于信管的实习的信息吗？','2020-02-08 04:33:49','201711260115'),(7,'经典研读模块的课有推荐的吗？','2020-02-08 04:39:00','201711260111'),(8,'请问师兄师姐有毛概复习资料吗？','2020-02-08 04:39:00','201711260115'),(9,'可以邀请一些已经就业的师兄师姐来分享一下经历吗？','2020-02-08 13:02:56','201711260101'),(10,'可以举办一场考研经验分享会吗？','2020-02-08 13:02:56','201711260115');
-/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+LOCK TABLES `Comment` WRITE;
+/*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
+INSERT INTO `Comment` VALUES (1,'美赛求组队','2020-02-08 04:25:03','201711260115'),(2,'求六级复习资料','2020-02-08 04:25:03','201711260111'),(3,'求师姐推荐女子形体老师！','2020-02-08 04:28:31','201711260115'),(4,'请问最新的保研条例什么时候出啊？','2020-02-08 04:33:48','201711260101'),(5,'什么时候开学啊？','2020-02-08 04:33:49','201711260103'),(6,'可以多一些关于信管的实习的信息吗？','2020-02-08 04:33:49','201711260115'),(7,'经典研读模块的课有推荐的吗？','2020-02-08 04:39:00','201711260111'),(8,'请问师兄师姐有毛概复习资料吗？','2020-02-08 04:39:00','201711260115'),(9,'可以邀请一些已经就业的师兄师姐来分享一下经历吗？','2020-02-08 13:02:56','201711260101'),(10,'可以举办一场考研经验分享会吗？','2020-02-08 13:02:56','201711260115');
+/*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
