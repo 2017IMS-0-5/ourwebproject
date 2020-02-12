@@ -36,7 +36,7 @@
     <div class="bg2">
         <p>平台登录</p>
 
-        <form method=post action="${pageContext.request.contextPath}/checkLogin" align="center">
+        <form method=get action="${pageContext.request.contextPath}/sessionin/login" align="center">
             <div class="input_radio">
                 <label>
                     <input type="radio" checked name="role" value="user" class="a-radio" >

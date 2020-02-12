@@ -61,12 +61,25 @@
 				float:right;
 			}
 			.bg4 table{
-				margin-left:10%;
+				margin:5% auto;
+				width:60%;
+				text-align:center;
+				background-color:rgba(255,255,255,0.4);
+				border-radius:10px;
+			}
+			.bg4 h1{
+				font-size:25px;
+				color:#484891;
+				text-align:center;
+			}
+			.bg4 input{
+				display:block;
+				margin:0 auto;
+				background-color:#484891;
+				color:#fff;
 			}
 			.bg4 tr{
-				text-decoration:underline;
 				height:40px;
-				background-color:#8E8E8E;
 			}
 			.bg4 a:hover{
 				color:#930000;
@@ -84,21 +97,26 @@
 				float:right;
 			}
 			.bg5 table{
+				background-color:rgba(255,255,255,0.4);
+				margin:5% auto;
 				text-align:center;
 				width:60%;
-				margin-left:15%;
 			}
 			.bg5 td{
 				height:40px;
-				border-bottom: 3px solid #6C6C6C;
+				border-bottom: 3px solid #a9a9d3;
+			}
+			.bg5 h1{
+				font-size:25px;
+				color:#484891;
+				text-align:center;
 			}
 			.bg5 a:hover{
 				color:#4B0091;
 			}
 			#form1{
 				font-size:15px;
-				margin-top:4%;
-				margin-left:35%;
+				margin:4% 45%;
 			}
 			#form2{
 				position:absolute;

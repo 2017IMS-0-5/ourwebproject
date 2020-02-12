@@ -23,15 +23,15 @@
 		<div id="bg2">
 			<table cellpadding="3" cellspacing="3">
 				<tr>
-					<td  colspan="2" style="font-size:17px;font-weight:800;">${stu.name}李华</td>
+					<td  colspan="2" style="font-size:17px;font-weight:800;">${user.name}</td>
 				</tr>
 				<tr>
-					<td>年级：${stu.grade}2017级本科生</td>
-					<td>专业：${stu.major}信息管理与信息系统</td>
+					<td>年级：${user.grade}</td>
+					<td>专业：${user.major}</td>
 				</tr>
 				<tr>
-					<td>学号：${stu.account}201711260000</td>
-					<td>电子邮箱：${stu.email}201711260000@mail.bnu.edu.cn</td>
+					<td>学号：${user.account}</td>
+					<td>电子邮箱：${user.email}</td>
 				</tr>
 			</table>
 		</div>
@@ -61,11 +61,14 @@
 		<div class="bg5">
 			<table cellspacing="30">
 				<tr style="font-size:20px;font-weight:600;">
-					<td>我发布的留言</td>
-					<c:forEach var="comm" items="${commList}">
-				<tr>
-					<td>${comm.content}</td>
+					<td><h1>我发布的留言</h1></td>
+					<td><h1>留言发布时间</h1></td>
 				</tr>
+				<c:forEach var="comm" items="${commList}">
+					<tr>
+						<td>${comm.content}</td>
+						<td>${comm.createTime}</td>
+					</tr>
 				</c:forEach>
 			</table>
 			<div id="form2">
@@ -74,12 +77,12 @@
 				第${pageIndex}页&nbsp;
 				共${pageTotal}页&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/usersp/fbly?pageIndex=0">首页</a>&nbsp;
-				<%if((int)request.getAttribute("pageIndex")>1){ %>
+                <c:if test="${ pageIndex>=2 }">
 				<a href="${pageContext.request.contextPath}/usersp/fbly?pageIndex=${pageIndex-2}">上一页</a>&nbsp;
-				<% }%>
-				<% if((int)request.getAttribute("pageIndex")<(int)request.getAttribute("pageTotal")){%>
+				</c:if>
+                <c:if test="${pageIndex<pageTotal}">
 				<a href="${pageContext.request.contextPath}/usersp/fbly?pageIndex=${pageIndex}">下一页</a>&nbsp;
-				<% }%>
+				</c:if>
 				<a href="${pageContext.request.contextPath}/usersp/fbly?pageIndex=${pageTotal-1}">尾页</a>
 			</div>
 		</div>  

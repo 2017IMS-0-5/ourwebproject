@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -104,6 +105,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countAllUsers(){
         return userRepository.countAllUsers();
+    }
+
+    @Override
+    public List<User> listUsers(){
+        return userRepository.findAll();
     }
 
 }

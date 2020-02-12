@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page import="com.example.webproject.entity.User" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 	<style type="text/css">
@@ -64,6 +65,8 @@
 	</style>
 </head>
 <body>
+<%User user=(User) session.getAttribute("user");
+String name=user.getName();%>
 	<form>
 		<div class="welcome">
 			<h>欢迎访问政府管理学院信息资源整合平台</h>
@@ -71,7 +74,8 @@
 				<input type="search" id="ky" name="keyword" class="keywords" placeholder="站内搜索" />
 					<input type="button" name="" onclick="toGenSearch()" value="检索" class="genbut">
 		    	<a href="${pageContext.request.contextPath}/info/advancedSearch"><u>高级检索</u></a>
-		    	<a href="${pageContext.request.contextPath}/usersp/zxtz"><u>欢迎你,李华</u></a>
+		    	<a href="${pageContext.request.contextPath}/usersp/zxtz"><u>欢迎你,<%=name%></u></a>
+				<input type="button" name="" value="退出登录" class="exit" onclick="exit()"/>
 		    </div>
 	    </div>
 	</form>
@@ -88,6 +92,12 @@
 </body>
 </html>
 <script type="text/javascript">
+	function exit(){
+		var r=confirm("请问您确定退出吗");
+		if (r==true){
+			window.location.href="${pageContext.request.contextPath}/sessionout/userout";
+		}
+	}
 	function toGenSearch() {
 			var ky = document.getElementById("ky").value;
 			window.location.href= "${pageContext.request.contextPath}/info/genSearchV?keyword="+ky;

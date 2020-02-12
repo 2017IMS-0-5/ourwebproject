@@ -35,4 +35,11 @@ public interface UserFavorService {
      * @return
      */
     Boolean ifexistsFavor(String userAccount, String infold);
+
+    /**
+     * 根据infold和useraccount删除收藏
+     * @infold
+     * @useraccount
+     */
+    void deleteUserFavor(String infold,String userAccount);
 }

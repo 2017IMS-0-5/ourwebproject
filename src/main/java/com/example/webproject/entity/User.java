@@ -24,7 +24,7 @@ public class User {
     @Column(length = 100)
     private String password;
     @NotEmpty(message = "学工号不能为空")
-    @Size(min=12, max=12)
+    @Size(max=12)
     @Column(nullable = false, length = 12, unique = true)
     private String account;
     private String gender;
@@ -87,7 +87,7 @@ public class User {
         this.password = password;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(String username) {
         this.account = account;
     }
 
@@ -116,7 +116,6 @@ public class User {
         this.major=major;
         this.role=role;
     }
-
 
     @Override
     public String toString() {
