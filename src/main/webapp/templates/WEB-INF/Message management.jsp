@@ -167,7 +167,7 @@
 		<%@ include file="Administratornavigatorbar.jsp"%>
 		<div class="content">
 		<div class="search">
-		<form action="/admin/checkInfoSearch" method="get">
+		<form action="${pageContext.request.contextPath}/admin/checkInfoSearch" method="get">
 			<img src="${pageContext.request.contextPath}/static/img/search.jpg" style="float:left;"/>
 			<div class="search1" style="margin:-12px 15px;">
 				<p class="black" style="float:left;border-radius:5px;">信息类型：</p>
@@ -237,7 +237,7 @@
 						</td>
 						<td id="second_tt" style="width:90px;height:30px;">${info.subject}
 						</td>
-						<td id="tt"style=" width:280px;height:30px;">${info.title}
+						<td id="tt" style=" width:280px;height:30px;">${info.title}
 						</td>
 						<td id="publisher" style="width:90px;height:30px;">${info.author}
 						</td>
@@ -253,34 +253,6 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<!-- 修改按钮的弹窗 -->
-			<div id="light" class="white_content">
-				<div class="noteuploadzone">
-					<form action="/admin/infoSubmit" method="post" class="form" onsubmit="return deal()">
-			            <dl id="li" class="list">
-			                <dt class="items">
-			                    <label>一级标题：</label><input type="text" name="field" id="txt_firsttt">
-			                </dt>
-			                <dt class="items">
-			                    <label>二级标题：</label><input type="text" name="subject" id="txt_secondtt">
-			                </dt>
-			                <dt class="items">
-			                    <label>文章标题：</label><input type="text" name="title" id="txt_tt">
-			                </dt>
-			                <dt class="items" id="tags">
-			                    <label>文件标签：</label><input type="text" name="labels" id="txt_label"><input type="button" name="add" class="funcbutadd" value="+" onclick="addBotton()"><span>增加</span><input type="button" class="funcbutdel" name="del" value="x" onclick="delBotton()"><span>删除</span>
-			                </dt>
-			                <dt class="items">
-			                    <label>附件地址：</label></label><input type="text" name="relation" id="txt_relation">
-			                </dt>
-			            </dl>
-			            <div style="text-align:center;">
-			                <label></label><input type="submit" name="submit" value="提交" class="submitbut">
-			                <button type="button" name="return" class="new_button2" href = "javascript:void(0)" onclick="closeDialog()">返回</button>
-			            </div>
-					</form>
-				</div>
-			</div>
 		    <div id="fade" class="black_overlay"></div>
 		</div>
 	</div>
