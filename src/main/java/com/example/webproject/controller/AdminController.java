@@ -83,6 +83,21 @@ public class AdminController {//管理员相关控制
         return modelAndView;
     }
 
+    @GetMapping("/teachSearch")
+    public ModelAndView teachSearch(@RequestParam(value = "pageIndex",required=false, defaultValue="0")int pageIndex,
+                                   @RequestParam(value="pageSize",required=false,defaultValue = "100")int pageSize
+    ){
+        Pageable pageable= PageRequest.of(pageIndex,pageSize);
+        Page<User> page=userService.listUsersByRole(2,pageable);
+        List<User> list=new ArrayList<>();
+        for(User user:page){
+            list.add(user);
+        }
+        ModelAndView modelAndView=new ModelAndView("Personnel management_user");
+        modelAndView.addObject("userList",list);
+        return modelAndView;
+    }
+
     @GetMapping("/adminSearch")
     public ModelAndView adminSearch(@RequestParam(value = "pageIndex",required=false, defaultValue="0")int pageIndex,
                                    @RequestParam(value="pageSize",required=false,defaultValue = "100")int pageSize

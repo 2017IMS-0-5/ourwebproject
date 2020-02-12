@@ -248,14 +248,14 @@ background: #ccc;
                             <td >${stu.email}
                             </td>
                             <td>
-                                <p><a href="${pageContext.request.contextPath}/admin/userDelete?id=${stu.id}">删除</a></p>
+                                <p><a class="changeinfo"></a><a href="${pageContext.request.contextPath}/admin/userDelete?id=${stu.id}">删除</a></p>
                             </td>
                         </tr>
                     </c:forEach>
             </table>
             <div id="light" class="white_content">
                 <div class="noteuploadzone">
-                    <form action="/admin/userInsert" method="post" class="form" onsubmit="return deal()">
+                    <form action="${pageContext.request.contextPath}/admin/userInsert" method="post" class="form" onsubmit="return deal()">
                         <dl id="li" class="list" id="changeuplist">
                             <dt class="items">
                                 <label class="changelabel">身份：</label><input type="text" name="role" value="" class="uploadinput">
@@ -279,7 +279,7 @@ background: #ccc;
                                 <label class="changelabel">邮箱：</label><input type="text" name="email" value="" class="uploadinput">
                             </dt>
                             <dt class="items">
-                                <label>password：</label><input type="text" name="password"  disabled="true" class="uploadinput">
+                                <label>password：</label><input type="text" name="password" class="uploadinput">
                             </dt>
                         </dl>
                         <div style="text-align:center;">
