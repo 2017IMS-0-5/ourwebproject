@@ -66,19 +66,17 @@ public class LoginSession{//Session存着用户信息
             System.out.println("登录失败：用户名或密码错误");
             return "redirect:/login";
         }
-        /**else{
+        else{
             List<Admin> list = adminService.listAdmins();
             for (Admin admin : list) {
                 if (admin.getAccount().equals(account) && admin.getPassword().equals(password)) {
                     request.getSession().setAttribute("admin", admin);
-                    return "/admin/generalShow";
+                    return "redirect:/admin/generalShow";
                 }
             }
             System.out.println("登录失败：用户名或密码错误");
-            return "/login";
-        }*/
-        return "redirect:/login";
-
+            return "redirect:/login";
+        }
     }
 }
 
