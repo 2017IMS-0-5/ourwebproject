@@ -67,7 +67,7 @@
 			height:450px;
 			float:left;
 			position:absolute;
-			margin:80px 0px;
+			margin:40px 0px;
 			border-radius:5px;
 		}
 		p.black
@@ -87,6 +87,31 @@
 			-moz-transition:all linear 0.30s;
 			transition:all linear 0.30s;
 		}
+		.managetable{
+            table-layout: fixed;
+        }
+        .managetable>tbody>tr,.table>thead{
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* 重要  表格固定算法 */
+        }
+        .managetable tr:nth-child(even){
+        	background: #ccc;
+        }
+        .managetable td{
+    text-align: center;
+    white-space:nowrap;overflow:hidden;text-overflow: ellipsis;
+    width: 120px;
+    }
+    .managetable>tbody{
+  height:450px;
+  width: 1200px;
+  overflow: hidden;
+  display: block;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
+}
 	</style>
 	<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/jedate.min.js"></script>
@@ -244,23 +269,16 @@
 			</div>
 		</form>
 		</div>
-		<div class="list_title">
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:200px;">账号</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:100px;">留言时间</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:670px;">留言内容</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:120px;">操作</p>
-			</div>
-		</div>
 		<div class="list1">
-			<table style="text-align:center;">
+			<table class="managetable">
+				<tr style="background-color:rgba(143,130,188,1); ">
+                        <th>账号</th>
+                        <th>留言时间</th>
+                        <th>留言内容</th>
+                        <th>操作</th>
+                    </tr>
 				<c:forEach var="comm" items="${commList}">
+					
 					<tr>
 						<td style="width:210px;height:30px;">${comm.userAccount}
 						</td>

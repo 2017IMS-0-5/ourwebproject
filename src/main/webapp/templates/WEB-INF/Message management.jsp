@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 			-webkit-border-radius:5px;
 			border-radius:5px;
 			height:550px;
-			maigin-bottom:30px;
+			margin-bottom:30px;
 			margin-left:390px;
 		}
 		div.search
@@ -67,7 +68,7 @@
 			height:450px;
 			float:left;
 			position:absolute;
-			margin:80px 0px;
+			margin:40px 0px;
 			border-radius:5px;
 		}
 		p.black
@@ -115,7 +116,32 @@
             border: 4px solid black; 
             background-color: white; 
             z-index:1002; 
-            overflow: auto; 
+            overflow: auto;
+		}
+		.managetable{
+            table-layout: fixed;
+        }
+        .managetable>tbody>tr,.table>thead{
+            display: table;
+            width: 100%;
+            table-layout: fixed; /* 重要  表格固定算法 */
+        }
+        .managetable tr:nth-child(even){
+        	background: #ccc;
+        }
+        .managetable td{
+    text-align: center;
+    white-space:nowrap;overflow:hidden;text-overflow: ellipsis;
+    width: 120px;
+    }
+    .managetable>tbody{
+  height:450px;
+  width: 1200px;
+  overflow: hidden;
+  display: block;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
         } 
     </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/infoUpload.js"> </script>
@@ -203,52 +229,49 @@
 			</div>
 		</form>
 		</div>
-		<div class="list_title">
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:80px;">一级标题</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:80px;">二级标题</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:250px;">文章标题</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:80px;">发布者</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:100px;">发布时间</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:150px;">关键词</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:150px;">附件地址</p>
-			</div>
-			<div class="title" style="margin:-12px 10px;">
-				<p class="black" style="width:150px;">操作</p>
-			</div>
-		</div>
 		<div class="list1">
-			<table style="text-align:center;">
+			<table class="managetable">
+                
+                    <tr style="background-color:rgba(143,130,188,1); ">
+                        <th>一级标题</th>
+                        <th>二级标题</th>
+                        <th>文章标题</th>
+                        <th>发布者</th>
+                        <th>发布时间</th>
+                        <th>关键词</th>
+
+                        <th>操作</th>
+                    </tr>
+
 				<c:forEach var="info" items="${infoList}">
 					<tr>
-						<td id="first_tt" style="width:90px;height:30px;">${info.field}
+						<td id="first_tt" style="width:90px;height:30px;">
+							<c:choose>
+								<c:when test="${info.field == 'job'}">就业信息</c:when>
+								<c:when test="${info.field == 'notice'}">通知公告</c:when>
+								<c:when test="${info.field == 'policy'}">政策制度</c:when>
+								<c:when test="${info.field == 'other'}">其它信息</c:when>
+								<c:otherwise>${info.field}</c:otherwise>
+							</c:choose>
 						</td>
-						<td id="second_tt" style="width:90px;height:30px;">${info.subject}
+						<td id="second_tt" style="width:90px;height:30px;">
+							${info.subject}
 						</td>
 						<td id="tt" style=" width:280px;height:30px;">${info.title}
 						</td>
-						<td id="publisher" style="width:90px;height:30px;">${info.author}
+						<td id="publisher" style="width:90px;height:30px;">
+							学术实践
 						</td>
-						<td id="pub_time" style="width:110px;height:30px;">${info.createTime}
+						<td id="pub_time" style="width:110px;height:30px;">
+							<fmt:formatDate value="${info.createTime}" pattern="yyyy-MM-dd"/>
 						</td>
-						<td id="label" style="width:170px;height:30px;">${info.labels}
-						</td>
-						<td id="relation" style="width:170px;height:30px;">${info.relation}
+						<td id="label" style="width:170px;height:30px;">
+							<c:forTokens var="label" items="${info.labels}" delims=", ">
+								${label}&nbsp
+							</c:forTokens>
 						</td>
 						<td style="width:170px;height:30px;">
-							<p><a href = "JavaScript:void(0)" onclick = "openDialog()">修改</a>/<a href="${pageContext.request.contextPath}/admin/infoDelete?id=${info.id}">删除</a></p>
+							<p><a href="${pageContext.request.contextPath}/admin/infoDelete?id=${info.id}">删除</a></p>
 						</td>
 					</tr>
 				</c:forEach>

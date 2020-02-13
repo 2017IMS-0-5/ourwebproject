@@ -241,7 +241,7 @@
             </table>
             <div id="light" class="white_content">
                 <div class="noteuploadzone">
-                    <form action="/admin/adminSubmit" method="post" class="form" onsubmit="return deal()">
+                    <form action="${pageContext.request.contextPath}/admin/adminInsert" method="post" class="form" onsubmit="return deal()">
                         <dl id="li" class="list" id="changeuplist">
                                 <label class="changelabel">账号：</label><input type="text" name="account" value="" class="uploadinput">
                             </dt>
@@ -250,6 +250,9 @@
                             </dt>
                             <dt class="items">
                                 <label class="changelabel">身份：</label><input type="text" name="role" value="" class="uploadinput">
+                            </dt>
+                            <dt class="items">
+                                <label class="changelabel">密码：</label><input type="text" name="password" value="" class="uploadinput">
                             </dt>
                         </dl>
                         <div style="text-align:center;">

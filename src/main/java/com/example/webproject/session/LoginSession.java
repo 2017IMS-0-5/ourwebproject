@@ -52,7 +52,7 @@ public class LoginSession{//Session存着用户信息
         }
 
         if(session.getAttribute("admin")!=null){
-            return "redirect:/admin/generalShow";
+            return "redirect:/admin/homepage";
         }
 
         if(role.equals("user")) {

@@ -44,4 +44,9 @@ public class InfoClassServiceImpl implements InfoClassService{
     public InfoClass selectByFieldAndSubValue(String field, String subValue) {
         return infoClassRepository.findByFieldAndSubValue(field, subValue);
     }
+
+    @Override
+    public InfoClass selectByFieldAndSubject(String field, String subject) {
+        return infoClassRepository.findByFieldAndSubjectLike(field,subject);
+    }
 }

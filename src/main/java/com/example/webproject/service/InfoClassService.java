@@ -34,4 +34,6 @@ public interface InfoClassService {
     List<InfoClass> selectByField(String field);
 
     InfoClass selectByFieldAndSubValue(String field,String subValue);
+
+    InfoClass selectByFieldAndSubject(String field,String subject);
 }

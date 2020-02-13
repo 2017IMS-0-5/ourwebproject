@@ -157,21 +157,20 @@ $(document).ready(function () {
 				margin-top: 1px;
 				margin-left: 50px;
 			}
-			.manager_apt{
-				width: 20%;
-				height: 100px;
-				background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
-				background-repeat: no-repeat;
-				text-align: right;
-				display:table-cell; 
-	            vertical-align:bottom;
-			}
-			.manager_apt b{ 
-				color: rgba(143,130,188,1);
-				font-size: 20px;
-				float:right;
-				margin-top:-5%;
-			}
+            .manager_apt{
+                width: 100%;
+                height: 100px;
+                background-image: url(${pageContext.request.contextPath}/static/img/schoollogo.JPG);
+                background-repeat: no-repeat;
+                text-align: right;
+                vertical-align:bottom;
+            }
+            .manager_apt b{
+                color: rgba(143,130,188,1);
+                font-size: 20px;
+                text-align:right;
+                line-height:100px;
+            }
 		    #foot{
 				float:left;
 				width:100%;
@@ -248,12 +247,14 @@ $(document).ready(function () {
 			</tr>
 		</table>
 	</div>
-	
-	<div class="bg4"  style="float:right;">
-		<div id="jqChart1" style="width: 300px; height: 250px;float:left;"></div>
-		<div id="jqChart2" style="width: 300px; height: 250px;float:left;"></div>
-		<div id="jqChart3" style="width: 300px; height: 250px;float:left;"></div>
-	</div>
+
+    <div class="bg4"  style="float:right;">
+        <div style="margin-left:12%;">
+            <div id="jqChart1" style="width: 25%; height: 250px;float:left;"></div>
+            <div id="jqChart2" style="width: 25%; height: 250px;float:left;"></div>
+            <div id="jqChart3" style="width: 25%; height: 250px;float:left;"></div>
+        </div>
+    </div>
 	
 	<div style="float:left;width:100%;">
 		<%@include file="footer.jsp" %>

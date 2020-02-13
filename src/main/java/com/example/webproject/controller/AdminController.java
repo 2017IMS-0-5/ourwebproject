@@ -36,6 +36,8 @@ public class AdminController {//管理员相关控制
     private CommentService commentService;
     @Autowired
     private AnalysisService analysisService;
+    @Autowired
+    private InfoClassService infoClassService;
 
 
     //以下是测试页
@@ -338,9 +340,14 @@ public class AdminController {//管理员相关控制
                                    @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable= PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("job","实习信息",pageable);
+        AdSearch adSearch=new AdSearch("","","","","","","","");
+        Page<Information> page=informationService.advancedSearch(adSearch, pageable);
         List<Information> list=new ArrayList<>();
         for(Information information:page){
+            InfoClass infoClass=infoClassService.selectByFieldAndSubValue(information.getField(),information.getSubject());
+            if(infoClass!=null) {
+                information.setSubject(infoClass.getSubject());
+            }
             list.add(information);
         }
         ModelAndView modelAndView=new ModelAndView("Message management");
@@ -374,23 +381,24 @@ public class AdminController {//管理员相关控制
                                               @RequestParam(value = "pageSize",required = false,defaultValue = "100")int pageSize
     ){
         Pageable pageable=PageRequest.of(pageIndex,pageSize);
-        Page<Information> page=informationService.show("all",subject,pageable);
-        if(field.equals("全部")){
-            page=informationService.show("all",subject,pageable);
+        Page<Information> page=null;
+        subject=infoClassService.selectByFieldAndSubject(field,subject).getSubValue();
+        if(subject!=null) {
+            if (field.equals("全部")) {
+                page = informationService.show("all", subject, pageable);
+            } else if (field.equals("就业信息")) {
+                page = informationService.show("job", subject, pageable);
+            } else if (field.equals("通知公告")) {
+                page = informationService.show("notice", subject, pageable);
+            } else if (field.equals("政策规章")) {
+                page = informationService.show("policy", subject, pageable);
+            } else if (field.equals("其它信息")) {
+                page = informationService.show("other", subject, pageable);
+            }
         }
-        else if(field.equals("就业信息")){
-            page=informationService.show("job",subject,pageable);
-        }
-        else if(field.equals("通知公告")){
-            page=informationService.show("notice",subject,pageable);
-        }
-        else if(field.equals("政策规章")){
-            page=informationService.show("policy",subject,pageable);
-        }
-        else if(field.equals("其它信息")){
-            page=informationService.show("other",subject,pageable);
-        }
+        else page=informationService.show("other", "all", pageable);
         List<Information> list=new ArrayList<>();
+        assert page != null;
         for(Information information:page){
             list.add(information);
         }
@@ -589,15 +597,15 @@ public class AdminController {//管理员相关控制
         return "redirect:/admin/userSearch";
     }
 
-    @GetMapping("/adminInsert")
-    public ModelAndView adminInsert(Admin admin){
+    @PostMapping("/adminInsert")
+    public String adminInsert(Admin admin){
         Admin newAdmin=new Admin(admin.getAccount(),admin.getPassword(),admin.getName(),admin.getRole());
         Admin checkAdmin=adminService.SaveNewAdmin(newAdmin);
         if(checkAdmin==null){
-            return new ModelAndView("error");
+            return "redirect:/main/error";
         }
         else{
-            return new ModelAndView("Personnel management_manager");
+            return "redirect:/admin/adminSearch";
         }
     }
 

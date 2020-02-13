@@ -107,12 +107,18 @@
 			up.onclick=function(){
 				var upchi = new Array();
 				var names = ['> 通知公告','> 就业实习','> 政策制度','> 其他信息'];
+				var urls=['${pageContext.request.contextPath}/admin/noticeupload',
+					'${pageContext.request.contextPath}/admin/jobupload',
+					'${pageContext.request.contextPath}/admin/policyupload',
+					'${pageContext.request.contextPath}/admin/otherupload'];
 				if(this.flag==0){
 				for (var i = 0; i <= names.length - 1; i++) {
-					upchi[i]=document.createElement("p");
+					upchi[i]=document.createElement("a");
 					upchi[i].setAttribute("style","padding-left:35px;font-size:85%;");
 					upchi[i].innerText=names[i];
+					upchi[i].setAttribute("href",urls[i]);
 					this.innerText='Ⅴ';
+					this.parentElement.appendChild(document.createElement("br"));
 					this.parentElement.appendChild(upchi[i]);	
 				}
 			    this.flag=1;}

@@ -279,6 +279,9 @@ background: #ccc;
                                 <label class="changelabel">邮箱：</label><input type="text" name="email" value="" class="uploadinput">
                             </dt>
                             <dt class="items">
+                                <label class="changelabel">密码：</label><input type="text" name="password" value="" class="uploadinput">
+                            </dt>
+                            <dt class="items">
                                 <label>password：</label><input type="text" name="password" class="uploadinput">
                             </dt>
                         </dl>

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import sun.plugin.dom.core.Element;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {//处理整个系统相关的控制：登录、退出、注册
@@ -39,7 +38,11 @@ public class MainController {//处理整个系统相关的控制：登录、退�
     }
 
     @GetMapping("/main")//登录界面
-    public ModelAndView testmain(){
+    public ModelAndView testmain(HttpServletRequest request){
+        if(request.getSession().getAttribute("user")!=null)
+            request.getSession().removeAttribute("user");
+        if(request.getSession().getAttribute("admin")!=null)
+            request.getSession().removeAttribute("admin");
         ModelAndView modelAndView=new ModelAndView("main");
         modelAndView.addObject("infoList",informationService.findNewInfo(5));
         return modelAndView;

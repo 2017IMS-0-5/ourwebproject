@@ -6,7 +6,7 @@
 	<title>北京师范大学政府管理学院</title>
 	<!-- 管理员首页 -->
 	<style  type="text/css">
-		.content
+		div.content
 		{
 			background-color:White;
 			width:68%;
@@ -15,10 +15,10 @@
 			-webkit-border-radius:5px;
 			border-radius:5px;
 			height:550px;
-			maigin-bottom:30px;
+			margin-bottom:30px;
 			margin-left:260px;
 		}
-		.information
+		div.information
 		{
 			font-family: "微软雅黑";
 			background-color:GhostWhite;
@@ -33,12 +33,12 @@
 			padding:20px 20px 20px 20px;
 			display:inline
 		}
-		.piple
+		p.piple
 		{
 			font-size:150%;
 			color:MediumPurple;
 		}
-		.gray
+		p.gray
 		{
 			font-size:100%;
 			color:Gray;
